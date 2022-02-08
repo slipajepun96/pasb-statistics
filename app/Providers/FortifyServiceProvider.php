@@ -49,12 +49,12 @@ class FortifyServiceProvider extends ServiceProvider
         // tetapkan lokasi view untuk login
         Fortify::loginView(function () 
         {
-            return view('auth.login');
+            return view('admin.login');
         });
         // tetapkan lokasi view untuk register
         Fortify::registerView(function () 
         {
-            return view('auth.register');
+            return view('admin.register');
         });
         // tetapkan lokasi view untuk forgot-password
         Fortify::requestPasswordResetLinkView(function () 
@@ -64,7 +64,7 @@ class FortifyServiceProvider extends ServiceProvider
         // tetapkan lokasi view untuk reset-password
         Fortify::resetPasswordView(function ($request) 
         {
-            return view('auth.reset-password', ['request' =>$request]);
+            return view('admin.reset-password', ['request' =>$request]);
         });
     }
 }

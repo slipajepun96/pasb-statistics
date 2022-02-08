@@ -4,7 +4,7 @@
 <div class="p-3 max-w-sm mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
     <p class="text-2xl font-bold">Administrator Login</p>
     
-    <form action="" method="POST">
+    <form action="{{route('login')}}" method="POST">
         @csrf
         <div class="my-4">    
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">

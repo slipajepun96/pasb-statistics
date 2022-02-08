@@ -68,7 +68,15 @@
                     <a href="#" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Dashboard</span></a>
                     <a href="#" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>FFB Yield</span></a>
                     <a href="#" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Rain Level</span></a>
+                    
+                    
+                    @if(!Auth::guest())
+                    <a href="{{route('main')}}" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Admin Main</span></a>
+                    <form action="{{route('logout')}}" method="POST"> @csrf <button type="submit" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-red-600 hover:text-white">Logout</button></form>
+                    
+                    @else 
                     <a href="{{route('login')}}" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Admin Login</span></a>
+                    @endif
                 </div>
             </div>
         </nav>

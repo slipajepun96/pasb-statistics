@@ -17,4 +17,12 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::view('/login','admin.login')->name('login');
+// Route::view('/login','admin.login')->name('login');
+// Route::view('/register','admin.register')->name('register');
+
+Route::middleware(['web'],['preventBackHistory'])->group(function()
+{
+    Route::view('/main','admin.main')->name('main');
+    
+});
+
