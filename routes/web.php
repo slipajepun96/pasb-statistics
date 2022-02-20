@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\EstateController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +24,12 @@ Route::get('/', function () {
 
 Route::middleware(['web'],['preventBackHistory'])->group(function()
 {
-    Route::view('/main','admin.main')->name('main');
+    Route::view('/admin','admin.main')->name('main');
+
+    //estate
+    Route::post('/admin/estate/add',[EstateController::class,'store'])->name('estate-add-store');
+    Route::get('/admin/estate',[EstateController::class,'index'])->name('estate-index');
+    Route::get('/admin/estate/add',[EstateController::class,'add'])->name('estate-add');
     
 });
 
