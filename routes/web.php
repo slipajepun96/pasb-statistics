@@ -30,6 +30,7 @@ Route::middleware(['web'],['preventBackHistory'])->group(function()
     Route::post('/admin/estate/add',[EstateController::class,'store'])->name('estate-add-store');
     Route::get('/admin/estate',[EstateController::class,'index'])->name('estate-index');
     Route::get('/admin/estate/add',[EstateController::class,'add'])->name('estate-add');
+    Route::get('/admin/estate/view/{id}',[EstateController::class,'view'])->name('estate-view');
     
 });
 

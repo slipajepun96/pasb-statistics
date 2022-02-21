@@ -47,6 +47,12 @@ class EstateController extends Controller
         return redirect('/admin/estate');
     }
 
+    public function view($id)
+    {
+        $estate_detail=Estate::findOrFail($id);
+        return view('admin.estate.view',['estate_detail'=>$estate_detail]);
+    }
+
     public function delete()
     {
         DB::table('estates')->where('id',$id)->delete();
