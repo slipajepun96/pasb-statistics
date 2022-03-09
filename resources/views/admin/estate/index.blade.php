@@ -54,7 +54,7 @@
                                 </svg>
                             </button></a>
                             {{-- edit button --}}
-                            <form action="" method="GET">
+                            <form action="/admin/estate/edit/{{$estate_list->id}}" method="GET">
                                 @csrf 
                                 <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg p-2 m-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,7 +63,7 @@
                                 </button>
                             </form>
                             {{-- delete button --}}
-                            <form action="" method="GET">
+                            <form action="/admin/estate/delete/{{$estate_list->id}}" method="POST" onsubmit="return confirm('Are you sure to delete {{$estate_list->estate_name}} ?')">
                                 @csrf 
                                 <button type="submit" class="bg-red-500 hover:bg-red-400 rounded-lg p-2 m-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

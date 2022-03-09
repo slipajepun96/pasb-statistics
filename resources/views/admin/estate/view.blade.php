@@ -10,7 +10,7 @@
 }
 </style>
 <div class="bg-white m-2 p-2 text-black rounded-xl">
-    <span class="text-2xl font-bold m-2 my-3">Ladang Sungai Kerpai Details</span>
+    <span class="text-2xl font-bold m-2 my-3">{{$estate_detail->estate_name}}'s details</span>
     <br>
     @if(session('status'))
         <div class="bg-yellow-400 text-black p-2 rounded m-3" id="status_message">
@@ -26,6 +26,8 @@
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
               </svg>&nbsp;Back
             
+            </button></a>
+            <a href="{{route('estate-view-print',$estate_detail->id)}}"><button class="bg-green-500 hover:bg-green-400 rounded-lg p-2 m-2">Print PDF
             </button></a>
     </div>
     <div class="m-2">
