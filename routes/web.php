@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::middleware(['web'],['preventBackHistory'])->group(function()
 {
-    Route::view('/admin','admin.main')->name('main');
+    Route::get('/admin',[DailyYieldController::class,'index'])->name('main');
 
     //estate
     Route::post('/admin/estate/add',[EstateController::class,'store'])->name('estate-add-store');
@@ -39,7 +39,9 @@ Route::middleware(['web'],['preventBackHistory'])->group(function()
     Route::get('/admin/estate/edit/{id}',[EstateController::class,'edit'])->name('estate-edit');
 
     //ffb daily yield
+    Route::post('/admin/ffb/daily_yield/add',[DailyYieldController::class,'store'])->name('daily_yield-store');
     Route::get('/admin/ffb/daily_yield/add',[DailyYieldController::class,'add'])->name('daily_yield-add');
+    Route::get('/admin/ffb/daily_yield/edit/{id}',[DailyYieldController::class,'edit'])->name('daily_yield-edit');
     
     
 });

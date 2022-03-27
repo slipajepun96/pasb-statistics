@@ -16,38 +16,34 @@
         </div>
     {{-- @endif --}}
         <div class="m-2">
-        <a href="{{route('daily_yield-add')}}" class=" p-2 bg-green-600 hover:bg-green-500 rounded-lg text-white shadow-lg">+ Add New Entry</a>
+        <a href="{{route('daily_yield-add')}}" class=" p-2 bg-green-600 hover:bg-green-500 rounded-lg text-white shadow-lg">+ Add New Entry</a> 
     </div>
     <div class="m-2">
         <table class="border-collapse border border-green-900 w-full">
             <thead>
                 <tr class="bg-gray-200 p-3 font-bold">
-                    <td width="10%" class="border border-blue-900 p-3 display-none">Date</td>
-                    <td width="10%" class="border border-blue-900 p-3">Estate Abbreviation</td>
-                    <td width="20%" class="border border-blue-900 p-3">Today FFB (MT)</td>
+                    <td width="20%" class="border border-blue-900 p-3 display-none">Date</td>
+                    <td width="25%" class="border border-blue-900 p-3">Estate Abbreviation</td>
+                    <td width="15%" class="border border-blue-900 p-3">Today FFB (MT)</td>
                     <td width="20%" class="border border-blue-900 p-3 display-none">Today Budget FFB (MT)</td>
                     <td width="20%" class="border border-blue-900 p-3">Action</td>
                 </tr>
             </thead>
             <tbody>
-                {{-- @if($estate_lists->count()==0) --}}
+                @if($dailyyields->count()==0)
                     <tr>
                         <td colspan=5>Empty List <br>(contact administrator if you think this is an error)</td>
                     </tr>
-                {{-- @else --}}
-                {{-- @foreach($estate_lists as $estate_list) --}}
+                @else
+                @foreach($dailyyields as $dailyyield)
                     <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
-                        <td class="border border-gray-300 p-3 px-5 display-none"></td>
-                        <td class="border border-gray-300 p-3 px-5"></td>
-                        <td class="border border-gray-300 p-3 px-5"></td>
-                        <td class="border border-gray-300 p-3 px-5 display-none"></td>
+                        <td class="border border-gray-300 p-3 px-5 display-none">{{$dailyyield->date}}</td>
+                        <td class="border border-gray-300 p-3 px-5">{{$dailyyield->estate->estate_name}}</td>
+                        <td class="border border-gray-300 p-3 px-5">{{$dailyyield->ffb_mt}}</td>
+                        <td class="border border-gray-300 p-3 px-5 display-none">{{$dailyyield->date}}</td>
                         <td class="border border-gray-300 p-3 px-5 ">
                             <div class="inline-flex">
-                            {{-- view button --}}
-                            <a href=""><button class="bg-green-500 hover:bg-green-400 rounded-lg p-2 m-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </button></a>
+                            
                             {{-- edit button --}}
                             <form action="" method="GET">
                                 @csrf 
@@ -69,11 +65,12 @@
                         </div>
                         </td>
                     </tr>
-                {{-- @endforeach --}}
-                {{-- @endif --}}
+                @endforeach
+                @endif
 
             </tbody>
         </table>
+        {{$dailyyields->links()}}
     </div>
 </div>
 

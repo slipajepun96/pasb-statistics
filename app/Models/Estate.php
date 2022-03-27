@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\DailyYield;
+
 class Estate extends Model
 {
     use HasFactory;
@@ -19,4 +21,9 @@ class Estate extends Model
         'abbreviation',
         'plant_type'
     ];
+
+    public function dailyyield()
+    {
+        return $this->hasMany(DailyYield::class);
+    }
 }

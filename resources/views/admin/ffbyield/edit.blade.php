@@ -34,7 +34,7 @@
 
 </script>
 <div class="bg-white m-2 p-2 text-black rounded-xl">
-    <span class="text-2xl font-bold m-3">Add New FFB Daily Yield</span>
+    <span class="text-2xl font-bold m-3">Edit FFB Daily Yield</span>
     <br>
     <div class="m-2">
         <form action="{{route('daily_yield-store')}}" method="POST">

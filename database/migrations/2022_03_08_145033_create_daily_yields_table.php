@@ -17,7 +17,7 @@ class CreateDailyYieldsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->date('date');
-            $table->string('estate_abb');
+            $table->foreignId('estate_id');
             $table->float('ffb_mt',5,2);
             $table->foreignId('user_id');
             $table->string('month');
