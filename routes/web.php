@@ -40,6 +40,8 @@ Route::middleware(['web'],['preventBackHistory'])->group(function()
 
     //ffb daily yield
     Route::post('/admin/ffb/daily_yield/add',[DailyYieldController::class,'store'])->name('daily_yield-store');
+    Route::post('/admin/ffb/daily_yield/edit/{id}',[DailyYieldController::class,'update'])->name('daily_yield-update');
+    Route::post('/admin/ffb/daily_yield/delete/{id}',[DailyYieldController::class,'delete'])->name('daily_yield-delete');
     Route::get('/admin/ffb/daily_yield/add',[DailyYieldController::class,'add'])->name('daily_yield-add');
     Route::get('/admin/ffb/daily_yield/edit/{id}',[DailyYieldController::class,'edit'])->name('daily_yield-edit');
     

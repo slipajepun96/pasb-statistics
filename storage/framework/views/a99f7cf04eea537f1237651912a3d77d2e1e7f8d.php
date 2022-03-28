@@ -5,14 +5,18 @@
 </div>
 <div class="bg-white m-2 p-2 text-black rounded-xl">
     <span class="text-xl font-bold">FFB Daily Yield for March 2022</span>
-    
+    <?php if(session('status')): ?>
         <div class="bg-yellow-400 text-black p-2 rounded m-3" id="status_message">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-              </svg>&nbsp;Huhuhu
+            [INFO]<?php echo e(session('status')); ?>
+
         </div>
-    
+    <?php endif; ?>
+    <?php if(session('delete')): ?>
+    <div class="bg-red-400 text-black p-2 rounded m-3" id="status_message">
+        <?php echo e(session('delete')); ?>
+
+    </div>
+    <?php endif; ?>
         <div class="m-2">
         <a href="<?php echo e(route('daily_yield-add')); ?>" class=" p-2 bg-green-600 hover:bg-green-500 rounded-lg text-white shadow-lg">+ Add New Entry</a> 
     </div>
@@ -43,7 +47,7 @@
                             <div class="inline-flex">
                             
                             
-                            <form action="" method="GET">
+                            <form action="/admin/ffb/daily_yield/edit/<?php echo e($dailyyield->id); ?>" method="GET">
                                 <?php echo csrf_field(); ?> 
                                 <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg p-2 m-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,7 +56,7 @@
                                 </button>
                             </form>
                             
-                            <form action="" method="POST" onsubmit="return confirm('Are you sure to delete ?')">
+                            <form action="/admin/ffb/daily_yield/delete/<?php echo e($dailyyield->id); ?>" method="POST" onsubmit="return confirm('Are you sure to delete ?')">
                                 <?php echo csrf_field(); ?> 
                                 <button type="submit" class="bg-red-500 hover:bg-red-400 rounded-lg p-2 m-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
