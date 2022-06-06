@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\DailyYield;
+use App\Models\Budget;
 
 class Estate extends Model
 {
@@ -25,5 +26,10 @@ class Estate extends Model
     public function dailyyield()
     {
         return $this->hasMany(DailyYield::class);
+    }
+
+    public function budget()
+    {
+        return this->hasMany(Budget::class);
     }
 }

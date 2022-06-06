@@ -49,6 +49,25 @@
     
     
         </script>
+        <script>
+            $(document).ready(function()
+            {
+                $(".nav-toggler2").each(function(_, navToggler)
+                {
+                    var target=$(navToggler).data("target");
+                    $(navToggler).on("click",function()
+                    {
+                        $(target).animate(
+                            {
+                                height:"toggle",
+                            }
+                        );
+                    });
+                });
+            });
+        
+        
+        </script>
     </head>
     <body class="bg-gray-200">
         <nav class="flex items-center p-3 flex-wrap bg-white shadow">

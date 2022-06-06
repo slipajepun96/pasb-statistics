@@ -20,7 +20,7 @@
         <div class="m-2">
         <a href="<?php echo e(route('daily_yield-add')); ?>" class=" p-2 bg-green-600 hover:bg-green-500 rounded-lg text-white shadow-lg">+ Add New Entry</a> 
     </div>
-    <div class="m-2">
+    <div class="m-2 overflow-x-auto">
         <table class="border-collapse border border-green-900 w-full">
             <thead>
                 <tr class="bg-gray-200 p-3 font-bold">
@@ -72,6 +72,9 @@
 
             </tbody>
         </table>
+        
+    </div>
+    <div class="m-2">
         <?php echo e($dailyyields->links()); ?>
 
     </div>

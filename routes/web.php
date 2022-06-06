@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\EstateController;
 use App\Http\Controllers\DailyYieldController;
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\PDFController;
 
 /*
@@ -24,7 +25,7 @@ Route::get('/', function () {
 // Route::view('/login','admin.login')->name('login');
 // Route::view('/register','admin.register')->name('register');
 
-Route::middleware(['web'],['preventBackHistory'])->group(function()
+Route::middleware(['auth'],['preventBackHistory'])->group(function()
 {
     Route::get('/admin',[DailyYieldController::class,'index'])->name('main');
 
@@ -44,7 +45,15 @@ Route::middleware(['web'],['preventBackHistory'])->group(function()
     Route::post('/admin/ffb/daily_yield/delete/{id}',[DailyYieldController::class,'delete'])->name('daily_yield-delete');
     Route::get('/admin/ffb/daily_yield/add',[DailyYieldController::class,'add'])->name('daily_yield-add');
     Route::get('/admin/ffb/daily_yield/edit/{id}',[DailyYieldController::class,'edit'])->name('daily_yield-edit');
-    
+
+    //budget
+    Route::post('/admin/ffb/budget/add',[BudgetController::class,'store'])->name('budget-store');
+    Route::post('/admin/ffb/budget/edit/{id}',[BudgetController::class,'update'])->name('budget-update');
+    Route::post('/admin/ffb/budget/delete/{id}',[BudgetController::class,'delete'])->name('budget-delete');
+    Route::get('/admin/ffb/budget/',[BudgetController::class,'index'])->name('budget-index');
+    Route::get('/admin/ffb/budget/add',[BudgetController::class,'add'])->name('budget-add');
+    Route::get('/admin/ffb/budget/view/{id}',[BudgetController::class,'view'])->name('budget-view');
+    Route::get('/admin/ffb/budget/edit/{id}',[BudgetController::class,'edit'])->name('budget-edit');
     
 });
 
