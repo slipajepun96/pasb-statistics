@@ -85,7 +85,7 @@
             <div class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation">
                 <div class="lg:inline-flex lg:flex-row lg:ml-auto flex flex-col">
                     <a href="#" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Dashboard</span></a>
-                    <a href="#" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>FFB Yield</span></a>
+                    <a href="{{route('ffbyield')}}" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>FFB Yield</span></a>
                     <a href="#" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Rain Level</span></a>
                     
                     

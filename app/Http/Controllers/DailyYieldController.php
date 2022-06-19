@@ -17,8 +17,28 @@ class DailyYieldController extends Controller
     public function index()
     {
         $year=date('Y');
-        $dailyyields=DailyYield::select(['date','estate_id','ffb_mt','month','year','id'])->where('year',$year)->paginate(10);
-        return view('admin.main',['dailyyields'=>$dailyyields]);
+        $month=date('m');
+        // $month="05";
+        // dd($year);
+        $dailyyields=DailyYield::select(['date','estate_id','ffb_mt','month','year','id'])->where([['year','=',$year],['month','=',$month]])->get();
+        $date_detail[0]=$month;
+        $date_detail[1]=$year;
+        // $budget=Budget::select([''])
+        return view('admin.main',['dailyyields'=>$dailyyields],['date_detail'=>$date_detail]);
+    }
+
+    public function index_monthsearch(Request $request)
+    {
+        $year=$request->year;
+        $month=$request->month;
+        // $month="05";
+        // dd($year);
+        $dailyyields=DailyYield::select(['date','estate_id','ffb_mt','month','year','id'])->where([['year','=',$year],['month','=',$month]])->get();
+        // $dailyyields=DailyYield::where([['year','=',$year],['month','=',$month]])->get();
+        $date_detail[0]=$month;
+        $date_detail[1]=$year;
+        // $budget=Budget::select([''])
+        return view('admin.main',['dailyyields'=>$dailyyields],['date_detail'=>$date_detail]);
     }
 
     public function add()

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\EstateController;
 use App\Http\Controllers\DailyYieldController;
+use App\Http\Controllers\FFBYieldController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\PDFController;
 
@@ -25,9 +26,15 @@ Route::get('/', function () {
 // Route::view('/login','admin.login')->name('login');
 // Route::view('/register','admin.register')->name('register');
 
+//public-route
+Route::get('/ffbyield',[FFBYieldController::class,'index'])->name('ffbyield');
+//end of public-route
+
 Route::middleware(['auth'],['preventBackHistory'])->group(function()
 {
+    Route::post('/admin',[DailyYieldController::class,'index_monthsearch'])->name('index_monthsearch');
     Route::get('/admin',[DailyYieldController::class,'index'])->name('main');
+
 
     //estate
     Route::post('/admin/estate/add',[EstateController::class,'store'])->name('estate-add-store');
