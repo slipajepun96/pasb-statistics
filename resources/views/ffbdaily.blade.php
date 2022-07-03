@@ -12,26 +12,27 @@
                 <tr class="bg-gray-200 p-3 font-bold">
                     <td width="3%" class="border border-blue-900 p-3 display-none" rowspan="3">Date</td>
                     <?php $i=0; ?>
-                    @foreach($data_array[2] as $estate_name)
-                        <td width="10%" class="border border-blue-900 p-1" colspan="3">{{$estate_name->estate_name}}</td>
+                    @foreach($data_array[2] as $estate)
+                        <td width="" class="border border-blue-900 p-1" colspan="3">{{$estate->estate_name}}</td>
                         <?php 
-                        $estate_numbering[$i]=$estate_name->id;
+                        $estate_numbering[$i]=$estate->id;
                         $i=$i+1;
                         ?>
                     @endforeach
-                    <td width="15%" class="border border-blue-900 p-3" colspan="3">Total</td>
+                   
+                    <td width="" class="border border-blue-900 p-3" colspan="3">Total</td>
                 </tr>
                 <tr class="bg-gray-200 p-3">
                     @for($i=0;$i<=$data_array[3];$i++)
-                        <td width="15%" class="border border-blue-900 p-1" colspan="2">Actual</td>
-                        <td width="15%" class="border border-blue-900 p-1" colspan="1">Budget</td>
+                        <td width="" class="border border-blue-900 p-1" colspan="2">Actual</td>
+                        <td width="" class="border border-blue-900 p-1" colspan="1">Budget</td>
                     @endfor
                 </tr>
                 <tr class="bg-gray-200 p-3">
                     @for($i=0;$i<=$data_array[3];$i++)
-                        <td width="15%" class="border border-blue-900 p-1">Today</td>
-                        <td width="15%" class="border border-blue-900 p-1">Todate</td>
-                        <td width="15%" class="border border-blue-900 p-1">Todate</td>
+                        <td width="" class="border border-blue-900 p-1">Today</td>
+                        <td width="" class="border border-blue-900 p-1">Todate</td>
+                        <td width="" class="border border-blue-900 p-1">Todate</td>
                     @endfor
                 </tr>
             </thead>
@@ -43,31 +44,39 @@
                 @else
                 <?php 
                     $number_of_days=cal_days_in_month(CAL_GREGORIAN,$data_array[1],$data_array[0]);
+                    $month_data_var=$data_array[5];
                 ?>
                 @for($j=1;$j<=$number_of_days;$j++)
                     <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
                         <td class="border border-gray-300 p-1 px-3"><?php echo $j;?></td>
-                        <?php $k=0; ?>
-                        @foreach($ffbyields as $ffbyield)
-                        <?php 
-                            $date=DateTime::createFromFormat("Y-m-d",$ffbyield->date);
-                            $day=$date->format("d");
-                            // dd($estate_numbering[$k]);
-                        ?>
-                            <?php echo $k; ?>
-                            @if(($day==$j)&&($ffbyield->estate_id==$estate_numbering[$k]))
-                            
-                            {{-- @if($estate_numbering[$number]==$ffbyield->estate_id) --}}
-                            <td class="border border-gray-300 p-1 px-2">{{$ffbyield->ffb_mt}}</td>
-                            <td class="border border-gray-300 p-1 px-2"></td>
-                            <td class="border border-gray-300 p-1 px-2"></td>
-                            @elseif()
+                        @for($k=0;$k<$data_array[3];$k++)
+                            <?php $hit=0; ?>
+                            @foreach($ffbyields as $ffbyield)
+                            <?php 
+                                
+                                $date=DateTime::createFromFormat("Y-m-d",$ffbyield->date);
+                                $day=$date->format("d");
+                                // dd($day==$j&&$ffbyield->estate_id==$estate_numbering[$k]&&$k<$data_array[3]);
+                            ?>
+                                @if($j==$day&&$ffbyield->estate_id==$estate_numbering[$k])
+                                <td class="border border-gray-300 p-1">{{$ffbyield->ffb_mt}}</td>
+                                <td class="border border-gray-300 p-1">1</td>
+                                <?php $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days*$j; ?>
+                                <td class="border border-gray-300 p-1"><?php echo round($daily_budget,2);?></td>
+                                <?php $hit=$hit+1; ?>
+                                @endif
+                            @endforeach
+                            @if($hit==0)
+                                <td class="border border-gray-300 p-1">0</td>
+                                <td class="border border-gray-300 p-1">0</td>
+                                <?php $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days*$j; ?>
+                                <td class="border border-gray-300 p-1"><?php echo round($daily_budget,2);?></td>
                             @endif
-                            <?php $k=$k+1;?>
-                        @endforeach
-                        <td class="border border-gray-300 p-3 px-5">0</td>
-                        <td class="border border-gray-300 p-3 px-5">0</td>
-                        <td class="border border-gray-300 p-3 px-5">0</td>
+                        @endfor
+                        
+                        <td class="border border-gray-300 p-1">3</td>
+                        <td class="border border-gray-300 p-1">3</td>
+                        <td class="border border-gray-300 p-1">3</td>
                     </tr>
                     {{-- @endfor --}}
                     @endfor
