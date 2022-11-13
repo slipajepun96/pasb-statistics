@@ -5,7 +5,16 @@
     <p class="text-2xl font-bold">Daily FFB Output for May 2022</p>
     {{-- <p class="italic text-gray-700">Last Updates: 18 January 2022</p> --}}
     {{-- <p>~Table here~</p> --}}
-
+    <?php $o=1;?>
+@foreach($ffbyields as $ffbyield)
+    <?php 
+        $ffb_array[$o][0]=$ffbyield->id;
+        $ffb_array[$o][1]=$ffbyield->date;
+        $ffb_array[$o][2]=$ffbyield->estate_id;
+        $ffb_array[$o][3]=$ffbyield->ffb_mt;
+        $o=$o+1;
+    ?>
+@endforeach
     <div class="m-2 overflow-x-auto">
         <table class="border-collapse border border-green-900 w-full">
             <thead>
@@ -39,12 +48,13 @@
             <tbody>
                 @if($ffbyields->count()==0)
                     <tr>
-                        <td colspan=5>Empty List <br>(contact administrator as this is an error)</td>
+                        <td colspan=5>Empty List <br>(contact administrator if you think this is an error)</td>
                     </tr>
                 @else
                 <?php 
                     $number_of_days=cal_days_in_month(CAL_GREGORIAN,$data_array[1],$data_array[0]);
                     $month_data_var=$data_array[5];
+                    $cumulative_ffb_mt[]=0;
                 ?>
                 @for($j=1;$j<=$number_of_days;$j++)
                     <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
@@ -59,10 +69,20 @@
                                 // dd($day==$j&&$ffbyield->estate_id==$estate_numbering[$k]&&$k<$data_array[3]);
                             ?>
                                 @if($j==$day&&$ffbyield->estate_id==$estate_numbering[$k])
-                                <td class="border border-gray-300 p-1">{{$ffbyield->ffb_mt}}</td>
-                                <td class="border border-gray-300 p-1">1</td>
-                                <?php $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days*$j; ?>
-                                <td class="border border-gray-300 p-1"><?php echo round($daily_budget,2);?></td>
+                                <?php $ffb_mt=$ffbyield->ffb_mt;
+                                $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days;
+                                $percentage=0;
+                                $percentage=$ffb_mt/$daily_budget*100;
+                                ?>
+                                @if($percentage>=0&&$percentage<80)
+                                    <td class="border border-gray-300 p-1 bg-red-600 text-white">{{$ffbyield->ffb_mt}}</td>
+                                @elseif($percentage>=80&&$percentage<100)
+                                    <td class="border border-gray-300 p-1 bg-yellow-300 ">{{$ffbyield->ffb_mt}}</td>
+                                @else
+                                    <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$ffbyield->ffb_mt}}</td>
+                                @endif
+                                <td class="border border-gray-300 p-1"><?php  ?></td>
+                                <td class="border border-gray-300 p-1"><?php echo round($daily_budget*$j,2);?></td>
                                 <?php $hit=$hit+1; ?>
                                 @endif
                             @endforeach
@@ -81,7 +101,6 @@
                     {{-- @endfor --}}
                     @endfor
                 @endif
-
             </tbody>
         </table>
  

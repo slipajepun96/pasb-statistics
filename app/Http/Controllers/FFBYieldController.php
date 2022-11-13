@@ -17,9 +17,26 @@ class FFBYieldController extends Controller
         // $month=date('m');
         $month=05;
 
-        $ffbyields=DailyYield::select(['date','estate_id','ffb_mt'])->where([['year','=',$year],['month','=',$month]])->orderBy('date','ASC')->orderBy('estate_id','ASC')->get();
+        $ffbyields=DailyYield::select(['id','date','estate_id','ffb_mt'])->where([['year','=',$year],['month','=',$month]])->orderBy('date','ASC')->orderBy('estate_id','ASC')->get();
         $estate_list=Estate::select(['estate_name','id','abbreviation'])->get();
         $number_of_estates=$estate_list->count();
+
+        // foreach($ffbyields as $ffbyield)
+        // {
+        //     if(!is_null($ffbyield->date)&&is_null($ffbyield->date)&&is_null($ffbyield->date))
+        //     {
+        //         echo $ffbyield->id.",";
+        //         $ffbarray[0]=$ffbyield->date;
+        //         $ffbarray[1]=$ffbyield->estate_id;
+        //         $ffbarray[2]=$ffbyield->ffb_mt;
+        //         $ffbarray[3]=$ffbyield->date;
+        //         $ffbarray[0]=$ffbyield->date;
+        //     }
+        //     else
+        //     {
+        //         echo "false";
+        //     }
+        // }
 
         if($month=="01")
         {
@@ -90,6 +107,7 @@ class FFBYieldController extends Controller
         $var=Budget::select(['estate_id',$month_budget_var,$daily_budget_var])->where('year',$year)->orderBy('estate_id','ASC')->get();
         // dd($var);
 
+        
 
         $data_array[0]=$year;
         $data_array[1]=$month;
@@ -98,7 +116,7 @@ class FFBYieldController extends Controller
         $data_array[4]=$var;
         $data_array[5]=$month_budget_var;
 
-        // dd($data_array[4]);
+        // dd($ffbyields);
 
         return view('ffbdaily',['ffbyields'=>$ffbyields],['data_array'=>$data_array]);
     }
