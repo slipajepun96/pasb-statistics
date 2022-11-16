@@ -6,7 +6,8 @@
     {{-- <p class="italic text-gray-700">Last Updates: 18 January 2022</p> --}}
     {{-- <p>~Table here~</p> --}}
     <?php $o=1;
-    $no_of_estates=count($data_array[2]);
+    // $no_of_estates=count($data_array[2]);
+    $no_of_estates=100;
     echo $data_array[2][0]->estate_name;
     for($a=0;$a<$no_of_estates;$a++)
     {
@@ -20,14 +21,14 @@
         $ffb_array[$o][0]=$ffbyield->id;
         $ffb_array[$o][1]=$ffbyield->date;
         $ffb_array[$o][2]=$ffbyield->estate_id;
-        $ffb_array[$o][3]=$ffbyield->ffb_mt;
-        for($a=0;$a<$no_of_estates;$a++)
+        $ffb_array[$o][3]=floatval($ffbyield->ffb_mt);
+        for($a=0;$a<7;$a++)/////////////////////////////////////
         {
             if($a==(int)$ffbyield->estate_id)
             {
-                $cumulative_ffb_mt[$a][0]=(int)$cumulative_ffb_mt[$a][0]+(int)$ffbyield->ffb_mt;
+                $cumulative_ffb_mt[$a][0]=(float)$cumulative_ffb_mt[$a][0]+(float)$ffbyield->ffb_mt;
                 $ffb_array[$o][4]=$cumulative_ffb_mt[$a][0];
-                $cumulative_ffb_mt[$a][1]=(int)$cumulative_ffb_mt[$a][1]+(int)$ffbyield->date;
+                $cumulative_ffb_mt[$a][1]=(float)$cumulative_ffb_mt[$a][1]+(float)$ffbyield->date;
             }
         }
 
@@ -35,7 +36,6 @@
         $o=$o+1;
     ?>
 @endforeach
-
 
     <div class="m-2 overflow-x-auto">
         <table class="border-collapse border border-green-900 w-full">
@@ -46,6 +46,7 @@
                     @foreach($data_array[2] as $estate)
                         <td width="" class="border border-blue-900 p-1" colspan="3">{{$estate->estate_name}}</td>
                         <?php 
+                        
                         $estate_numbering[$i]=$estate->id;
                         $i=$i+1;
                         ?>
@@ -105,8 +106,22 @@
                                     @endif
 
                                     {{-- cumulative ffb mt --}}
-
-                                    <td class="border border-gray-300 p-1"><?php  ?></td>
+                                    <?php 
+                                        $number=(int)$ffbyield->id;
+                                        $array_count=count($ffb_array);
+                                        for($n=1;$n<=$array_count;$n++)
+                                        {
+                                            if($ffb_array[$n][0]==$ffbyield->id)
+                                            {
+                                                
+                                                $float_cum_ffb_mt=floatval($ffb_array[$n][4]);
+                                                ?>
+                                                <td class="border border-gray-300 p-1"><?php echo $float_cum_ffb_mt;?></td>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
+                                    
                                     <td class="border border-gray-300 p-1"><?php echo round($daily_budget*$j,2);?></td>
                                     <?php $hit=$hit+1; ?>
                                 @endif
