@@ -8,7 +8,6 @@
     <?php $o=1;
     // $no_of_estates=count($data_array[2]);
     $no_of_estates=100;
-    echo $data_array[2][0]->estate_name;
     for($a=0;$a<$no_of_estates;$a++)
     {
         // $cumulative_ffb_mt[$a][0]=$data_array[2][$a]->id; //put estate id 
