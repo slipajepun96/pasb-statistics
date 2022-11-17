@@ -21,7 +21,7 @@
         $ffb_array[$o][1]=$ffbyield->date;
         $ffb_array[$o][2]=$ffbyield->estate_id;
         $ffb_array[$o][3]=floatval($ffbyield->ffb_mt);
-        for($a=0;$a<7;$a++)/////////////////////////////////////
+        for($a=0;$a<100;$a++)
         {
             if($a==(int)$ffbyield->estate_id)
             {
