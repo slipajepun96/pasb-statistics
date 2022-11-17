@@ -14,13 +14,24 @@
         $cumulative_ffb_mt[$a][0]=0; //put 0 as initial mt
         $cumulative_ffb_mt[$a][1]=0; //put 0 as initial date
     }
+
+    //loop for all estate ffb cumulative
+    for($b=1;$b<=31;$b++)
+    {
+        $cumulative_total_ffb[$b]=0;
+    }
     ?>
 @foreach($ffbyields as $ffbyield)
     <?php 
+        $date=DateTime::createFromFormat("Y-m-j",$ffbyield->date);
+        $day=$date->format("j");
         $ffb_array[$o][0]=$ffbyield->id;
         $ffb_array[$o][1]=$ffbyield->date;
         $ffb_array[$o][2]=$ffbyield->estate_id;
         $ffb_array[$o][3]=floatval($ffbyield->ffb_mt);
+        $cumulative_total_ffb[$day]=$cumulative_total_ffb[$day]+$ffbyield->ffb_mt;
+        
+
         for($a=0;$a<100;$a++)
         {
             if($a==(int)$ffbyield->estate_id)
@@ -35,6 +46,7 @@
         $o=$o+1;
     ?>
 @endforeach
+<?php //dd($cumulative_total_ffb);?>
 
     <div class="m-2 overflow-x-auto">
         <table class="border-collapse border border-green-900 w-full">
@@ -121,7 +133,7 @@
                                         }
                                     ?>
                                     
-                                    <td class="border border-gray-300 p-1"><?php echo round($daily_budget*$j,2);?></td>
+                                    <td class="border border-gray-300 border-r-black p-1 "><?php echo round($daily_budget*$j,2);?></td>
                                     <?php $hit=$hit+1; ?>
                                 @endif
                             @endforeach
@@ -130,11 +142,11 @@
                                 <td class="border border-gray-300 p-1">0</td>
                                 <td class="border border-gray-300 p-1">0</td>
                                 <?php $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days*$j; ?>
-                                <td class="border border-gray-300 p-1"><?php echo round($daily_budget,2);?></td>
+                                <td class="border border-gray-300 border-r-black p-1"><?php echo round($daily_budget,2);?></td>
                             @endif
                         @endfor
                         
-                        <td class="border border-gray-300 p-1">3</td>
+                        <td class="border border-gray-300 p-1 bg-gray-200 font-bold"><?php echo $cumulative_total_ffb[$j];?></td>
                         <td class="border border-gray-300 p-1">3</td>
                         <td class="border border-gray-300 p-1">3</td>
                     </tr>
