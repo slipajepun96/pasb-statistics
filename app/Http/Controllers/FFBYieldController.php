@@ -120,4 +120,11 @@ class FFBYieldController extends Controller
 
         return view('ffbdaily',['ffbyields'=>$ffbyields],['data_array'=>$data_array]);
     }
+    
+    public static function ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget)
+    {
+        $daily_ffbbudget=round($daily_budget*$j,2);
+        $cumulative_daily_budget=$cumulative_daily_budget+$daily_ffbbudget;
+        return $cumulative_daily_budget;
+    }
 }

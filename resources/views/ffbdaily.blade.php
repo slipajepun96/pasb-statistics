@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @section('content')
+<?php   use \App\Http\Controllers\FFBYieldController; ?> 
 <div class="m-3 bg-white w-auto rounded-xl p-3">
     <p class="text-2xl font-bold">Daily FFB Output for May 2022</p>
     {{-- <p class="italic text-gray-700">Last Updates: 18 January 2022</p> --}}
@@ -14,11 +15,13 @@
         $cumulative_ffb_mt[$a][0]=0; //put 0 as initial mt
         $cumulative_ffb_mt[$a][1]=0; //put 0 as initial date
     }
-
+    //var for cumulative total ffb by day
+    $cumulative_total_ffb_by_day=0;
     //loop for all estate ffb cumulative
     for($b=1;$b<=31;$b++)
     {
         $cumulative_total_ffb[$b]=0;
+       
     }
     ?>
 @foreach($ffbyields as $ffbyield)
@@ -93,6 +96,7 @@
                 @for($j=1;$j<=$number_of_days;$j++)
                     <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
                         <td class="border border-gray-300 p-1 px-3"><?php echo $j;?></td>
+                        <?php $cumulative_daily_budget=0;?>
                         @for($k=0;$k<$data_array[3];$k++)
                             <?php $hit=0; ?>
                             @foreach($ffbyields as $ffbyield)
@@ -131,24 +135,32 @@
                                                 <?php
                                             }
                                         }
-                                    ?>
                                     
-                                    <td class="border border-gray-300 border-r-black p-1 "><?php echo round($daily_budget*$j,2);?></td>
+                                    
+                                    // $daily_ffbbudget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);
+                                    
+                                    ?>
+                                    {{-- <td class="border border-gray-300 border-r-black p-1 "><//?php echo round($daily_budget*$j,2);?></td> --}}
                                     <?php $hit=$hit+1; ?>
                                 @endif
                             @endforeach
                             
                             @if($hit==0)
-                                <td class="border border-gray-300 p-1">0</td>
-                                <td class="border border-gray-300 p-1">0</td>
-                                <?php $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days*$j; ?>
-                                <td class="border border-gray-300 border-r-black p-1"><?php echo round($daily_budget,2);?></td>
+                                <td class="border border-gray-300 p-1">-</td>
+                                <td class="border border-gray-300 p-1">-</td>
+                                <?php //$daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
+                                //$daily_ffbbudget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);?>
+                                {{-- <td class="border border-gray-300 border-r-black p-1"><?php // echo round($daily_budget*$j,2);?></td> --}}
                             @endif
+                            <?php $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
+                            $cumulative_daily_budget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);?>
+                            <td class="border border-gray-300 border-r-black p-1"><?php echo round($daily_budget*$j,2);?></td>
                         @endfor
                         
-                        <td class="border border-gray-300 p-1 bg-gray-200 font-bold"><?php echo $cumulative_total_ffb[$j];?></td>
-                        <td class="border border-gray-300 p-1">3</td>
-                        <td class="border border-gray-300 p-1">3</td>
+                        <td class="border border-gray-300 p-1 bg-gray-200 font-boldphp a"><?php echo $cumulative_total_ffb[$j];?></td>
+                        <?php $cumulative_total_ffb_by_day=$cumulative_total_ffb_by_day+$cumulative_total_ffb[$j]; ?>
+                        <td class="border border-gray-300 p-1"><?php echo $cumulative_total_ffb_by_day;?></td>
+                        <td class="border border-gray-300 p-1"><?php echo $cumulative_daily_budget;?></td>
                     </tr>
                     {{-- @endfor --}}
                     @endfor
