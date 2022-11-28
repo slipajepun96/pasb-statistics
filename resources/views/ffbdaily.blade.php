@@ -3,7 +3,7 @@
 @section('content')
 <?php   use \App\Http\Controllers\FFBYieldController; ?> 
 <div class="m-3 bg-white w-auto rounded-xl p-3">
-    <p class="text-2xl font-bold">Daily FFB Output for May 2022</p>
+    <p class="text-2xl font-bold">Daily FFB Output for {{$data_array[6]}} 2022</p>
     {{-- <p class="italic text-gray-700">Last Updates: 18 January 2022</p> --}}
     {{-- <p>~Table here~</p> --}}
     <?php $o=1;

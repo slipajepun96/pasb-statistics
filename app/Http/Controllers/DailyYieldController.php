@@ -55,6 +55,9 @@ class DailyYieldController extends Controller
             'year'=>'required'
         ]);
 
+        // backend validator goes code here
+        $status=DailyYield::where('estate_id',$request->estate_id)->where('date',$request->date)->first();
+
         $dailyyield=new DailyYield();
         $dailyyield->date=$request->date;
         $dailyyield->estate_id=$request->estate_id;
@@ -63,8 +66,19 @@ class DailyYieldController extends Controller
         $dailyyield->month=$request->month;
         $dailyyield->year=$request->year;
 
-        $dailyyield->save();
-        return redirect('/admin');
+        if(isset($status->estate_id)&&isset($status->date))
+        {
+            Session::flash('delete','Duplicate data, not saved');
+            return redirect('/admin');
+        }
+        else
+        {
+            $dailyyield->save();
+            Session::flash('status','Data successfully saved');
+            return redirect('/admin');
+        }
+
+        
     }
 
     public function edit($id)
