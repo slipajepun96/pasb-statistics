@@ -14,9 +14,9 @@ class FFBYieldController extends Controller
     {
         $year=date('Y');
         $year=2022;
-        $month=date('m');
+        // $month=date('m');
         // dd($month);
-        // $month=05;
+        $month=11;
 
         $ffbyields=DailyYield::select(['id','date','estate_id','ffb_mt'])->where([['year','=',$year],['month','=',$month]])->orderBy('date','ASC')->orderBy('estate_id','ASC')->get();
         $estate_list=Estate::select(['estate_name','id','abbreviation'])->get();

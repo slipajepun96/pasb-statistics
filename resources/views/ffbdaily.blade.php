@@ -85,7 +85,7 @@
             <tbody>
                 @if($ffbyields->count()==0)
                     <tr>
-                        <td colspan=5>Empty List <br>(contact administrator if you think this is an error)</td>
+                        <td colspan=7> <p class="font-bold">ooh! Empty List </p>(contact administrator if you think this is an error)</td>
                     </tr>
                 @else
                 <?php 
@@ -120,7 +120,17 @@
                                         <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$ffbyield->ffb_mt}}</td>
                                     @endif
 
+                                    <?php 
+                                        $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
+                                        $cumulative_daily_budget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);
+
+                                        $daily_ffbbudget=round($daily_budget*$j,2);
+                                        
+                                        
+                                    ?>
+
                                     {{-- cumulative ffb mt --}}
+
                                     <?php 
                                         $number=(int)$ffbyield->id;
                                         $array_count=count($ffb_array);
@@ -130,8 +140,18 @@
                                             {
                                                 
                                                 $float_cum_ffb_mt=floatval($ffb_array[$n][4]);
+                                                $percentage2=0;
+                                                $percentage2=($float_cum_ffb_mt/$daily_ffbbudget)*100;
                                                 ?>
-                                                <td class="border border-gray-300 p-1"><?php echo $float_cum_ffb_mt;?></td>
+                                                @if($percentage2>=0&&$percentage2<80)
+                                                    <td class="border border-gray-300 p-1 bg-red-600 text-white">{{$float_cum_ffb_mt}}</td>
+                                                @elseif($percentage2>=80&&$percentage2<100)
+                                                    <td class="border border-gray-300 p-1 bg-yellow-300 ">{{$float_cum_ffb_mt}}</td>
+                                                @else
+                                                    <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$float_cum_ffb_mt}}</td>
+                                                @endif
+                                                {{-- original --}}
+                                                {{-- <td class="border border-gray-300 p-1"><!?php echo $float_cum_ffb_mt;?></td> --}}
                                                 <?php
                                             }
                                         }
@@ -148,18 +168,56 @@
                             @if($hit==0)
                                 <td class="border border-gray-300 p-1">-</td>
                                 <td class="border border-gray-300 p-1">-</td>
-                                <?php //$daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
-                                //$daily_ffbbudget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);?>
-                                {{-- <td class="border border-gray-300 border-r-black p-1"><?php // echo round($daily_budget*$j,2);?></td> --}}
+                                <?php $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
+                                // $daily_ffbbudget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);
+                                 $cumulative_daily_budget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);?>
                             @endif
-                            <?php $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
-                            $cumulative_daily_budget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);?>
+
+
+
+                            
+                            
                             <td class="border border-gray-300 border-r-black p-1"><?php echo round($daily_budget*$j,2);?></td>
                         @endfor
                         
-                        <td class="border border-gray-300 p-1 bg-gray-200 font-boldphp a"><?php echo $cumulative_total_ffb[$j];?></td>
+
+                        {{-- total columns --}}
+                        <?php
+                        if($j==1)
+                        {
+                            $first_cum_ffb_budget=$cumulative_daily_budget;
+                        }
+                        $percentage3=0;
+                        $percentage3=$cumulative_total_ffb[$j]/$first_cum_ffb_budget*100;
+                        ?>
+                            
+                        @if($percentage3>=0&&$percentage3<80)
+                            <td class="border border-gray-300 p-1 bg-red-600 text-white font-bold">{{$cumulative_total_ffb[$j]}}</td>
+                        @elseif($percentage3>=80&&$percentage3<100)
+                            <td class="border border-gray-300 p-1 bg-yellow-300 font-bold">{{$cumulative_total_ffb[$j]}}</td>
+                        @else
+                            <td class="border border-gray-300 p-1 bg-green-700 text-white font-bold">{{$cumulative_total_ffb[$j]}}</td>
+                        @endif        
+          
+                        {{-- cumulative total ffb by day --}}
                         <?php $cumulative_total_ffb_by_day=$cumulative_total_ffb_by_day+$cumulative_total_ffb[$j]; ?>
-                        <td class="border border-gray-300 p-1"><?php echo $cumulative_total_ffb_by_day;?></td>
+                        <?php
+                        if($j==1)
+                        {
+                            $first_cum_ffb_budget=$cumulative_daily_budget;
+                        }
+                        $percentage4=0;
+                        $percentage4=$cumulative_total_ffb_by_day/$cumulative_daily_budget*100;
+                        ?>
+                            
+                        @if($percentage4>=0&&$percentage4<80)
+                            <td class="border border-gray-300 p-1 bg-red-600 text-white font-bold">{{$cumulative_total_ffb_by_day}}</td>
+                        @elseif($percentage4>=80&&$percentage4<100)
+                            <td class="border border-gray-300 p-1 bg-yellow-300 font-bold">{{$cumulative_total_ffb_by_day}}</td>
+                        @else
+                            <td class="border border-gray-300 p-1 bg-green-700 text-white font-bold">{{$cumulative_total_ffb_by_day}}</td>
+                        @endif    
+
                         <td class="border border-gray-300 p-1"><?php echo $cumulative_daily_budget;?></td>
                     </tr>
                     {{-- @endfor --}}
