@@ -22,22 +22,6 @@ class FFBYieldController extends Controller
         $estate_list=Estate::select(['estate_name','id','abbreviation'])->get();
         $number_of_estates=$estate_list->count();
 
-        // foreach($ffbyields as $ffbyield)
-        // {
-        //     if(!is_null($ffbyield->date)&&is_null($ffbyield->date)&&is_null($ffbyield->date))
-        //     {
-        //         echo $ffbyield->id.",";
-        //         $ffbarray[0]=$ffbyield->date;
-        //         $ffbarray[1]=$ffbyield->estate_id;
-        //         $ffbarray[2]=$ffbyield->ffb_mt;
-        //         $ffbarray[3]=$ffbyield->date;
-        //         $ffbarray[0]=$ffbyield->date;
-        //     }
-        //     else
-        //     {
-        //         echo "false";
-        //     }
-        // }
 
         if($month=="01")
         {
