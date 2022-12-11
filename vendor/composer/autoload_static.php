@@ -577,6 +577,8 @@ class ComposerStaticInitc67ffe9fd91cde28a87a08c061901484
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DailyYieldController' => __DIR__ . '/../..' . '/app/Http/Controllers/DailyYieldController.php',
         'App\\Http\\Controllers\\EstateController' => __DIR__ . '/../..' . '/app/Http/Controllers/EstateController.php',
+        'App\\Http\\Controllers\\FFBYieldController' => __DIR__ . '/../..' . '/app/Http/Controllers/FFBYieldController.php',
+        'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
         'App\\Http\\Controllers\\PDFController' => __DIR__ . '/../..' . '/app/Http/Controllers/PDFController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

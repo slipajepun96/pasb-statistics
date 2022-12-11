@@ -17,6 +17,8 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DailyYieldController' => $baseDir . '/app/Http/Controllers/DailyYieldController.php',
     'App\\Http\\Controllers\\EstateController' => $baseDir . '/app/Http/Controllers/EstateController.php',
+    'App\\Http\\Controllers\\FFBYieldController' => $baseDir . '/app/Http/Controllers/FFBYieldController.php',
+    'App\\Http\\Controllers\\IndexController' => $baseDir . '/app/Http/Controllers/IndexController.php',
     'App\\Http\\Controllers\\PDFController' => $baseDir . '/app/Http/Controllers/PDFController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

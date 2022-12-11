@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estate;
 use App\Models\DailyYield;
+use App\Models\CumulativeFfb;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -54,9 +55,8 @@ class DailyYieldController extends Controller
             'month'=>'required',
             'year'=>'required'
         ]);
-
-        // backend validator goes code here
         $status=DailyYield::where('estate_id',$request->estate_id)->where('date',$request->date)->first();
+
 
         $dailyyield=new DailyYield();
         $dailyyield->date=$request->date;
@@ -66,6 +66,14 @@ class DailyYieldController extends Controller
         $dailyyield->month=$request->month;
         $dailyyield->year=$request->year;
 
+        
+
+
+        $cumulative_ffb=CumulativeFfb::where('estate_id',$request->estate_id)->where('month',$request->month)->where('year',$request->year)->first();
+        
+        
+
+
         if(isset($status->estate_id)&&isset($status->date))
         {
             Session::flash('delete','Duplicate data, not saved');
@@ -73,6 +81,27 @@ class DailyYieldController extends Controller
         }
         else
         {
+            if(!$cumulative_ffb)
+            {
+                $cumulative_ffb_add=new CumulativeFfb();
+                $cumulative_ffb_add->year=$request->year;
+                $cumulative_ffb_add->month=$request->month;
+                $cumulative_ffb_add->estate_id=$request->estate_id;
+                $cumulative_ffb_add->latest_ffb_date=$request->date;
+                $cumulative_ffb_add->cumulative_ffb_mt=$request->ffb_mt;
+
+                $cumulative_ffb_add->save();
+            }
+            else
+            {
+                $cumulative_ffb->year=$request->year;
+                $cumulative_ffb->month=$request->month;
+                $cumulative_ffb->estate_id=$request->estate_id;
+                $cumulative_ffb->latest_ffb_date=$request->date;
+                $cumulative_ffb->cumulative_ffb_mt=$request->ffb_mt+$cumulative_ffb->cumulative_ffb_mt;
+
+                $cumulative_ffb->save();
+            }
             $dailyyield->save();
             Session::flash('status','Data successfully saved');
             return redirect('/admin');
@@ -98,12 +127,41 @@ class DailyYieldController extends Controller
             'ffb_mt'=>'required'
         ]);
         $dailyyield=DailyYield::findOrFail($id);
+
+        //delete previous cumulative ffb
+        $cumulative_ffb=CumulativeFfb::where('estate_id',$dailyyield->estate_id)->where('month',$dailyyield->month)->where('year',$dailyyield->year)->first();
+        $cumulative_ffb->cumulative_ffb_mt=$cumulative_ffb->cumulative_ffb_mt-$dailyyield->ffb_mt;
+        $cumulative_ffb->save();
+
+
         $dailyyield->date=$request->date;
-        //$dailyyield->estate_id=$request->estate_id;
         $dailyyield->ffb_mt=$request->ffb_mt;
-        //$dailyyield->user_id=$request->user_id;
         $dailyyield->month=$request->month;
         $dailyyield->year=$request->year;
+
+        $cumulative_ffb_new=CumulativeFfb::where('estate_id',$dailyyield->estate_id)->where('month',$request->month)->where('year',$request->year)->first();
+
+        if(!$cumulative_ffb_new)
+        {
+            $cumulative_ffb_add=new CumulativeFfb();
+            $cumulative_ffb_add->year=$request->year;
+            $cumulative_ffb_add->month=$request->month;
+            $cumulative_ffb_add->estate_id=$dailyyield->estate_id;
+            $cumulative_ffb_add->latest_ffb_date=$request->date;
+            $cumulative_ffb_add->cumulative_ffb_mt=$request->ffb_mt;
+
+            $cumulative_ffb_add->save();
+        }
+        else
+        {
+            $cumulative_ffb_new->year=$request->year;
+            $cumulative_ffb_new->month=$request->month;
+            $cumulative_ffb_new->estate_id=$dailyyield->estate_id;
+            $cumulative_ffb_new->latest_ffb_date=$request->date;
+            $cumulative_ffb_new->cumulative_ffb_mt=$cumulative_ffb_new->cumulative_ffb_mt+$request->ffb_mt;
+
+            $cumulative_ffb_new->save();
+        }
 
         $dailyyield->save();
         Session::flash('status','Data successfully updated');
@@ -112,6 +170,12 @@ class DailyYieldController extends Controller
 
     public function delete($id)
     {
+        $dailyyield=DailyYield::find($id);
+        //delete previous cumulative ffb
+        $cumulative_ffb=CumulativeFfb::where('estate_id',$dailyyield->estate_id)->where('month',$dailyyield->month)->where('year',$dailyyield->year)->first();
+        $cumulative_ffb->cumulative_ffb_mt=$cumulative_ffb->cumulative_ffb_mt-$dailyyield->ffb_mt;
+        $cumulative_ffb->save();
+        
         DB::table('daily_yields')->where('id',$id)->delete();
         Session::flash('delete','Successfully deleted');
         return redirect('/admin');
