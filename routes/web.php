@@ -7,6 +7,7 @@ use App\Http\Controllers\DailyYieldController;
 use App\Http\Controllers\FFBYieldController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +20,15 @@ use App\Http\Controllers\PDFController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 // Route::view('/login','admin.login')->name('login');
 // Route::view('/register','admin.register')->name('register');
 
 //public-route
+Route::get('/',[IndexController::class,'index'])->name('index');
 Route::get('/ffbyield',[FFBYieldController::class,'index'])->name('ffbyield');
 //end of public-route
 

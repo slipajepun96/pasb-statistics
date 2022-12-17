@@ -64,10 +64,10 @@
         <table class="border-collapse border border-green-900 w-full">
             <thead>
                 <tr class="bg-gray-200 p-3 font-bold">
-                    <td width="20%" class="border border-blue-900 p-3 display-none">Date</td>
-                    <td width="25%" class="border border-blue-900 p-3">Estate Abbreviation</td>
-                    <td width="15%" class="border border-blue-900 p-3">Today FFB (MT)</td>
-                    <td width="20%" class="border border-blue-900 p-3">Action</td>
+                    <td width="20%" class="border border-blue-900 p-1 display-none">Date</td>
+                    <td width="25%" class="border border-blue-900 p-1">Estate</td>
+                    <td width="15%" class="border border-blue-900 p-1">Today FFB (MT)</td>
+                    <td width="20%" class="border border-blue-900 p-1">Action</td>
                 </tr>
             </thead>
             <tbody>
@@ -78,16 +78,16 @@
                 @else
                 @foreach($dailyyields as $dailyyield)
                     <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
-                        <td class="border border-gray-300 p-3 px-5 display-none">{{$dailyyield->date}}</td>
-                        <td class="border border-gray-300 p-3 px-5">{{$dailyyield->estate->estate_name}}</td>
-                        <td class="border border-gray-300 p-3 px-5">{{$dailyyield->ffb_mt}}</td>
-                        <td class="border border-gray-300 p-3 px-5 ">
+                        <td class="border border-gray-300 p-1 px-5 display-none">{{$dailyyield->date}}</td>
+                        <td class="border border-gray-300 p-1 px-5">{{$dailyyield->estate->abbreviation}}</td>
+                        <td class="border border-gray-300 p-1 px-5">{{$dailyyield->ffb_mt}}</td>
+                        <td class="border border-gray-300 p-1  ">
                             <div class="inline-flex">
                             
                             {{-- edit button --}}
                             <form action="/admin/ffb/daily_yield/edit/{{$dailyyield->id}}" method="GET">
                                 @csrf 
-                                <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg p-2 m-2">
+                                <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg p-1 m-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                     </svg>
@@ -96,7 +96,7 @@
                             {{-- delete button --}}
                             <form action="/admin/ffb/daily_yield/delete/{{$dailyyield->id}}" method="POST" onsubmit="return confirm('Are you sure to delete ?')">
                                 @csrf 
-                                <button type="submit" class="bg-red-500 hover:bg-red-400 rounded-lg p-2 m-2">
+                                <button type="submit" class="bg-red-500 hover:bg-red-400 rounded-lg p-1 m-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                                     </svg>
