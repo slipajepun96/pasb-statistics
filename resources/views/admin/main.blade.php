@@ -1,16 +1,17 @@
 @extends('layout.admin-layout')
 
 @section('admin-content')
+<?php   use \App\Http\Controllers\DailyYieldController; ?> 
 
 <div class="bg-white m-2 p-2 text-black rounded-xl">
     <span class="text-2xl font-bold">Welcome, Admin</span>
 </div>
 <div class="bg-white m-2 p-2 text-black rounded-xl">
 <?php
-    $dateObj   = DateTime::createFromFormat('!m', $date_detail[0]);
+    $dateObj   = DateTime::createFromFormat('!m', $data_array[0]);
     $monthName = $dateObj->format('F'); // March
 ?>
-    <span class="text-xl font-bold">FFB Daily Yield for {{$monthName}} {{$date_detail[1]}}</span>
+    <span class="text-xl font-bold">FFB Daily Yield for {{$monthName}} {{$data_array[1]}}</span>
     @if(session('status'))
         <div class="bg-yellow-400 text-black p-2 rounded m-3" id="status_message">
             [INFO]{{session('status')}}
@@ -29,28 +30,10 @@
             
                 <form action="{{route('index_monthsearch')}}" class="block outline outline-solid outline-sky-500 rounded-lg px-1 m-1" method="POST">
                     @csrf 
-                    <select name="month" id="month" class=" shadow border rounded m-1 p-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
-                        <option value="01">January</option>
-                        <option value="02">February</option>
-                        <option value="03">March</option>
-                        <option value="04">April</option>
-                        <option value="05">May</option>
-                        <option value="06">June</option>
-                        <option value="07">July</option>
-                        <option value="08">August</option>
-                        <option value="09">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                    <select name="year" id="year" class="shadow border rounded p-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
+                    <select name="month_year_selected" id="month_year_selected" class=" shadow border rounded m-1 p-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
+                        @foreach($data_array[2] as $data)
+                            <option value="01"><?php echo DailyYieldController::monthYearConvert($data->month,$data->year);?></option>
+                        @endforeach
                     </select>
                     <button type="submit" class="shadow rounded-lg bg-cyan-400 px-3 py-1 ">
                        go
@@ -58,6 +41,9 @@
                 </form>
             
         </div>
+       @foreach($data_array[2] as $data) 
+{{$data->month}},{{$data->year}}
+@endforeach
 
      
     <div class="m-2 overflow-x-auto">

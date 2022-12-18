@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Estate;
 use App\Models\DailyYield;
 use App\Models\CumulativeFfb;
@@ -21,11 +22,14 @@ class DailyYieldController extends Controller
         $month=date('m');
         // $month="05";
         // dd($year);
+        $available_data_month_year=DailyYield::select(['month','year'])->groupBy('year')->groupBy('month')->get();
         $dailyyields=DailyYield::select(['date','estate_id','ffb_mt','month','year','id'])->where([['year','=',$year],['month','=',$month]])->get();
-        $date_detail[0]=$month;
-        $date_detail[1]=$year;
+        $data_array[0]=$month;
+        $data_array[1]=$year;
+        $data_array[2]=$available_data_month_year;
+        // dd($data_array);
         // $budget=Budget::select([''])
-        return view('admin.main',['dailyyields'=>$dailyyields],['date_detail'=>$date_detail]);
+        return view('admin.main',['dailyyields'=>$dailyyields],['data_array'=>$data_array]);
     }
 
     public function index_monthsearch(Request $request)
@@ -34,10 +38,12 @@ class DailyYieldController extends Controller
         $month=$request->month;
         // $month="05";
         // dd($year);
+       
         $dailyyields=DailyYield::select(['date','estate_id','ffb_mt','month','year','id'])->where([['year','=',$year],['month','=',$month]])->get();
         // $dailyyields=DailyYield::where([['year','=',$year],['month','=',$month]])->get();
         $date_detail[0]=$month;
         $date_detail[1]=$year;
+        
         // $budget=Budget::select([''])
         return view('admin.main',['dailyyields'=>$dailyyields],['date_detail'=>$date_detail]);
     }
@@ -179,5 +185,14 @@ class DailyYieldController extends Controller
         DB::table('daily_yields')->where('id',$id)->delete();
         Session::flash('delete','Successfully deleted');
         return redirect('/admin');
+    }
+
+    public static function monthYearConvert($month,$year)
+    {
+        $dateObj   = DateTime::createFromFormat('!m', $month);
+        $monthName = $dateObj->format('F'); 
+        
+        $monthYear=$monthName.' '.$year;
+        return $monthYear;
     }
 }
