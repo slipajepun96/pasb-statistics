@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="p-3 max-w-sm mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
-    <p class="text-2xl font-bold">Administrator Login</p>
-    
+    <p class="text-2xl font-bold">Login</p>
+
     <form action="{{route('login')}}" method="POST">
         @csrf
         <div class="my-4">    
@@ -24,7 +24,7 @@
             <span class="text-sm text-red"> {{$message}}</span>
             @enderror
         </div>
-        <button type="submit" class="bg-cyan-600 m-2 p-2 rounded hover:text-black hover:bg-cyan-400">Log Me In </button>
+        <button type="submit" class="bg-cyan-600 p-2 rounded hover:text-black hover:bg-cyan-400">Log Me In </button>
         <p class="text-gray-700">&copy;2022-Code owned by <a href="https://www.github.com/slipajepun96" class="underline">Umar Qayyum</a></p>
     </form>
 

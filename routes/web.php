@@ -28,12 +28,17 @@ use App\Http\Controllers\IndexController;
 // Route::view('/register','admin.register')->name('register');
 
 //public-route
-Route::get('/',[IndexController::class,'index'])->name('index');
-Route::get('/ffbyield',[FFBYieldController::class,'index'])->name('ffbyield');
-//end of public-route
 
 Route::middleware(['auth'],['preventBackHistory'])->group(function()
 {
+    Route::get('/',[IndexController::class,'index'])->name('index');
+    Route::get('/ffbyield',[FFBYieldController::class,'index'])->name('ffbyield');
+   
+});
+
+Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
+{
+ 
     Route::post('/admin',[DailyYieldController::class,'index_monthsearch'])->name('index_monthsearch');
     Route::get('/admin',[DailyYieldController::class,'index'])->name('main');
 

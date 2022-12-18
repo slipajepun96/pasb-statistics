@@ -488,6 +488,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .m-1 {
   margin: 0.25rem;
 }
+.m-0\.5 {
+  margin: 0.125rem;
+}
+.m-0 {
+  margin: 0px;
+}
 .my-1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
@@ -710,6 +716,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border {
   border-width: 1px;
 }
+.border-2 {
+  border-width: 2px;
+}
 .border-y {
   border-top-width: 1px;
   border-bottom-width: 1px;
@@ -736,6 +745,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
+}
+.border-gray-900 {
+  --tw-border-opacity: 1;
+  border-color: rgb(17 24 39 / var(--tw-border-opacity));
+}
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 .border-r-black {
   --tw-border-opacity: 1;
@@ -884,6 +901,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.pl-1 {
+  padding-left: 0.25rem;
 }
 .text-center {
   text-align: center;
@@ -1044,6 +1064,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-cyan-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(14 116 144 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-cyan-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(8 145 178 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-cyan-400:hover {
@@ -1210,11 +1235,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:w-1\/12 {
     width: 8.333333%;
-  }
-
-  .md\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
   }
 }
 

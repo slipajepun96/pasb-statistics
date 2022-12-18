@@ -19,17 +19,17 @@
             Total FFB MT <p class="italic text-gray-500 text-sm">until 30-11-2022</p>
         </div>
    
-            <a href="{{route('ffbyield')}}" class="my-1 ml-1 bg-cyan-900 w-fit md:w-fit  rounded-lg p-2 text-white hover:bg-cyan-700">
+            <a href="{{route('ffbyield')}}" class="my-1 ml-1 bg-cyan-900 w-fit md:w-fit  rounded-lg p-2 text-white hover:bg-cyan-600">
                 <div class="flex-inline"><span class="text-lg hover:underline">View <br>Details</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                 </svg></div>
             </a>
          </div>
     <hr class="my-2">
-    <span class="m-2 text-2xl p-1">Estate</span><a href="" class="rounded-md  bg-yellow-400 p-0.5 mb-2 text-cyan-700 text-sm">VIEW MONTHLY FFB STATEMENT</a>
+    <span class=" text-2xl">Estate</span><a href="" class="rounded-md  bg-yellow-400 p-0.5 mb-2 text-cyan-700 text-sm">VIEW MONTHLY FFB STATEMENT</a>
     <div class=" flex flex-wrap w-full">
         @foreach($data_array[2] as $estate)
-            <div class="m-1  bg-gradient-to-bl from-cyan-800 via-cyan-700 to-cyan-500 hover:from-cyan-600 hover:via-cyan-500 hover:to-cyan-300 w-full md:w-fit rounded-lg p-2 text-white hover:bg-cyan-700">
+            <div class="m-1 bg-gradient-to-bl from-cyan-800 via-cyan-700 to-cyan-500 hover:from-cyan-600 hover:via-cyan-500 hover:to-cyan-300 w-full md:w-fit rounded-lg p-2 text-white hover:bg-cyan-700">
                 {{$estate->estate_name}}
                 <?php 
                     $number_of_array=count($data_array[3]);

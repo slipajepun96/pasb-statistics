@@ -70,31 +70,37 @@
         </script>
     </head>
     <body class="bg-gray-200">
-        <nav class="flex items-center p-3 flex-wrap bg-white shadow">
+        <nav class="flex items-center p-1 flex-wrap bg-white shadow">
             <a href="/" class="p-2 mr-4 inline-flex items-center text-cyan-600">
                 <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="fill-current text-black">
                     <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,10.84 21.79,9.69 21.39,8.61L19.79,10.21C19.93,10.8 20,11.4 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.6,4 13.2,4.07 13.79,4.21L15.4,2.6C14.31,2.21 13.16,2 12,2M19,2L15,6V7.5L12.45,10.05C12.3,10 12.15,10 12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12C14,11.85 14,11.7 13.95,11.55L16.5,9H18L22,5H19V2M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12H16A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8V6Z" />
                 </svg>
                 <span class="text-xl font-bold tracking-wide">PASB - Statistics</span>
             </a>
-            <button class="inline-flex p-3 hover:bg-gray-100 rounded lg:hidden ml-auto nav-toggler" data-target="#navigation">
+            <button class="inline-flex p-3 m-2 hover:bg-gray-100 rounded lg:hidden ml-auto nav-toggler" data-target="#navigation">
                 <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M21,15.61L19.59,17L14.58,12L19.59,7L21,8.39L17.44,12L21,15.61M3,6H16V8H3V6M3,13V11H13V13H3M3,18V16H16V18H3Z" />
                 </svg>
             </button>
             <div class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation">
                 <div class="lg:inline-flex lg:flex-row lg:ml-auto flex flex-col">
-                    <a href="#" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Dashboard</span></a>
-                    <a href="{{route('ffbyield')}}" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>FFB Yield</span></a>
-                    <a href="#" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Rain Level</span></a>
+                    <a href="#" class="lg:inline-flex lg:w-auto px-3 py-1  m-1 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Dashboard</span></a>
+                    <a href="{{route('ffbyield')}}" class="lg:inline-flex  m-1 lg:w-auto px-3 py-1 rounded hover:bg-gray-200 hover:text-cyan-600"><span>FFB Yield</span></a>
+                    <a href="#" class="lg:inline-flex lg:w-auto px-3  m-1 py-1 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Rain Level</span></a>
                     
                     
                     @if(!Auth::guest())
-                    <a href="{{route('main')}}" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Admin Main</span></a>
-                    <form action="{{route('logout')}}" method="POST"> @csrf <button type="submit" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-red-600 hover:text-white">Logout</button></form>
-                    
+                    <a href="{{route('main')}}" class="lg:inline-flex lg:w-auto  m-1 px-3 py-1 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Admin Dashboard</span></a>
+                    <div class="flex flex-row border rounded border-gray-900 px-1 ml-1">
+                        <div class="lg:inline-flex flex flex-row w-full lg:w-auto px-1 m-1 py-1 rounded text-gray-700 text-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>&nbsp;{{Auth::user()->name}}</div>
+                        <div><form action="{{route('logout')}}" method="POST"> @csrf <button type="submit" class="lg:inline-flex lg:w-auto px-2 py-1 m-0.5 rounded border-2 border-red-500 hover:bg-red-600 hover:text-white">Logout
+                          </button></form>
+                    </div>
                     @else 
-                    <a href="{{route('login')}}" class="lg:inline-flex lg:w-auto px-3 py-2 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Admin Login</span></a>
+                    <a href="{{route('login')}}" class="lg:inline-flex lg:w-auto p-1 m-1 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Login</span></a>
                     @endif
                 </div>
             </div>
