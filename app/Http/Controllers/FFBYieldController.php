@@ -13,10 +13,10 @@ class FFBYieldController extends Controller
     public function index()
     {
         $year=date('Y');
-        $year=2022;
-        // $month=date('m');
+        // $year=2023;
+        $month=date('m');
         // dd($month);
-        $month=11;
+        // $month=11;
 
         $ffbyields=DailyYield::select(['id','date','estate_id','ffb_mt'])->where([['year','=',$year],['month','=',$month]])->orderBy('date','ASC')->orderBy('estate_id','ASC')->get();
         $estate_list=Estate::select(['estate_name','id','abbreviation'])->get();
@@ -103,7 +103,7 @@ class FFBYieldController extends Controller
         $data_array[5]=$month_budget_var;
         $data_array[6]=$month_name;
 
-        // dd($ffbyields);
+        
 
         return view('ffbdaily',['ffbyields'=>$ffbyields],['data_array'=>$data_array]);
     }

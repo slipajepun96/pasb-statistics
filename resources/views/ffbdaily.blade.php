@@ -1,9 +1,17 @@
-@extends('layout.master')
+@extends('layout.ffbyield-layout')
 
-@section('content')
+@section('ffbyield-content')
 <?php   use \App\Http\Controllers\FFBYieldController; ?> 
 <div class="m-3 bg-white w-auto rounded-xl p-3">
-    <p class="text-2xl font-bold">Daily FFB Output for {{$data_array[6]}} 2022</p>
+    <div class="flex flex-row">
+        <div class="my-1 bg-cyan-900 w-1/2 md:w-1/12 rounded-lg p-2 text-white hover:bg-cyan-700">
+            <a href="">Generate PDF</a>
+        </div>
+    </div>
+</div>
+
+<div class="m-3 bg-white w-auto rounded-xl p-3">
+    <p class="text-2xl font-bold">Daily FFB Output for {{$data_array[6]}} {{$data_array[0]}}</p>
     {{-- <p class="italic text-gray-700">Last Updates: 18 January 2022</p> --}}
     {{-- <p>~Table here~</p> --}}
     <?php $o=1;
@@ -223,6 +231,9 @@
                     {{-- @endfor --}}
                     @endfor
                 @endif
+                {{-- <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
+                    <td class="border border-gray-300 p-1 px-3">test</td>
+                </tr> --}}
             </tbody>
         </table>
  

@@ -13,23 +13,36 @@ class IndexController extends Controller
 {
     public function index()
     {
-        // $current_year=date("Y");
-        // $yesterday_date=date('d.m.Y',strtotime("-1 days"));
-        $yesterday_year=2022;
-        $yesterday_month=11;
+        $current_year=date("Y");
+        $yesterday_date=date('d.m.Y',strtotime("-1 days"));
+        // dd($yesterday_year);
+        // $yesterday_month=11;
 
-        // $yesterday_year=date('Y', strtotime($yesterday_date));
-        // $yesterday_month=date('m', strtotime($yesterday_date));
+        $yesterday_year=date('Y', strtotime($yesterday_date));
+        $yesterday_month=date('m', strtotime($yesterday_date));
+        $last_year=$current_year-1;
+
+
         $estates=Estate::select(['estate_name','id','abbreviation','matured_area'])->orderBy('id','ASC')->get();
         $ffbyields=DailyYield::select(['id','date','estate_id','ffb_mt'])->where([['year','=',$yesterday_year],['month','=',$yesterday_month]])->orderBy('date','ASC')->orderBy('estate_id','ASC')->get();
         $cumulative_ffb_mts=CumulativeFfb::select(['year','month','estate_id','cumulative_ffb_mt','latest_ffb_date'])->where('year','=',$yesterday_year)->get();
+        $cumulative_ffb_mts_last_year=CumulativeFfb::select(['year','month','estate_id','cumulative_ffb_mt','latest_ffb_date'])->where('year','=',$last_year)->get();
+        // dd($cumulative_ffb_mts_last_year);
 
-
+        //calculate current year ffb output
         $total_ffbmt_yearly=0;
         foreach($cumulative_ffb_mts as $cumulative_ffb_mt)
         {
             $total_ffbmt_yearly=$total_ffbmt_yearly+$cumulative_ffb_mt->cumulative_ffb_mt;
         }
+
+        //calculate last year ffb mt & output
+        $last_year_total_ffb_mt_yearly=0;
+        foreach($cumulative_ffb_mts_last_year as $cumulative_ffb_mt_last_year)
+        {
+            $last_year_total_ffb_mt_yearly=$last_year_total_ffb_mt_yearly+$cumulative_ffb_mt_last_year->cumulative_ffb_mt;
+        }
+
 
         //calculate YPH
         $total_matured_area=0;

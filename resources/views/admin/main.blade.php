@@ -4,9 +4,6 @@
 <?php   use \App\Http\Controllers\DailyYieldController; ?> 
 
 <div class="bg-white m-2 p-2 text-black rounded-xl">
-    <span class="text-2xl font-bold">Welcome, Admin</span>
-</div>
-<div class="bg-white m-2 p-2 text-black rounded-xl">
 <?php
     $dateObj   = DateTime::createFromFormat('!m', $data_array[0]);
     $monthName = $dateObj->format('F'); // March
@@ -32,7 +29,19 @@
                     @csrf 
                     <select name="month_year_selected" id="month_year_selected" class=" shadow border rounded m-1 p-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
                         @foreach($data_array[2] as $data)
-                            <option value="01"><?php echo DailyYieldController::monthYearConvert($data->month,$data->year);?></option>
+                        <?php
+                        $pass_data=0;
+                        $month_year_selected=DailyYieldController::monthYearConvert($data->month,$data->year);
+                        if(($data->month==$data_array[0])&&($data->year==$data_array[1]))
+                            {
+                        ?>
+                            <option value="<?php echo($month_year_selected);?>" selected><?php echo($month_year_selected);?></option>
+                        <?php }
+                        else{
+                            ?>
+                                <option value="<?php echo($month_year_selected);?>"><?php echo($month_year_selected);?></option>
+                            <?php 
+                        } ?>
                         @endforeach
                     </select>
                     <button type="submit" class="shadow rounded-lg bg-cyan-400 px-3 py-1 ">
@@ -41,9 +50,7 @@
                 </form>
             
         </div>
-       @foreach($data_array[2] as $data) 
-{{$data->month}},{{$data->year}}
-@endforeach
+     
 
      
     <div class="m-2 overflow-x-auto">

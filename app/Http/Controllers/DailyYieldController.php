@@ -22,7 +22,7 @@ class DailyYieldController extends Controller
         $month=date('m');
         // $month="05";
         // dd($year);
-        $available_data_month_year=DailyYield::select(['month','year'])->groupBy('year')->groupBy('month')->get();
+        $available_data_month_year=DailyYield::select(['month','year'])->groupBy('year')->groupBy('month')->orderBy('year', 'DESC')->orderBy('month', 'DESC')->get();
         $dailyyields=DailyYield::select(['date','estate_id','ffb_mt','month','year','id'])->where([['year','=',$year],['month','=',$month]])->get();
         $data_array[0]=$month;
         $data_array[1]=$year;
@@ -34,18 +34,21 @@ class DailyYieldController extends Controller
 
     public function index_monthsearch(Request $request)
     {
-        $year=$request->year;
-        $month=$request->month;
-        // $month="05";
-        // dd($year);
-       
+        // dd($request);
+        $month_year_exploded=explode(" ",$request->month_year_selected);
+        $month_in_string=$month_year_exploded[0];
+        $year=$month_year_exploded[1];
+        $month=date("m",strtotime($month_in_string));
+   
+        $available_data_month_year=DailyYield::select(['month','year'])->groupBy('year')->groupBy('month')->orderBy('year', 'DESC')->orderBy('month', 'DESC')->get();
         $dailyyields=DailyYield::select(['date','estate_id','ffb_mt','month','year','id'])->where([['year','=',$year],['month','=',$month]])->get();
         // $dailyyields=DailyYield::where([['year','=',$year],['month','=',$month]])->get();
-        $date_detail[0]=$month;
-        $date_detail[1]=$year;
+        $data_array[0]=$month;
+        $data_array[1]=$year;
+        $data_array[2]=$available_data_month_year;
         
         // $budget=Budget::select([''])
-        return view('admin.main',['dailyyields'=>$dailyyields],['date_detail'=>$date_detail]);
+        return view('admin.main',['dailyyields'=>$dailyyields],['data_array'=>$data_array]);
     }
 
     public function add()

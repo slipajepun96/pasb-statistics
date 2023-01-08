@@ -16,7 +16,7 @@
         </div>
         <div class="my-1 ml-1 bg-cyan-900 w-1/2 md:w-1/6  rounded-lg p-2 text-white hover:bg-cyan-700">
             <div class="flex-inline"><span class="text-3xl"> {{number_format($data_array[0],2)}}</span><span class="text-sm"> MT</span></div>
-            Total FFB MT <p class="italic text-gray-500 text-sm">until 30-11-2022</p>
+            Total FFB MT
         </div>
    
             <a href="{{route('ffbyield')}}" class="my-1 ml-1 bg-cyan-900 w-fit md:w-fit  rounded-lg p-2 text-white hover:bg-cyan-600">
@@ -26,7 +26,7 @@
             </a>
          </div>
     <hr class="my-2">
-    <span class=" text-2xl">Estate</span><a href="" class="rounded-md  bg-yellow-400 p-0.5 mb-2 text-cyan-700 text-sm">VIEW MONTHLY FFB STATEMENT</a>
+    {{-- <span class=" text-2xl">Estate</span><a href="" class="rounded-md  bg-yellow-400 p-0.5 mb-2 text-cyan-700 text-sm">VIEW MONTHLY FFB STATEMENT</a> --}}
     <div class=" flex flex-wrap w-full">
         @foreach($data_array[2] as $estate)
             <div class="m-1 bg-gradient-to-bl from-cyan-800 via-cyan-700 to-cyan-500 hover:from-cyan-600 hover:via-cyan-500 hover:to-cyan-300 w-full md:w-fit rounded-lg p-2 text-white hover:bg-cyan-700">
