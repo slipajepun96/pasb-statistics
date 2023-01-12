@@ -73,17 +73,20 @@
     </head>
     <body class="bg-gray-200">
         <nav class="flex items-center p-1 flex-wrap bg-white shadow">
-            <a href="/" class="p-2 mr-4 inline-flex items-center text-cyan-600">
+            <a href="/" class="p-1 mr-4 inline-flex items-center text-cyan-600">
                 <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="fill-current text-black">
                     <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,10.84 21.79,9.69 21.39,8.61L19.79,10.21C19.93,10.8 20,11.4 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.6,4 13.2,4.07 13.79,4.21L15.4,2.6C14.31,2.21 13.16,2 12,2M19,2L15,6V7.5L12.45,10.05C12.3,10 12.15,10 12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12C14,11.85 14,11.7 13.95,11.55L16.5,9H18L22,5H19V2M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12H16A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8V6Z" />
                 </svg>
                 <span class="text-xl font-bold tracking-wide">PASB - Statistics</span>
             </a>
-            <button class="inline-flex p-3 m-2 hover:bg-gray-100 rounded lg:hidden ml-auto nav-toggler" data-target="#navigation">
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M21,15.61L19.59,17L14.58,12L19.59,7L21,8.39L17.44,12L21,15.61M3,6H16V8H3V6M3,13V11H13V13H3M3,18V16H16V18H3Z" />
+            <button class="inline-flex p-3 mr-3 hover: rounded lg:hidden ml-auto nav-toggler" data-target="#navigation">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-cyan-900">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
                 </svg>
-            </button>
+                
+                
+          </button>
             <div class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation">
                 <div class="lg:inline-flex lg:flex-row lg:ml-auto flex flex-col">
                     {{-- <a href="#" class="lg:inline-flex lg:w-auto px-3 py-1  m-1 rounded hover:bg-gray-200 hover:text-cyan-600"><span>Dashboard</span></a> --}}

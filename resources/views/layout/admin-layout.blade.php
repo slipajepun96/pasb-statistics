@@ -12,15 +12,18 @@
 
 
 
-<nav class="flex items-center p-3 flex-wrap bg-cyan-900 shadow">
+<nav class="flex items-center p-1 flex-wrap bg-cyan-900 shadow">
     <a href="/" class="p-2 mr-4 inline-flex items-center text-white">
         <span class="text-xl font-bold tracking-wide">Administrator Dashboard</span>
     </a>
-    <button class="inline-flex p-3 bg-gray-100 rounded lg:hidden ml-auto nav-toggler2" data-target="#navigation2">
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M21,15.61L19.59,17L14.58,12L19.59,7L21,8.39L17.44,12L21,15.61M3,6H16V8H3V6M3,13V11H13V13H3M3,18V16H16V18H3Z" />
+    <button class="inline-flex p-3 mr-3 hover: rounded lg:hidden ml-auto nav-toggler2" data-target="#navigation2">
+
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
         </svg>
-    </button>
+        
+        
+  </button>
     <div class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation2">
         <div class="lg:inline-flex lg:flex-row lg:ml-auto flex flex-col">
             <a href="{{route('main')}}" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-white hover:bg-cyan-400 hover:text-black"><span>Admin Home</span></a>

@@ -2,11 +2,48 @@
 
 @section('ffbyield-content')
 <?php   use \App\Http\Controllers\FFBYieldController; ?> 
-<div class="m-3 bg-white w-auto rounded-xl p-3">
-    <div class="flex flex-row">
-        <div class="my-1 bg-cyan-900 w-1/2 md:w-1/12 rounded-lg p-2 text-white hover:bg-cyan-700">
-            <a href="">Generate PDF</a>
-        </div>
+<?php   use \App\Http\Controllers\DailyYieldController; ?> 
+<?php
+    $dateObj   = DateTime::createFromFormat('!m', $data_array[1]);
+    $monthName = $dateObj->format('F'); // March
+?>
+<div class="m-3 bg-white w-auto rounded-xl p-3 ">
+
+    <div class=" inline-flex">
+        <form action="{{route('ffbyield_search')}}" class="block rounded-lg" method="POST">
+                @csrf 
+                <select name="month_year_selected" id="month_year_selected" class=" shadow border rounded-lg m-1 p-1.5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
+                    @foreach($data_array[7] as $data)
+                    <?php
+                    $pass_data=0;
+                    $month_year_selected=DailyYieldController::monthYearConvert($data->month,$data->year);
+                    if(($data->month==$data_array[1])&&($data->year==$data_array[0]))
+                        {
+                    ?>
+                        <option value="<?php echo($month_year_selected);?>" selected><?php echo($month_year_selected);?></option>
+                    <?php }
+                    else{
+                        ?>
+                            <option value="<?php echo($month_year_selected);?>"><?php echo($month_year_selected);?></option>
+                        <?php 
+                    } ?>
+                    @endforeach
+                </select>
+                <button type="submit" class="shadow rounded-lg bg-green-700 p-1.5 text-white inline-flex">
+                   View<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                  </svg>
+                  
+                </button>
+                <button type="submit" class="shadow rounded-lg bg-green-700 p-1.5 text-white inline-flex">
+                    PDF<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                      </svg>
+                      
+                   
+                 </button>
+            </form>
+        
     </div>
 </div>
 

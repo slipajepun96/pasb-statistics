@@ -31,6 +31,7 @@ use App\Http\Controllers\IndexController;
 
 Route::middleware(['auth'],['preventBackHistory'])->group(function()
 {
+    Route::post('/ffbyield',[FFBYieldController::class,'index'])->name('ffbyield_search');
     Route::get('/',[IndexController::class,'index'])->name('index');
     Route::get('/ffbyield',[FFBYieldController::class,'index'])->name('ffbyield');
    

@@ -10,19 +10,9 @@ use Illuminate\Http\Request;
 
 class FFBYieldController extends Controller
 {
-    public function index()
+
+    public function varSelector($month)
     {
-        $year=date('Y');
-        // $year=2023;
-        $month=date('m');
-        // dd($month);
-        // $month=11;
-
-        $ffbyields=DailyYield::select(['id','date','estate_id','ffb_mt'])->where([['year','=',$year],['month','=',$month]])->orderBy('date','ASC')->orderBy('estate_id','ASC')->get();
-        $estate_list=Estate::select(['estate_name','id','abbreviation'])->get();
-        $number_of_estates=$estate_list->count();
-
-
         if($month=="01")
         {
             $month_budget_var="jan_budget_mt";
@@ -89,9 +79,38 @@ class FFBYieldController extends Controller
             $daily_budget_var="0";
         }
 
-        $var=Budget::select(['estate_id',$month_budget_var,$daily_budget_var])->where('year',$year)->orderBy('estate_id','ASC')->get();
-        // dd($var);
+        $varSelector_pass[0]=$month_budget_var;
+        $varSelector_pass[1]=$daily_budget_var;
+        return $varSelector_pass;
+    }
 
+    public function index(Request $request)
+    {
+        if(empty($request->month_year_selected))
+        {
+            $year=date('Y');
+            $month=date('m');
+        }
+        else
+        {
+            $month_year_exploded=explode(" ",$request->month_year_selected);
+            $month_in_string=$month_year_exploded[0];
+            $year=$month_year_exploded[1];
+            $month=date("m",strtotime($month_in_string));
+            
+        }
+       
+
+        $ffbyields=DailyYield::select(['id','date','estate_id','ffb_mt'])->where([['year','=',$year],['month','=',$month]])->orderBy('date','ASC')->orderBy('estate_id','ASC')->get();
+        $estate_list=Estate::select(['estate_name','id','abbreviation'])->get();
+        $number_of_estates=$estate_list->count();
+
+        $data_pass=$this->varSelector($month);
+        $month_budget_var=$data_pass[0];
+        $daily_budget_var=$data_pass[1];
+
+        $var=Budget::select(['estate_id',$month_budget_var,$daily_budget_var])->where('year',$year)->orderBy('estate_id','ASC')->get();
+        $available_data_month_year=DailyYield::select(['month','year'])->groupBy('year')->groupBy('month')->orderBy('year', 'DESC')->orderBy('month', 'DESC')->get();
 
         $month_name = date("F", mktime(0, 0, 0, $month, 10));
 
@@ -102,6 +121,7 @@ class FFBYieldController extends Controller
         $data_array[4]=$var;
         $data_array[5]=$month_budget_var;
         $data_array[6]=$month_name;
+        $data_array[7]=$available_data_month_year;
 
         
 

@@ -59,7 +59,7 @@
                 <tr class="bg-gray-200 p-3 font-bold">
                     <td width="20%" class="border border-blue-900 p-1 display-none">Date</td>
                     <td width="25%" class="border border-blue-900 p-1">Estate</td>
-                    <td width="15%" class="border border-blue-900 p-1">Today FFB (MT)</td>
+                    <td width="" class="border border-blue-900 p-1">TodayFFB (MT)</td>
                     <td width="20%" class="border border-blue-900 p-1">Action</td>
                 </tr>
             </thead>
@@ -72,8 +72,8 @@
                 @foreach($dailyyields as $dailyyield)
                     <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
                         <td class="border border-gray-300 p-1 px-5 display-none">{{$dailyyield->date}}</td>
-                        <td class="border border-gray-300 p-1 px-5">{{$dailyyield->estate->abbreviation}}</td>
-                        <td class="border border-gray-300 p-1 px-5">{{$dailyyield->ffb_mt}}</td>
+                        <td class="border border-gray-300 p-1">{{$dailyyield->estate->abbreviation}}</td>
+                        <td class="border border-gray-300 p-1 ">{{$dailyyield->ffb_mt}}</td>
                         <td class="border border-gray-300 p-1  ">
                             <div class="inline-flex">
                             
