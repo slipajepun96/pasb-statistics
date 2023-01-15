@@ -7,11 +7,12 @@
     $dateObj   = DateTime::createFromFormat('!m', $data_array[1]);
     $monthName = $dateObj->format('F'); // March
 ?>
-<div class="m-3 bg-white w-auto rounded-xl p-3 ">
+<div class="w-auto md:inline-flex ">
+    <div class="m-3 mb-1 bg-white rounded-xl p-1 ">
 
-    <div class=" inline-flex">
-        <form action="{{route('ffbyield_search')}}" class="block rounded-lg" method="POST">
-                @csrf 
+    <div class=" inline-flex block rounded-lg">
+        <form action="{{route('ffbyield_search')}}" method="POST">
+            @csrf 
                 <select name="month_year_selected" id="month_year_selected" class=" shadow border rounded-lg m-1 p-1.5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
                     @foreach($data_array[7] as $data)
                     <?php
@@ -29,26 +30,44 @@
                     } ?>
                     @endforeach
                 </select>
-                <button type="submit" class="shadow rounded-lg bg-green-700 p-1.5 text-white inline-flex">
+                <button type="submit" class="shadow rounded-lg bg-green-700 p-1 text-white inline-flex">
                    View<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                   </svg>
-                  
                 </button>
-                <button type="submit" class="shadow rounded-lg bg-green-700 p-1.5 text-white inline-flex">
-                    PDF<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                      </svg>
-                      
-                   
-                 </button>
             </form>
+        </div>
+</div>  
+<div class="m-3 mb-1 bg-white rounded-xl p-1 ">
+
+                <?php
+                $data_pass=$data_array[1].' '.$data_array[0];
         
+                ?> 
+                
+                <div class="lg:ml-auto inline-flex">
+                <h3 class="p-2">Export to : </h3>
+                <a href="{{route('dailyYieldPDF',$data_pass)}}" class="shadow rounded-lg bg-pink-700 p-1 text-white inline-flex m-1 ">
+                        PDF<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                </a>
+                <a href="{{route('dailyYieldPDF',$data_pass)}}" class="shadow rounded-lg bg-green-700 p-1 text-white inline-flex m-1 ">
+                    Excel<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+            </a>
+            </div>
+
+        </div>
     </div>
-</div>
+        
+ 
 
 <div class="m-3 bg-white w-auto rounded-xl p-3">
     <p class="text-2xl font-bold">Daily FFB Output for {{$data_array[6]}} {{$data_array[0]}}</p>
+
+
     {{-- <p class="italic text-gray-700">Last Updates: 18 January 2022</p> --}}
     {{-- <p>~Table here~</p> --}}
     <?php $o=1;
@@ -100,10 +119,10 @@
         <table class="border-collapse border border-green-900 w-full">
             <thead>
                 <tr class="bg-gray-200 p-3 font-bold">
-                    <td width="3%" class="border border-blue-900 p-3 display-none" rowspan="3">Date</td>
+                    <td width="3%" class="border border-blue-900 p-1 display-none text-sm" rowspan="3">Date</td>
                     <?php $i=0; ?>
                     @foreach($data_array[2] as $estate)
-                        <td width="" class="border border-blue-900 p-1" colspan="3">{{$estate->estate_name}}</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm" colspan="3">{{$estate->estate_name}}</td>
                         <?php 
                         
                         $estate_numbering[$i]=$estate->id;
@@ -111,19 +130,19 @@
                         ?>
                     @endforeach
                    
-                    <td width="" class="border border-blue-900 p-3" colspan="3">Total</td>
+                    <td width="" class="border border-blue-900 p-1 text-sm" colspan="3">Total</td>
                 </tr>
                 <tr class="bg-gray-200 p-3">
                     @for($i=0;$i<=$data_array[3];$i++)
-                        <td width="" class="border border-blue-900 p-1" colspan="2">Actual</td>
-                        <td width="" class="border border-blue-900 p-1" colspan="1">Budget</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm" colspan="2">Actual</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm" colspan="1">Budget</td>
                     @endfor
                 </tr>
                 <tr class="bg-gray-200 p-3">
                     @for($i=0;$i<=$data_array[3];$i++)
-                        <td width="" class="border border-blue-900 p-1">Today</td>
-                        <td width="" class="border border-blue-900 p-1">Todate</td>
-                        <td width="" class="border border-blue-900 p-1">Todate</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm">Today</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm">Todate</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm">Todate</td>
                     @endfor
                 </tr>
             </thead>

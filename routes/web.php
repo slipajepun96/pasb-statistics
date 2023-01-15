@@ -31,9 +31,9 @@ use App\Http\Controllers\IndexController;
 
 Route::middleware(['auth'],['preventBackHistory'])->group(function()
 {
-    Route::post('/ffbyield',[FFBYieldController::class,'index'])->name('ffbyield_search');
+    Route::post('/ffbyield',[DailyYieldController::class,'dailyYieldIndex'])->name('ffbyield_search');
     Route::get('/',[IndexController::class,'index'])->name('index');
-    Route::get('/ffbyield',[FFBYieldController::class,'index'])->name('ffbyield');
+    Route::get('/ffbyield',[DailyYieldController::class,'dailyYieldIndex'])->name('ffbyield');
    
 });
 
@@ -60,6 +60,7 @@ Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
     Route::post('/admin/ffb/daily_yield/delete/{id}',[DailyYieldController::class,'delete'])->name('daily_yield-delete');
     Route::get('/admin/ffb/daily_yield/add',[DailyYieldController::class,'add'])->name('daily_yield-add');
     Route::get('/admin/ffb/daily_yield/edit/{id}',[DailyYieldController::class,'edit'])->name('daily_yield-edit');
+    Route::get('/admin/ffb/daily_yield/print/{data_pass}',[DailyYieldController::class,'dailyYieldPDF'])->name('dailyYieldPDF');
 
     //budget
     Route::post('/admin/ffb/budget/add',[BudgetController::class,'store'])->name('budget-store');

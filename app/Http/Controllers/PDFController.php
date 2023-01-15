@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estate;
+use App\Models\DailyYield;
+use App\Http\Controllers\FFBYieldController;
 
 use Illuminate\Http\Request;
 use PDF;
@@ -27,4 +29,6 @@ class PDFController extends Controller
     
         return $pdf->download('estate_detail.pdf');
     }
+
+   
 }
