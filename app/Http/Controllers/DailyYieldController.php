@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 
-use DomPDF;
+use PDF;
 
 use Illuminate\Http\Request;
 
@@ -359,8 +359,10 @@ class DailyYieldController extends Controller
         $data_array[7]=$available_data_month_year;
         $data_array[8]=$ffbyields;
         // dd($data_array);
-        $pdf=DomPDF::loadView('admin.ffbyield.daily_report_pdf',array('data_array'=>$data_array));
-        return $pdf->download('daily_report.pdf');
+        // $pdf=PDF::loadView('admin.ffbyield.daily_report_pdf',array('data_array'=>$data_array))->setPaper('a4')->setOrientation('landscape')->setOption('margin-bottom', 10);
+        $pdf=PDF::loadView('admin.ffbyield.daily_report_pdf',array('data_array'=>$data_array))->setPaper('a4')->setOrientation('landscape')->setOption('margin-top', 5)->setOption('margin-bottom',0);
+        $name=$data_array[1].'-'.$data_array[0]."-Daily Report.pdf";
+        return $pdf->download($name);
 
     }
 }

@@ -2,20 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="http://fonts.cdnfonts.com/css/circular-std" rel="stylesheet">
+        {{-- <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://fonts.cdnfonts.com/css/circular-std" rel="stylesheet"> --}}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
 
                 
 
         <!-- Styles -->
-        <style>
-            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.dark\:text-gray-500{--tw-text-opacity:1;color:#6b7280;color:rgba(107,114,128,var(--tw-text-opacity))}}
-        </style>
+
         {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --}}
         
         <style>
             body {
-                font-family: 'Circular Std', sans-serif;
+              font-family: 'Inter', sans-serif;
             }
 
             @media (min-width:1024px){
@@ -52,8 +51,8 @@
 */
 
 html {
-  line-height: 1.5; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  line-height: 1; /* 1 */
+  -webkit-text-size-adjust: 80%; /* 2 */
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
@@ -820,7 +819,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .bg-green-600 {
   --tw-bg-opacity: 1;
-  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+  /* background-color: rgb(22 163 74 / var(--tw-bg-opacity)); */
+  background-color: rgb(22,163,74);
 }
 .bg-cyan-400 {
   --tw-bg-opacity: 1;
@@ -1359,7 +1359,7 @@ Ensure the default browser behavior of the `hidden` attribute.
                         <td width="3%" class="border border-blue-900 p-1 display-none text-sm" rowspan="3">Date</td>
                         <?php $i=0; ?>
                         @foreach($data_array[2] as $estate)
-                            <td width="" class="border border-blue-900 p-1 text-sm" colspan="3">{{$estate->estate_name}}</td>
+                            <td width="" class="border border-blue-900 p-1 text-sm" colspan="3" style="font-size: 0.875em;">{{$estate->estate_name}}</td>
                             <?php 
                             
                             $estate_numbering[$i]=$estate->id;
@@ -1367,19 +1367,19 @@ Ensure the default browser behavior of the `hidden` attribute.
                             ?>
                         @endforeach
                        
-                        <td width="" class="border border-blue-900 p-1 text-sm" colspan="3">Total</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm" colspan="3" style="font-size: 0.875em;">Total</td>
                     </tr>
                     <tr class="bg-gray-200 p-3">
                         @for($i=0;$i<=$data_array[3];$i++)
-                            <td width="" class="border border-blue-900 p-1 text-sm" colspan="2">Actual</td>
-                            <td width="" class="border border-blue-900 p-1 text-sm" colspan="1">Budget</td>
+                            <td width="" class="border border-blue-900 p-1 text-sm" colspan="2" style="font-size: 0.875em;">Actual</td>
+                            <td width="" class="border border-blue-900 p-1 text-sm" colspan="1" style="font-size: 0.875em;">Budget</td>
                         @endfor
                     </tr>
                     <tr class="bg-gray-200 p-3">
                         @for($i=0;$i<=$data_array[3];$i++)
-                            <td width="" class="border border-blue-900 p-1 text-sm">Today</td>
-                            <td width="" class="border border-blue-900 p-1 text-sm">Todate</td>
-                            <td width="" class="border border-blue-900 p-1 text-sm">Todate</td>
+                            <td width="" class="border border-blue-900 p-1 text-sm" style="font-size: 0.875em;">Today</td>
+                            <td width="" class="border border-blue-900 p-1 text-sm" style="font-size: 0.875em;">Todate</td>
+                            <td width="" class="border border-blue-900 p-1 text-sm" style="font-size: 0.875em;">Todate</td>
                         @endfor
                     </tr>
                 </thead>
@@ -1396,7 +1396,7 @@ Ensure the default browser behavior of the `hidden` attribute.
                     ?>
                     @for($j=1;$j<=$number_of_days;$j++)
                         <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
-                            <td class="border border-gray-300 p-1 px-3"><?php echo $j;?></td>
+                            <td class="border border-gray-300 p-1 px-3" style="font-size: 0.875em;"><?php echo $j;?></td>
                             <?php $cumulative_daily_budget=0;?>
                             @for($k=0;$k<$data_array[3];$k++)
                                 <?php $hit=0; ?>
@@ -1414,11 +1414,11 @@ Ensure the default browser behavior of the `hidden` attribute.
                                         $percentage=$ffb_mt/$daily_budget*100;
                                         ?>
                                         @if($percentage>=0&&$percentage<80)
-                                            <td class="border border-gray-300 p-1 bg-red-600 text-white">{{$ffbyield->ffb_mt}}</td>
+                                            <td style="background-color:rgb(220, 38, 38);color:#f1f5f8;font-size: 0.875em;">{{$ffbyield->ffb_mt}}</td>
                                         @elseif($percentage>=80&&$percentage<100)
-                                            <td class="border border-gray-300 p-1 bg-yellow-300 ">{{$ffbyield->ffb_mt}}</td>
+                                            <td style="background-color:rgb(253, 224, 71);color:#000000;font-size: 0.875em;">{{$ffbyield->ffb_mt}}</td>
                                         @else
-                                            <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$ffbyield->ffb_mt}}</td>
+                                            <td style="background-color:rgb(21, 128, 61);color:#f1f5f8;font-size: 0.875em;">{{$ffbyield->ffb_mt}}</td>
                                         @endif
     
                                         <?php 
@@ -1445,11 +1445,11 @@ Ensure the default browser behavior of the `hidden` attribute.
                                                     $percentage2=($float_cum_ffb_mt/$daily_ffbbudget)*100;
                                                     ?>
                                                     @if($percentage2>=0&&$percentage2<80)
-                                                        <td class="border border-gray-300 p-1 bg-red-600 text-white">{{$float_cum_ffb_mt}}</td>
+                                                        <td style="background-color:rgb(220, 38, 38);color:#f1f5f8;font-size: 0.875em;">{{$float_cum_ffb_mt}}</td>
                                                     @elseif($percentage2>=80&&$percentage2<100)
-                                                        <td class="border border-gray-300 p-1 bg-yellow-300 ">{{$float_cum_ffb_mt}}</td>
+                                                        <td style="background-color:rgb(253, 224, 71);color:#000000;font-size: 0.875em;">{{$float_cum_ffb_mt}}</td>
                                                     @else
-                                                        <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$float_cum_ffb_mt}}</td>
+                                                        <td style="background-color:rgb(21, 128, 61);color:#f1f5f8;font-size: 0.875em;">{{$float_cum_ffb_mt}}</td>
                                                     @endif
                                                     {{-- original --}}
                                                     {{-- <td class="border border-gray-300 p-1"><!?php echo $float_cum_ffb_mt;?></td> --}}
@@ -1478,7 +1478,7 @@ Ensure the default browser behavior of the `hidden` attribute.
     
                                 
                                 
-                                <td class="border border-gray-300 border-r-black p-1"><?php echo round($daily_budget*$j,2);?></td>
+                                <td class="border border-gray-300 border-r-black p-1" style="font-size: 0.875em;"><?php echo round($daily_budget*$j,2);?></td>
                             @endfor
                             
     
@@ -1493,11 +1493,11 @@ Ensure the default browser behavior of the `hidden` attribute.
                             ?>
                                 
                             @if($percentage3>=0&&$percentage3<80)
-                                <td class="border border-gray-300 p-1 bg-red-600 text-white font-bold">{{$cumulative_total_ffb[$j]}}</td>
+                                <td style="background-color:rgb(220, 38, 38);color:#f1f5f8;font-size: 0.875em;">{{$cumulative_total_ffb[$j]}}</td>
                             @elseif($percentage3>=80&&$percentage3<100)
-                                <td class="border border-gray-300 p-1 bg-yellow-300 font-bold">{{$cumulative_total_ffb[$j]}}</td>
+                                <td style="background-color:rgb(253, 224, 71);color:#000000;font-size: 0.875em;">{{$cumulative_total_ffb[$j]}}</td>
                             @else
-                                <td class="border border-gray-300 p-1 bg-green-700 text-white font-bold">{{$cumulative_total_ffb[$j]}}</td>
+                                <td style="background-color:rgb(21, 128, 61);color:#f1f5f8;font-size: 0.875em;">{{$cumulative_total_ffb[$j]}}</td>
                             @endif        
               
                             {{-- cumulative total ffb by day --}}
@@ -1512,14 +1512,14 @@ Ensure the default browser behavior of the `hidden` attribute.
                             ?>
                                 
                             @if($percentage4>=0&&$percentage4<80)
-                                <td class="border border-gray-300 p-1 bg-red-600 text-white font-bold">{{$cumulative_total_ffb_by_day}}</td>
+                                <td style="background-color:rgb(220, 38, 38);color:#f1f5f8;font-size: 0.875em;">{{$cumulative_total_ffb_by_day}}</td>
                             @elseif($percentage4>=80&&$percentage4<100)
-                                <td class="border border-gray-300 p-1 bg-yellow-300 font-bold">{{$cumulative_total_ffb_by_day}}</td>
+                                <td style="background-color:rgb(253, 224, 71);color:#000000;font-size: 0.875em;">{{$cumulative_total_ffb_by_day}}</td>
                             @else
-                                <td class="border border-gray-300 p-1 bg-green-700 text-white font-bold">{{$cumulative_total_ffb_by_day}}</td>
+                                <td style="background-color:rgb(21, 128, 61);color:#f1f5f8;font-size: 0.875em;">{{$cumulative_total_ffb_by_day}}</td>
                             @endif    
     
-                            <td class="border border-gray-300 p-1"><?php echo $cumulative_daily_budget;?></td>
+                            <td class="border border-gray-300 p-1" style="font-size: 0.875em;"><?php echo $cumulative_daily_budget;?></td>
                         </tr>
                         {{-- @endfor --}}
                         @endfor
