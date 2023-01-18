@@ -1359,7 +1359,7 @@ Ensure the default browser behavior of the `hidden` attribute.
                         <td width="3%" class="border border-blue-900 p-1 display-none text-sm" rowspan="3">Date</td>
                         <?php $i=0; ?>
                         @foreach($data_array[2] as $estate)
-                            <td width="" class="border border-blue-900 p-1 text-sm" colspan="3" style="font-size: 0.875em;">{{$estate->estate_name}}</td>
+                            <td width="" class="border border-blue-900 p-1 text-sm" colspan="3" style="font-size: 0.8em;">{{$estate->estate_name}}</td>
                             <?php 
                             
                             $estate_numbering[$i]=$estate->id;

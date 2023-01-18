@@ -365,4 +365,11 @@ class DailyYieldController extends Controller
         return $pdf->download($name);
 
     }
+
+    public function monthlyReport(Request $request)
+    {
+        $year=date('Y');
+
+        $monthly_ffb=CumulativeFfb::select(['month','estate_id','cumulative_ffb_mt'])->where('year',$year)->orderBy('month');orderBy('estate_id');
+    }
 }

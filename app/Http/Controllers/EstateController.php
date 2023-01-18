@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estate;
+use App\Models\AreaEstate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -96,6 +97,13 @@ class EstateController extends Controller
 
         $estate->save();
         return redirect('/admin/estate');
+    }
+
+        public function areaEstate($estate_id)
+    {
+        $estate_area_lists=AreaEstate::select(['current_year','total_area','estate_id','planted_area','matured_area','immatured_area'])->where('estate_id',$estate_id)->orderBy('current_year','DESC')->get();
+        $estate=Estate::select(['estate_name'])->where('id',$estate_id)->get();
+        return view('admin.estate.area_data',['estate_area_lists'=>$estate_area_lists],['estate'=>$estate]);
     }
 
 }

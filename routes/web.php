@@ -34,6 +34,7 @@ Route::middleware(['auth'],['preventBackHistory'])->group(function()
     Route::post('/ffbyield',[DailyYieldController::class,'dailyYieldIndex'])->name('ffbyield_search');
     Route::get('/',[IndexController::class,'index'])->name('index');
     Route::get('/ffbyield',[DailyYieldController::class,'dailyYieldIndex'])->name('ffbyield');
+    Route::get('/monthly_report',[DailyYieldController::class,'monthlyReport'])->name('monthly_report');
    
 });
 
@@ -53,6 +54,7 @@ Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
     Route::get('/admin/estate/view/{id}',[EstateController::class,'view'])->name('estate-view');
     Route::get('/admin/estate/view/print/{id}',[PDFController::class,'estate_detail_pdf'])->name('estate-view-print');
     Route::get('/admin/estate/edit/{id}',[EstateController::class,'edit'])->name('estate-edit');
+    Route::get('/admin/estate/area/{id}',[EstateController::class,'areaEstate'])->name('area-estate-index');
 
     //ffb daily yield
     Route::post('/admin/ffb/daily_yield/add',[DailyYieldController::class,'store'])->name('daily_yield-store');

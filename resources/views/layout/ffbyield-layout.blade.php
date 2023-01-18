@@ -26,8 +26,8 @@
     </button>
     <div class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation2">
         <div class="lg:inline-flex lg:flex-row lg:ml-auto flex flex-col">
-            <a href="{{route('main')}}" class="lg:inline-flex lg:w-auto px-2 py-2 rounded text-white hover:bg-cyan-400 hover:text-black"><span>Daily FFB Output Report</span></a>
-            <a href="{{route('estate-index')}}" class="lg:inline-flex lg:w-auto px-2 py-2 rounded text-white hover:bg-cyan-400 hover:text-black"><span>Yearly Report</span></a>
+            <a href="{{route('ffbyield')}}" class="lg:inline-flex lg:w-auto px-2 py-2 rounded text-white hover:bg-cyan-400 hover:text-black"><span>Daily FFB Output Report</span></a>
+            <a href="{{route('monthly_report')}}" class="lg:inline-flex lg:w-auto px-2 py-2 rounded text-white hover:bg-cyan-400 hover:text-black"><span>Yearly Report</span></a>
         </div>
     </div>
 </nav>

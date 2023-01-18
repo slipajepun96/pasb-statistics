@@ -16,14 +16,10 @@ class CreateEstatesTable extends Migration
         Schema::create('estates', function (Blueprint $table) {
             $table->id();
             $table->string('estate_name');
-            $table->string('manager_name')->nullable();
             $table->bigInteger('year');
-            $table->float('total_area',8,2);
-            $table->float('planted_area',8,2);
-            $table->float('matured_area',8,2);
-            $table->float('inmatured_area',8,2);
-            $table->string('abbreviation');
+            $table->string('manager_name')->nullable();
             $table->string('plant_type')->nullable();
+            $table->string('abbreviation');
             $table->timestamps();
         });
     }

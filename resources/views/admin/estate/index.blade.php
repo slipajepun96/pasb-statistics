@@ -24,61 +24,77 @@
         <a href="{{route('estate-add')}}" class=" p-2 bg-green-600 hover:bg-green-500 rounded-lg text-white shadow-lg">+ Add New Estate</a>
     </div>
     <div class="m-2">
-        <table class="border-collapse border border-green-900 w-full">
-            <thead>
-                <tr class="bg-gray-200 p-3 font-bold">
-                    <td width="5%" class="border border-blue-900 p-3 display-none">ID</td>
-                    <td width="30%" class="border border-blue-900 p-3">Estate Name</td>
-                    <td width="20%" class="border border-blue-900 p-3">Plant Type</td>
-                    <td width="15%" class="border border-blue-900 p-3 display-none">Manager Name</td>
-                    <td width="20%" class="border border-blue-900 p-3">Action</td>
-                </tr>
-            </thead>
-            <tbody>
-                @if($estate_lists->count()==0)
-                    <tr>
-                        <td colspan=5>Empty List <br>(contact administrator if you think this is an error)</td>
-                    </tr>
-                @else
-                @foreach($estate_lists as $estate_list)
-                    <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
-                        <td class="border border-gray-300 p-3 px-5 display-none">{{$estate_list->id}}</td>
-                        <td class="border border-gray-300 p-3 px-5">{{$estate_list->estate_name}}</td>
-                        <td class="border border-gray-300 p-3 px-5">{{$estate_list->plant_type}}</td>
-                        <td class="border border-gray-300 p-3 px-5 display-none">{{$estate_list->manager_name}}</td>
-                        <td class="border border-gray-300 p-3 px-5 ">
-                            <div class="inline-flex">
-                            {{-- view button --}}
-                            <a href="{{route('estate-view',$estate_list->id)}}"><button class="bg-green-500 hover:bg-green-400 rounded-lg p-2 m-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </button></a>
-                            {{-- edit button --}}
-                            <form action="/admin/estate/edit/{{$estate_list->id}}" method="GET">
-                                @csrf 
-                                <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg p-2 m-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
-                                </button>
-                            </form>
-                            {{-- delete button --}}
-                            <form action="/admin/estate/delete/{{$estate_list->id}}" method="POST" onsubmit="return confirm('Are you sure to delete {{$estate_list->estate_name}} ?')">
-                                @csrf 
-                                <button type="submit" class="bg-red-500 hover:bg-red-400 rounded-lg p-2 m-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </form>
-                        </div>
-                        </td>
-                    </tr>
-                @endforeach
-                @endif
 
-            </tbody>
-        </table>
+
+
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-900 ">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100 ">
+                    <tr>
+                        <th scope="col" class="px-6 py-3" width="60%">
+                            Estate Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($estate_lists->count()==0)
+                            <tr>
+                                <td colspan=5>Empty List <br>(contact administrator if you think this is an error)</td>
+                            </tr>
+                    @else
+                    @foreach($estate_lists as $estate_list)
+                    <tr class="bg-white border-b ">
+                        <th scope="row" class="px-6 py-4 font-bold  whitespace-nowrap">
+                            {{$estate_list->estate_name}}
+                        </th>
+                        <td class="px-6 py-4">
+                            <div class="inline-flex">
+                                {{-- view button --}}
+                                <a href="{{route('estate-view',$estate_list->id)}}"><button class="bg-cyan-600 hover:bg-cyan-700 rounded-lg p-2 text-white inline-flex mx-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg> View 
+                                </button></a>
+                                {{-- edit button --}}
+                                <form action="/admin/estate/area/{{$estate_list->id}}" method="GET">
+                                    @csrf 
+                                    <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg p-2 inline-flex mx-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg> Modify Area
+                                    </button>
+                                </form>
+                                {{-- edit button --}}
+                                <form action="/admin/estate/edit/{{$estate_list->id}}" method="GET">
+                                    @csrf 
+                                    <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg p-2 inline-flex mx-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg> Edit
+                                    </button>
+                                </form>
+                                {{-- delete button --}}
+                                <form action="/admin/estate/delete/{{$estate_list->id}}" method="POST" onsubmit="return confirm('Are you sure to delete {{$estate_list->estate_name}} ?')">
+                                    @csrf 
+                                    <button type="submit" class="bg-red-500 hover:bg-red-400 rounded-lg p-2 inline-flex mx-1 text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                          </svg>
+                                           Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+
+                    </tr>
+                    @endforeach
+                        @endif
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\DailyYield;
 use App\Models\Budget;
+use App\Models\AreaEstate;
 
 class Estate extends Model
 {
@@ -31,5 +32,10 @@ class Estate extends Model
     public function budget()
     {
         return this->hasMany(Budget::class);
+    }
+
+    public function areaestate()
+    {
+        return this->hasMany(AreaEstate::class);
     }
 }

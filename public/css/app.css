@@ -698,6 +698,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .overflow-x-auto {
   overflow-x: auto;
 }
+.whitespace-nowrap {
+  white-space: nowrap;
+}
 .rounded-xl {
   border-radius: 0.75rem;
 }
@@ -727,6 +730,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .border-t {
   border-top-width: 1px;
+}
+.border-b {
+  border-bottom-width: 1px;
 }
 .border-green-900 {
   --tw-border-opacity: 1;
@@ -839,6 +845,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
 .bg-gradient-to-bl {
   background-image: linear-gradient(to bottom left, var(--tw-gradient-stops));
 }
@@ -908,12 +918,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.text-left {
+  text-align: left;
 }
 .text-center {
   text-align: center;
@@ -938,6 +955,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -950,6 +971,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .font-medium {
   font-weight: 500;
+}
+.uppercase {
+  text-transform: uppercase;
 }
 .italic {
   font-style: italic;
