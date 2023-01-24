@@ -42,9 +42,10 @@
                 $budget_total=0;
                 $budget_total=$budget_list->jan_budget_mt+$budget_list->feb_budget_mt+$budget_list->mac_budget_mt+$budget_list->apr_budget_mt+$budget_list->may_budget_mt+$budget_list->june_budget_mt+$budget_list->july_budget_mt+$budget_list->aug_budget_mt+$budget_list->sept_budget_mt+$budget_list->oct_budget_mt+$budget_list->nov_budget_mt+$budget_list->dec_budget_mt;
                 ?>
+                {{-- <?php dd($budget_list);?> --}}
                     <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
                         <td class="border border-gray-300 p-3 px-5 display-none">{{$budget_list->year}}</td>
-                        <td class="border border-gray-300 p-3 px-5">{{$budget_list->estate->estate_name}} , <?php echo $budget_total?> MT</td>
+                        <td class="border border-gray-300 p-3 px-5">{{$budget_list->estate->estate_name ?? 'None'}} , <?php echo $budget_total?> MT</td>
                         <td class="border border-gray-300 p-3 px-5 ">
                             <div class="inline-flex">
                             {{-- view button --}}
@@ -62,7 +63,7 @@
                                 </button>
                             </form>
                             {{-- delete button --}}
-                            <form action="/admin/ffb/budget/delete/{{$budget_list->id}}" method="POST" onsubmit="return confirm('Are you sure to delete {{$budget_list->estate->estate_name}} {{$budget_list->year}} budget ?')">
+                            <form action="/admin/ffb/budget/delete/{{$budget_list->id}}" method="POST" onsubmit="return confirm('Are you sure to delete {{$budget_list->estate->estate_name ?? 'None'}} {{$budget_list->year}} budget ?')">
                                 @csrf 
                                 <button type="submit" class="bg-red-500 hover:bg-red-400 rounded-lg p-2 m-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

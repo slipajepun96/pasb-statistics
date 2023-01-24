@@ -49,6 +49,7 @@ Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
     Route::post('/admin/estate/add',[EstateController::class,'store'])->name('estate-add-store');
     Route::post('/admin/estate/edit/{id}',[EstateController::class,'update'])->name('estate-edit-update');
     Route::post('/admin/estate/delete/{id}',[EstateController::class,'delete'])->name('estate-delete');
+    Route::post('/admin/estate/area/add',[EstateController::class,'areaEstateStore'])->name('area-estate-store');
     Route::get('/admin/estate',[EstateController::class,'index'])->name('estate-index');
     Route::get('/admin/estate/add',[EstateController::class,'add'])->name('estate-add');
     Route::get('/admin/estate/view/{id}',[EstateController::class,'view'])->name('estate-view');

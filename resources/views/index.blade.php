@@ -9,7 +9,7 @@
         <div class="my-1 bg-cyan-900 w-1/2 md:w-1/6 rounded-lg p-2 text-white hover:bg-cyan-700">
             
             <div class="flex-inline"><span class="text-3xl"> {{number_format($data_array[1],2)}}</span><span class="text-sm"> MT/Ha</span></div>
-            Current YPH <br> <p class="italic text-gray-500 text-sm"></p>
+            2023 YPH <br> <p class="italic text-gray-500 text-sm"></p>
             <div class="flex-inline"><span class="text-sm"> 2021 : 11.40 MT/Ha</span></div>
             
             

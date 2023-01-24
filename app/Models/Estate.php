@@ -31,11 +31,11 @@ class Estate extends Model
 
     public function budget()
     {
-        return this->hasMany(Budget::class);
+        return $this->hasMany(Budget::class);
     }
 
     public function areaestate()
     {
-        return this->hasMany(AreaEstate::class);
+        return $this->hasMany(AreaEstate::class);
     }
 }

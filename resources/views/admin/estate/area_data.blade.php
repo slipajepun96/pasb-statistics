@@ -9,22 +9,57 @@
     }
 }
 </style>
+@if(session('status'))
+<div class="flex p-4 mb-4 text-yellow-700 border-t-4 border-yellow-300 bg-yellow-50 " role="alert" id="status_message">
+<div class="ml-3 text-sm font-medium">
+    {{session('status')}}
+</div>
+ </div>
+@endif
 <div class="bg-white m-2 p-2 text-black rounded-xl">
-    <span class="text-2xl font-bold m-2 my-3">{{$estate->estate_name}}s Area Profile</span>
+    <span class="text-2xl font-bold m-2 my-3">{{$estate->estate_name}}'s Area Profile</span>
     <br>
-    @if(session('status'))
-        <div class="bg-yellow-400 text-black p-2 rounded m-3" id="status_message">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-              </svg>{{session('status')}}
-        </div>
-    @endif
-        <div class="m-2">
+
     </div>
-    <div class="m-2">
 
 
+
+    <div class="m-2 bg-white rounded-xl p-2">
+   
+        <div class="text-md text-gray-700 " >
+            <button onClick="showForm()" class="inline-flex p-1 ">Add New Area 
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+          </button>
+        </div>
+            <div id=areaForm style="display:none;"> 
+                <form action="{{route('area-estate-store')}}" method="POST">
+                    @csrf
+                    <div class="mb-4 inline-block md:w-1/12 w-full"> 
+                        <label for="current_year" class="block text-gray-700 text-sm font-bold mb-2"> Year: </label><input type="text" name="current_year" value="{{date('Y')}}" id="current_year" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4 inline-block md:w-1/6 w-full"> 
+                        <label for="immatured_area" class="block text-gray-700 text-sm font-bold mb-2"> Immatured Area (Ha.) : </label><input type="text" name="immatured_area" value="0" id="immatured_area" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4 inline-block md:w-1/6 w-full"> 
+                        <label for="matured_area" class="block text-gray-700 text-sm font-bold mb-2"> Matured Area (Ha.) : </label><input type="text" name="matured_area" id="matured_area" value="0"  class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4 inline-block md:w-1/6 w-full"> 
+                        <label for="planted_area" class="block text-gray-700 text-sm font-bold mb-2"> Planted Area (Ha.) : </label><input type="text" name="planted_area" id="planted_area" value="0" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4 inline-block md:w-1/6 w-full"> 
+                        <label for="total_area" class="block text-gray-700 text-sm font-bold mb-2"> Total Area (Ha.) : </label><input type="text" name="total_area" id="total_area" value="0" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <input type="text" name="estate_id" id="estate_id" value="{{$estate->id}}" hidden>
+                    <div class="inline-block md:w-1/6 w-full  m-3">                 
+                        <button type="reset" class="bg-red-500 hover:bg-red-400 rounded-lg p-2 inline-flex mx-1 text-white">Reset Form </button>
+                        <button type="submit" class="bg-green-600 hover:bg-green-700 rounded-lg p-2 inline-flex mx-1 text-white">Submit &rarr; </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+<div class="bg-white m-2 p-2 text-black rounded-xl">
 
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-900 ">
@@ -71,7 +106,23 @@
             </table>
         </div>
 
-    </div>
-</div>
+        <script>
+            function showForm() {
+              var x = document.getElementById("areaForm");
+              if (x.style.display === "block") {
+                x.style.display = "none";
+
+
+              } else {
+                x.style.display = "block";
+              }
+            }
+            setTimeout(function() 
+            {
+                $('#status_message').fadeOut('fast');
+            }, 3000);
+            
+            </script>
+
 
 @endsection

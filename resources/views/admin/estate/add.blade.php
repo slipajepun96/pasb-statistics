@@ -18,18 +18,6 @@
                 <label for="estate_name" class="block text-gray-700 text-sm font-bold mb-2">Year of Planting : </label><input type="text" name="year" id="year" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-4  inline-block md:w-1/6 w-full  m-3"> 
-                <label for="estate_name" class="block text-gray-700 text-sm font-bold mb-2">Total Area (Ha.) : </label><input type="text" name="total_area" id="total_area" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-            <div class="mb-4  inline-block md:w-1/6 w-full  m-3"> 
-                <label for="estate_name" class="block text-gray-700 text-sm font-bold mb-2">Planted Area (Ha.) : </label><input type="text" name="planted_area" id="planted_area" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-            <div class="mb-4  inline-block md:w-1/6 w-full  m-3"> 
-                <label for="estate_name" class="block text-gray-700 text-sm font-bold mb-2">Matured Area (Ha.) : </label><input type="text" name="matured_area" id="matured_area" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-            <div class="mb-4  inline-block md:w-1/6 w-full  m-3"> 
-                <label for="estate_name" class="block text-gray-700 text-sm font-bold mb-2">Inmatured Area (Ha.) : </label><input type="text" name="inmatured_area" id="inmatured_area" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-            <div class="mb-4  inline-block md:w-1/6 w-full  m-3"> 
                 <label for="estate_name" class="block text-gray-700 text-sm font-bold mb-2">Abbreviation : </label><input type="text" name="abbreviation" id="abbreviation" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="mb-4  inline-block md:w-1/3 w-full  m-3"> 

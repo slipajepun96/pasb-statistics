@@ -368,8 +368,10 @@ class DailyYieldController extends Controller
 
     public function monthlyReport(Request $request)
     {
-        $year=date('Y');
+        // $year=date('Y');
+        $year=2022;
 
-        $monthly_ffb=CumulativeFfb::select(['month','estate_id','cumulative_ffb_mt'])->where('year',$year)->orderBy('month');orderBy('estate_id');
+        $monthly_ffb=CumulativeFfb::select(['month','estate_id','cumulative_ffb_mt'])->where('year','=',$year)->orderBy('month','ASC')->orderBy('estate_id','ASC')->get();
+        dd($monthly_ffb);
     }
 }

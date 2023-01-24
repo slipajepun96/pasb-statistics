@@ -6,6 +6,7 @@ use App\Models\Estate;
 use App\Models\DailyYield;
 use App\Models\Budget;
 use App\Models\CumulativeFfb;
+use App\Models\AreaEstate;
 
 use Illuminate\Http\Request;
 
@@ -23,7 +24,9 @@ class IndexController extends Controller
         $last_year=$current_year-1;
 
 
-        $estates=Estate::select(['estate_name','id','abbreviation','matured_area'])->orderBy('id','ASC')->get();
+        $estates_area=AreaEstate::select(['matured_area','estate_id'])->where('current_year','=',$current_year)->get();
+        // dd($estates_area);
+        $estates=Estate::select(['estate_name','id','abbreviation'])->orderBy('id','ASC')->get();
         $ffbyields=DailyYield::select(['id','date','estate_id','ffb_mt'])->where([['year','=',$yesterday_year],['month','=',$yesterday_month]])->orderBy('date','ASC')->orderBy('estate_id','ASC')->get();
         $cumulative_ffb_mts=CumulativeFfb::select(['year','month','estate_id','cumulative_ffb_mt','latest_ffb_date'])->where('year','=',$yesterday_year)->get();
         $cumulative_ffb_mts_last_year=CumulativeFfb::select(['year','month','estate_id','cumulative_ffb_mt','latest_ffb_date'])->where('year','=',$last_year)->get();
@@ -49,11 +52,21 @@ class IndexController extends Controller
         $i=0;
         foreach($estates as $estate)
         {
+
+            $matured_area=0;
             $estate_yph[$i][0]=$estate->id;//estateid
+            foreach($estates_area as $estate_area)
+            {
+                // dd($estate_area->estate_id);
+                if($estate_area->estate_id==$estate_yph[$i][0])
+                {
+                    $matured_area=$estate_area->matured_area;
+                }
+            }
             $estate_yph[$i][1]=0;//yield mt for each estate
             $estate_yph[$i][2]=0;//yph for each estate
 
-            $total_matured_area=$total_matured_area+$estate->matured_area;
+            $total_matured_area=$total_matured_area+$matured_area;
             foreach($cumulative_ffb_mts as $cumulative_ffb_mt)
             {
                 if($estate->id==$cumulative_ffb_mt->estate_id)
@@ -61,7 +74,7 @@ class IndexController extends Controller
                     $estate_yph[$i][1]=$estate_yph[$i][1]+$cumulative_ffb_mt->cumulative_ffb_mt;
                 }
             }
-            $estate_yph[$i][2]=$estate_yph[$i][1]/$estate->matured_area;
+            $estate_yph[$i][2]=$estate_yph[$i][1]/$matured_area;
             $i=$i+1;
         }
         $company_yph=$total_ffbmt_yearly/$total_matured_area;

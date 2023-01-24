@@ -27,10 +27,6 @@ class EstateController extends Controller
             'estate_name'=>'required',
             'manager_name'=>'required',
             'year'=>'required|max:4',
-            'total_area'=>'required',
-            'planted_area'=>'required',
-            'matured_area'=>'required',
-            'inmatured_area'=>'required',
             'abbreviation'=>'required|max:4',
             'plant_type'=>'required'
         ]);
@@ -39,10 +35,6 @@ class EstateController extends Controller
         $estate->estate_name=$request->estate_name;
         $estate->manager_name=$request->manager_name;
         $estate->year=$request->year;
-        $estate->total_area=$request->total_area;
-        $estate->planted_area=$request->planted_area;
-        $estate->matured_area=$request->matured_area;
-        $estate->inmatured_area=$request->inmatured_area;
         $estate->abbreviation=$request->abbreviation;
         $estate->plant_type=$request->plant_type;
 
@@ -76,10 +68,6 @@ class EstateController extends Controller
             'estate_name'=>'required',
             'manager_name'=>'required',
             'year'=>'required|max:4',
-            'total_area'=>'required',
-            'planted_area'=>'required',
-            'matured_area'=>'required',
-            'inmatured_area'=>'required',
             'abbreviation'=>'required|max:4',
             'plant_type'=>'required'
         ]);
@@ -88,10 +76,6 @@ class EstateController extends Controller
         $estate->estate_name=$request->estate_name;
         $estate->manager_name=$request->manager_name;
         $estate->year=$request->year;
-        $estate->total_area=$request->total_area;
-        $estate->planted_area=$request->planted_area;
-        $estate->matured_area=$request->matured_area;
-        $estate->inmatured_area=$request->inmatured_area;
         $estate->abbreviation=$request->abbreviation;
         $estate->plant_type=$request->plant_type;
 
@@ -101,8 +85,44 @@ class EstateController extends Controller
 
         public function areaEstate($estate_id)
     {
-        $estate_area_lists=AreaEstate::select(['current_year','total_area','estate_id','planted_area','matured_area','immatured_area'])->where('estate_id',$estate_id)->orderBy('current_year','DESC')->get();
-        $estate=Estate::select(['estate_name'])->where('id',$estate_id)->get();
+        $estate_area_lists=AreaEstate::select(['current_year','total_area','estate_id','planted_area','matured_area','immatured_area'])->where('estate_id','=',$estate_id)->orderBy('current_year','DESC')->get();
+        $estate=Estate::find($estate_id);
+        // dd($estate);
+        return view('admin.estate.area_data',['estate_area_lists'=>$estate_area_lists],['estate'=>$estate]);
+    }
+    public function areaEstateStore(Request $request)
+    {
+        $this->validate($request,[
+            'estate_id'=>'required',
+            'current_year'=>'required',
+            'immatured_area'=>'required',
+            'matured_area'=>'required',
+            'planted_area'=>'required',
+            'total_area'=>'required'
+        ]);
+
+        $find=AreaEstate::where('estate_id',$request->estate_id)->where('current_year',$request->current_year)->first();
+
+        if(isset($find->estate_id)&&isset($find->current_year))
+        {
+            Session::flash('status','Duplicate data, not saved');
+        }
+        else
+        {
+            $area_estate=new AreaEstate();
+            $area_estate->estate_id=$request->estate_id;
+            $area_estate->current_year=$request->current_year;
+            $area_estate->immatured_area=$request->immatured_area;
+            $area_estate->matured_area=$request->matured_area;
+            $area_estate->planted_area=$request->planted_area;
+            $area_estate->total_area=$request->total_area;
+            $area_estate->save();
+
+            
+        }
+        $estate_id=$request->estate_id;
+        $estate_area_lists=AreaEstate::select(['current_year','total_area','estate_id','planted_area','matured_area','immatured_area'])->where('estate_id','=',$estate_id)->orderBy('current_year','DESC')->get();
+        $estate=Estate::find($estate_id);
         return view('admin.estate.area_data',['estate_area_lists'=>$estate_area_lists],['estate'=>$estate]);
     }
 
