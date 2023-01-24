@@ -15,9 +15,11 @@ class IndexController extends Controller
     public function index()
     {
         $current_year=date("Y");
+        // $current_year=2022;
         $yesterday_date=date('d.m.Y',strtotime("-1 days"));
         // dd($yesterday_year);
         // $yesterday_month=11;
+        // $yesterday_year=2022;
 
         $yesterday_year=date('Y', strtotime($yesterday_date));
         $yesterday_month=date('m', strtotime($yesterday_date));
