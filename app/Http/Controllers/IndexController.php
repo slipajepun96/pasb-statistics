@@ -14,20 +14,19 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $current_year=date("Y");
-        // $current_year=2022;
+        // $current_year=date("Y");
+        $current_year=2022;
         $yesterday_date=date('d.m.Y',strtotime("-1 days"));
         // dd($yesterday_year);
-        // $yesterday_month=11;
-        // $yesterday_year=2022;
+        $yesterday_month=12;
+        $yesterday_year=2022;
 
-        $yesterday_year=date('Y', strtotime($yesterday_date));
-        $yesterday_month=date('m', strtotime($yesterday_date));
+        // $yesterday_year=date('Y', strtotime($yesterday_date));
+        // $yesterday_month=date('m', strtotime($yesterday_date));
         $last_year=$current_year-1;
 
 
         $estates_area=AreaEstate::select(['matured_area','estate_id'])->where('current_year','=',$current_year)->get();
-        // dd($estates_area);
         $estates=Estate::select(['estate_name','id','abbreviation'])->orderBy('id','ASC')->get();
         $ffbyields=DailyYield::select(['id','date','estate_id','ffb_mt'])->where([['year','=',$yesterday_year],['month','=',$yesterday_month]])->orderBy('date','ASC')->orderBy('estate_id','ASC')->get();
         $cumulative_ffb_mts=CumulativeFfb::select(['year','month','estate_id','cumulative_ffb_mt','latest_ffb_date'])->where('year','=',$yesterday_year)->get();
@@ -67,6 +66,8 @@ class IndexController extends Controller
             }
             $estate_yph[$i][1]=0;//yield mt for each estate
             $estate_yph[$i][2]=0;//yph for each estate
+            $estate_yph[$i][3]=0;//monthly yph 
+
 
             $total_matured_area=$total_matured_area+$matured_area;
             foreach($cumulative_ffb_mts as $cumulative_ffb_mt)
@@ -74,9 +75,15 @@ class IndexController extends Controller
                 if($estate->id==$cumulative_ffb_mt->estate_id)
                 {
                     $estate_yph[$i][1]=$estate_yph[$i][1]+$cumulative_ffb_mt->cumulative_ffb_mt;
+                    $estate_monthly_yph=$cumulative_ffb_mt->cumulative_ffb_mt/$matured_area;
+                    
+                    $estate_monthly_yph=round($estate_monthly_yph,2);
+                    $estate_yph[$i][3]=$estate_yph[$i][3]+$estate_monthly_yph;
+
+                    // dd($estate_yph[$i][3]);
                 }
             }
-            $estate_yph[$i][2]=$estate_yph[$i][1]/$matured_area;
+            $estate_yph[$i][2]=$estate_yph[$i][2]+$estate_yph[$i][3];
             $i=$i+1;
         }
         $company_yph=$total_ffbmt_yearly/$total_matured_area;
@@ -91,6 +98,7 @@ class IndexController extends Controller
         $data_array[1]=$company_yph;
         $data_array[2]=$estates;
         $data_array[3]=$estate_yph;
+        // dd($estate_yph[1][3]);
         return view('index',['data_array'=>$data_array]);
     }
 }
