@@ -8,6 +8,7 @@ use App\Http\Controllers\FFBYieldController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::middleware(['auth'],['preventBackHistory'])->group(function()
     Route::get('/',[IndexController::class,'index'])->name('index');
     Route::get('/ffbyield',[DailyYieldController::class,'dailyYieldIndex'])->name('ffbyield');
     Route::get('/monthly_report',[DailyYieldController::class,'monthlyReport'])->name('monthly_report');
+    Route::get('/admin/ffb/daily_yield/print/{data_pass}',[DailyYieldController::class,'dailyYieldPDF'])->name('dailyYieldPDF');
    
 });
 
@@ -63,7 +65,7 @@ Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
     Route::post('/admin/ffb/daily_yield/delete/{id}',[DailyYieldController::class,'delete'])->name('daily_yield-delete');
     Route::get('/admin/ffb/daily_yield/add',[DailyYieldController::class,'add'])->name('daily_yield-add');
     Route::get('/admin/ffb/daily_yield/edit/{id}',[DailyYieldController::class,'edit'])->name('daily_yield-edit');
-    Route::get('/admin/ffb/daily_yield/print/{data_pass}',[DailyYieldController::class,'dailyYieldPDF'])->name('dailyYieldPDF');
+   
 
     //budget
     Route::post('/admin/ffb/budget/add',[BudgetController::class,'store'])->name('budget-store');
@@ -73,6 +75,9 @@ Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
     Route::get('/admin/ffb/budget/add',[BudgetController::class,'add'])->name('budget-add');
     Route::get('/admin/ffb/budget/view/{id}',[BudgetController::class,'view'])->name('budget-view');
     Route::get('/admin/ffb/budget/edit/{id}',[BudgetController::class,'edit'])->name('budget-edit');
+
+    //user
+    Route::get('/admin/user/',[UserController::class,'index'])->name('user-index');
     
 });
 

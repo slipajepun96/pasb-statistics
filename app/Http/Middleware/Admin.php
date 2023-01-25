@@ -18,7 +18,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         // dd(Auth::user()->is_an_admin);
-        if (Auth::user()->is_an_admin=="1") 
+        if (Auth::user()->is_an_admin=="1"||Auth::user()->is_an_admin=="2") 
         {
             return $next($request);
         }
