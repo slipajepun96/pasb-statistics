@@ -55,7 +55,7 @@
                         </th>
                         <th class="px-6 py-4 font-bold ">
                             @if($user_list->is_an_admin==2)
-                            <div class="rounded-full bg-yellow-300 p-1 px-2 inline-flex">Super Admin</div>
+                            <div class="rounded-full bg-yellow-300 p-1 px-2 inline-flex">Super</div>
                             @elseif($user_list->is_an_admin==1)
                             <div class="rounded-full bg-green-300 p-1 px-2 inline-flex">Admin</div>
                             @else
@@ -63,33 +63,30 @@
                             @endif
                         </th>
                         <td class="px-6 py-4">
-                            @if(Auth::user()->is_an_admin==2)
+                            @if(Auth::user()->is_an_admin==2||Auth::user()->is_an_admin==1)
                             
                             <div class="inline-flex">
-                                {{-- view button --}}
-                                <a href=""><button class="bg-cyan-600 hover:bg-cyan-700 rounded-lg p-2 text-white inline-flex mx-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                    </svg> View 
+
+                                {{-- up to admin/ down to viewer button --}}
+                                @if($user_list->is_an_admin==0)
+                                <a href=""><button class="bg-green-600 hover:bg-green-700 rounded-lg p-2 text-white inline-flex mx-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                                  </svg>
+                                   Upgrade to Admin
                                 </button></a>
-                                {{-- edit button --}}
-                                <form action="/admin/estate/area/" method="GET">
-                                    @csrf 
-                                    <button type="submit" class="bg-yellow-500 hover:bg-yellow-400 rounded-lg p-2 inline-flex mx-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                        </svg> Modify Area
-                                    </button>
-                                </form>
-                                {{-- edit button --}}
-                                <form action="/admin/estate/edit/" method="GET">
-                                    @csrf 
-                                    <button type="submit" class="bg-yellow-500 hover:bg-red-800 rounded-lg p-2 inline-flex mx-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                        </svg> Edit
-                                    </button>
-                                </form>
+                                @elseif($user_list->is_an_admin==1)
+                                <a href=""><button class="bg-cyan-600 hover:bg-cyan-700 rounded-lg p-2 text-white inline-flex mx-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
+                                  </svg>
+                                   Downgrade to Viewer 
+                                </button></a>
+                                @endif
+                                
                                 {{-- delete button --}}
+                                
+                                @if($user_list->is_an_admin!=2)
+                                @if(Auth::user()->id!=$user_list->id)
+                                
                                 <form action="/admin/estate/delete/" method="POST" onsubmit="return confirm('Are you sure to delete  ?')">
                                     @csrf 
                                     <button type="submit" class="bg-red-500 hover:bg-red-400 rounded-lg p-2 inline-flex mx-1 text-white">
@@ -99,6 +96,8 @@
                                            Delete
                                     </button>
                                 </form>
+                                @endif
+                                @endif
                             </div>
                             
                             @else
