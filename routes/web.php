@@ -77,6 +77,8 @@ Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
     Route::get('/admin/ffb/budget/edit/{id}',[BudgetController::class,'edit'])->name('budget-edit');
 
     //user
+    Route::post('/admin/user/{id}/downgrade',[UserController::class,'downgrade']);
+    Route::post('/admin/user/{id}/upgrade',[UserController::class,'upgrade']);
     Route::get('/admin/user/',[UserController::class,'index'])->name('user-index');
     
 });

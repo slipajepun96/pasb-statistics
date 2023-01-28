@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="p-3 max-w-sm mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
-    <p class="text-2xl font-bold">Administrator Registration</p>
+    <p class="text-2xl font-bold">User Registration</p>
     
     <form action="{{route('register')}}" method="POST">
         @csrf
         <div class="my-4">    
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-            Administrator Name
+            User Name
             </label>
             <input class="w-full shadow appearance-none border-bottom rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" type="text" placeholder="enter you name">
             @error('name')
@@ -25,6 +25,8 @@
             @enderror
         </div>
         <div class="my-4">    
+
+        {{-- <div class="my-4">    
             <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
             Password
             </label>
@@ -41,7 +43,7 @@
             @error('password_confirmation')
             <span class="text-sm text-red"> {{$message}}</span>
             @enderror
-        </div>
+        </div> --}}
         <button type="submit" class="bg-cyan-600 m-2 p-2 rounded hover:text-black hover:bg-cyan-400">Register</button>
     </form>
 
