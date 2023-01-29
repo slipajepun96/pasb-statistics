@@ -3,6 +3,13 @@
 @section('content')
 <div class="p-3 max-w-sm mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
     <p class="text-2xl font-bold">Login</p>
+    @if(session('success'))
+        <div class="flex p-4 mb-4 text-green-700 border-t-4 border-green-300 bg-green-50 " role="alert" id="status_message">
+            <div class="text-sm font-medium">
+                {{session('success')}}
+            </div>
+        </div>
+    @endif
 
     <form action="{{route('login')}}" method="POST">
         @csrf

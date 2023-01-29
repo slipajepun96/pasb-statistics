@@ -40,6 +40,15 @@ Route::middleware(['auth'],['preventBackHistory'])->group(function()
    
 });
 
+Route::middleware(['guest'],['preventBackHistory'])->group(function()
+{
+    Route::post('/firsttimelogin',[UserController::class,'firstTimeLoginPassword'])->name('first-time-login-password');
+    Route::post('/set_password',[UserController::class,'registerUser'])->name('register-user'); 
+    Route::get('/firsttimelogin',[UserController::class,'firstTimeLogin'])->name('firsttimelogin');
+    Route::get('/set_password',[UserController::class,'set_password'])->name('set_password');
+    
+});
+
 Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
 {
  
