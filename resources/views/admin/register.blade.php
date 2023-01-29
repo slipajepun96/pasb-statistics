@@ -4,7 +4,7 @@
 <div class="p-3 max-w-sm mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
     <p class="text-2xl font-bold">User Registration</p>
     
-    <form action="{{route('register')}}" method="POST">
+    <form action="{{route('temp-register-store')}}" method="POST">
         @csrf
         <div class="my-4">    
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
@@ -24,8 +24,10 @@
             <span class="text-sm text-red"> {{$message}}</span>
             @enderror
         </div>
-        <div class="my-4">    
-
+        <div class="my-4 text-xs text-gray-500">    
+            Invitation will be send to the email, together with temporary password.
+        </div>
+        <div class="my-4">  
         {{-- <div class="my-4">    
             <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
             Password

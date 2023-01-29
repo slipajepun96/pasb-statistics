@@ -677,6 +677,7 @@ class ComposerStaticInitc67ffe9fd91cde28a87a08c061901484
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\RevalidateBackHistory' => __DIR__ . '/../..' . '/app/Http/Middleware/RevalidateBackHistory.php',
+        'App\\Http\\Middleware\\Superadmin' => __DIR__ . '/../..' . '/app/Http/Middleware/Superadmin.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',

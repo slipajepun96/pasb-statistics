@@ -63,16 +63,16 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     }
 
     // Registration...
-    if (Features::enabled(Features::registration())) {
-        if ($enableViews) {
-            Route::get('/register', [RegisteredUserController::class, 'create'])
-                ->middleware(['auth:'.config('fortify.guard')])
-                ->name('register');
-        }
+    // if (Features::enabled(Features::registration())) {
+    //     if ($enableViews) {
+    //         Route::get('/register', [RegisteredUserController::class, 'create'])
+    //             ->middleware(['auth:'.config('fortify.guard')])
+    //             ->name('register');
+    //     }
 
-        Route::post('/register', [RegisteredUserController::class, 'store'])
-            ->middleware(['guest:'.config('fortify.guard')]);
-    }
+    //     Route::post('/register', [RegisteredUserController::class, 'store'])
+    //         ->middleware(['auth:'.config('fortify.guard')]);
+    // }
 
     // Email Verification...
     if (Features::enabled(Features::emailVerification())) {
