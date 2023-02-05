@@ -31,8 +31,9 @@
             <span class="text-sm text-red"> {{$message}}</span>
             @enderror
         </div>
-        <button type="submit" class="bg-cyan-600 p-2 rounded hover:text-black hover:bg-cyan-400 text-white">Log Me In </button>
-        <button type="submit" class="border border-cyan-600 p-2 rounded hover:text-white hover:bg-cyan-600">Forget Password? </button>
+        <button type="submit" class="bg-cyan-600 p-1.5 rounded hover:text-black hover:bg-cyan-400 text-sm text-white">Log Me In </button>
+        <button type="submit" class="border border-cyan-600 p-1.5 rounded hover:text-white text-sm hover:bg-cyan-600">Forget Password? </button>
+        <a><button href="" class="border border-cyan-600 p-1.5 rounded hover:text-white text-sm hover:bg-cyan-600">First Time Login </button></a>
         <p class="text-gray-700">&copy;2022-Code owned by <a href="https://www.github.com/slipajepun96" class="underline">Umar Qayyum</a></p>
         <p class="text-gray-400">v 1.0</p>
     </form>

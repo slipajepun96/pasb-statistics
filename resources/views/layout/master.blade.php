@@ -74,6 +74,23 @@
         
         
         </script>
+         <script>
+            function showForm() {
+              var x = document.getElementById("areaForm");
+              if (x.style.display === "block") {
+                x.style.display = "none";
+
+
+              } else {
+                x.style.display = "block";
+              }
+            }
+            setTimeout(function() 
+            {
+                $('#status_message').fadeOut('fast');
+            }, 3000);
+            
+            </script>
     </head>
     <body class="bg-gray-200">
         <nav class="flex items-center p-1 flex-wrap bg-white shadow">

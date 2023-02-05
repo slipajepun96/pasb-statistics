@@ -17,7 +17,8 @@ class UserController extends Controller
     public function index()
     {
         $users_list=User::all();
-        return view('admin.user.index',['users_list'=>$users_list]);
+        $temp_users_list=tempRegisteredUser::all();
+        return view('admin.user.index',['users_list'=>$users_list,'temp_users_list'=>$temp_users_list]);
     }
 
     public function downgrade($id)
@@ -102,5 +103,12 @@ class UserController extends Controller
 
             Session::flash('success','Account successsfully created. Please login using new password');
             return view('admin.login');
+        }
+
+        public function delete($id)
+        {
+            DB::table('users')->where('id',$id)->delete();
+            Session::flash('delete','User successfully deleted');
+            return redirect('/admin/user');
         }
 }

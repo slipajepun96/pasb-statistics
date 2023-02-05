@@ -106,23 +106,7 @@
             </table>
         </div>
 
-        <script>
-            function showForm() {
-              var x = document.getElementById("areaForm");
-              if (x.style.display === "block") {
-                x.style.display = "none";
-
-
-              } else {
-                x.style.display = "block";
-              }
-            }
-            setTimeout(function() 
-            {
-                $('#status_message').fadeOut('fast');
-            }, 3000);
-            
-            </script>
+       
 
 
 @endsection

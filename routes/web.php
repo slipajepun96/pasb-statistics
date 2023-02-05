@@ -89,6 +89,7 @@ Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
     Route::post('/admin/user/{id}/downgrade',[UserController::class,'downgrade']);
     Route::post('/admin/user/{id}/upgrade',[UserController::class,'upgrade']);
     Route::post('/admin/user/register',[UserController::class,'tempRegisteredUserStore'])->name('temp-register-store');
+    Route::post('/admin/user/delete/{id}',[UserController::class,'delete'])->name('user-delete');
     Route::get('/admin/user/register',[UserController::class,'tempRegisteredUser'])->name('register');
     Route::get('/admin/user/',[UserController::class,'index'])->name('user-index');
     
