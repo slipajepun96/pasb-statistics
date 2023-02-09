@@ -9,7 +9,16 @@
     }
 }
 </style>
-<div class=" md:flex md:inline-block">
+<div class="bg-white m-2 p-2 text-black rounded-xl">
+    <span class="text-2xl font-bold m-2 my-3">User Setting</span>
+    <div class="m-2">
+        <a href="/admin/user/register"><button class=" p-2 bg-green-600 hover:bg-green-500 rounded-lg text-white shadow-lg inline-flex"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+        </svg> &nbsp;
+        Register New User</button></a>
+    </div>
+</div>
+<div class=" lg:flex lg:inline-block">
     <div class="bg-white m-2 p-2 text-black rounded-xl lg:w-full">
         <span class="text-2xl font-bold m-2 my-3">User List</span>
         <br>
@@ -27,16 +36,11 @@
             </div>
         </div>
         @endif
-        <div class="m-2">
-            <a href="/admin/user/register"><button class=" p-2 bg-green-600 hover:bg-green-500 rounded-lg text-white shadow-lg inline-flex"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
-            </svg> &nbsp;
-            Register New User</button></a>
-        </div>
+        
         <div class="m-2">
             <div class="relative overflow-x-auto">
                 <table class="w-full text-md text-left text-gray-900 ">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-100 ">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
                         <tr>
                             <th scope="col" class="px-6 py-3" width="">
                                 User Name
@@ -134,20 +138,28 @@
 
         </div>
     </div>
-<div class="bg-white m-2 mt-3 p-2 text-black rounded-xl lg:w-full">
+<div class="bg-white m-2 p-2 text-black rounded-xl lg:w-full">
+    
     <span class="text-2xl font-bold m-2 my-3">Temporarily Registered User List</span>
+    @if(session('delete2'))
+    <div class="flex p-4 mb-4 text-red-700 border-t-4 border-red-300 bg-red-50 " role="alert" id="status_message">
+        <div class="ml-3 text-sm font-medium">
+            {{session('delete2')}} 
+        </div>
+    </div>
+    @endif
     <div class="m-1">
         <div class="relative overflow-x-auto">
            <table class="w-full text-md text-left text-gray-900 ">
-               <thead class="text-xs text-gray-700 uppercase bg-gray-100 ">
+               <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
                    <tr>
-                       <th scope="col" class="px-6 py-1" width="">
+                       <th scope="col" class="px-6 py-3" width="">
                            User Name
                        </th>
-                       <th scope="col" class="px-6 py-1" width="">
+                       <th scope="col" class="px-6 py-3" width="">
                            Date Temporarily Registered
                        </th>
-                       <th scope="col" class="px-6 py-1">
+                       <th scope="col" class="px-6 py-3">
                            Action
                        </th>
                    </tr>
@@ -155,7 +167,7 @@
                <tbody>
                    @if($temp_users_list->count()==0)
                            <tr>
-                               <td colspan=5>Empty List <br>(contact administrator if you think this is an error)</td>
+                               <td colspan=5 align="center" class="text-sm text-gray-700">Currently no temporary user/s.</td>
                            </tr>
                    @else
                    @foreach($temp_users_list as $temp_user_list)
@@ -173,7 +185,7 @@
                                {{-- delete button --}}
                                
                              
-                               <form action="/admin/user/delete/{{$user_list->id}}'" method="POST" onsubmit="return confirm('Are you sure to delete  ?')">
+                               <form action="/admin/user/temp/delete/{{$temp_user_list->id}}'" method="POST" onsubmit="return confirm('Are you sure to delete  ?')">
                                    @csrf 
                                    <button type="submit" class="bg-red-500 hover:bg-red-400 rounded-lg p-2 inline-flex mx-1 text-white">
                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

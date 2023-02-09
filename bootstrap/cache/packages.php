@@ -104,4 +104,11 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'silviolleite/laravelpwa' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LaravelPWA\\Providers\\LaravelPWAServiceProvider',
+    ),
+  ),
 );

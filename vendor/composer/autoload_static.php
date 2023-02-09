@@ -145,6 +145,7 @@ class ComposerStaticInitc67ffe9fd91cde28a87a08c061901484
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
             'Laravel\\Fortify\\' => 16,
+            'LaravelPWA\\' => 11,
         ),
         'K' => 
         array (
@@ -494,6 +495,10 @@ class ComposerStaticInitc67ffe9fd91cde28a87a08c061901484
         array (
             0 => __DIR__ . '/..' . '/laravel/fortify/src',
         ),
+        'LaravelPWA\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/silviolleite/laravelpwa',
+        ),
         'Knp\\Snappy\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy',
@@ -682,11 +687,13 @@ class ComposerStaticInitc67ffe9fd91cde28a87a08c061901484
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\TempRegisteredUserEmail' => __DIR__ . '/../..' . '/app/Mail/TempRegisteredUserEmail.php',
         'App\\Models\\AreaEstate' => __DIR__ . '/../..' . '/app/Models/AreaEstate.php',
         'App\\Models\\Budget' => __DIR__ . '/../..' . '/app/Models/Budget.php',
         'App\\Models\\CumulativeFfb' => __DIR__ . '/../..' . '/app/Models/CumulativeFfb.php',
         'App\\Models\\DailyYield' => __DIR__ . '/../..' . '/app/Models/DailyYield.php',
         'App\\Models\\Estate' => __DIR__ . '/../..' . '/app/Models/Estate.php',
+        'App\\Models\\TempRegisteredUser' => __DIR__ . '/../..' . '/app/Models/TempRegisteredUser.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -3396,6 +3403,11 @@ class ComposerStaticInitc67ffe9fd91cde28a87a08c061901484
         'Knp\\Snappy\\GeneratorInterface' => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy/GeneratorInterface.php',
         'Knp\\Snappy\\Image' => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy/Image.php',
         'Knp\\Snappy\\Pdf' => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php',
+        'LaravelPWA\\Http\\Controllers\\LaravelPWAController' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Http/Controllers/LaravelPWAController.php',
+        'LaravelPWA\\Providers\\LaravelPWAServiceProvider' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Providers/LaravelPWAServiceProvider.php',
+        'LaravelPWA\\Providers\\RouteServiceProvider' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Providers/RouteServiceProvider.php',
+        'LaravelPWA\\Services\\ManifestService' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Services/ManifestService.php',
+        'LaravelPWA\\Services\\MetaService' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Services/MetaService.php',
         'Laravel\\Fortify\\Actions\\AttemptToAuthenticate' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/AttemptToAuthenticate.php',
         'Laravel\\Fortify\\Actions\\CompletePasswordReset' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/CompletePasswordReset.php',
         'Laravel\\Fortify\\Actions\\ConfirmPassword' => __DIR__ . '/..' . '/laravel/fortify/src/Actions/ConfirmPassword.php',

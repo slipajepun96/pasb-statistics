@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <title>PASB - Statistics</title>
-
+        @laravelPWA
         <!-- Fonts -->
         {{-- <link href="https://fonts.cdnfonts.com/css/circular-std" rel="stylesheet"> --}}
         {{-- <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">        --}}
@@ -19,6 +19,8 @@
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
+       
+
         <style>
             body {
                 /* font-family: 'Circular Std', sans-serif; */

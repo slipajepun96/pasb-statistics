@@ -4,9 +4,10 @@
 <?php   use \App\Http\Controllers\FFBYieldController; ?> 
 <?php   use \App\Http\Controllers\DailyYieldController; ?> 
 <?php
-    $dateObj   = DateTime::createFromFormat('!m', $data_array[1]);
-    $monthName = $dateObj->format('F'); // March
+    // $dateObj   = DateTime::createFromFormat('!m', $data_array[1]);
+    // $monthName = $dateObj->format('F'); // March
 ?>
+
 <div class="w-auto md:inline-flex ">
     <div class="m-3 mb-1 bg-white rounded-xl p-1 ">
 
@@ -14,18 +15,17 @@
         <form action="{{route('ffbyield_search')}}" method="POST">
             @csrf 
                 <select name="month_year_selected" id="month_year_selected" class=" shadow border rounded-lg m-1 p-1.5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
-                    @foreach($data_array[7] as $data)
+                    @foreach($data_array[4] as $data)
                     <?php
-                    $pass_data=0;
-                    $month_year_selected=DailyYieldController::monthYearConvert($data->month,$data->year);
-                    if(($data->month==$data_array[1])&&($data->year==$data_array[0]))
+
+                    if($data->year==$data_array[0])
                         {
                     ?>
-                        <option value="<?php echo($month_year_selected);?>" selected><?php echo($month_year_selected);?></option>
+                        <option value="{{$data->year}}" selected>{{$data->year}}</option>
                     <?php }
                     else{
                         ?>
-                            <option value="<?php echo($month_year_selected);?>"><?php echo($month_year_selected);?></option>
+                            <option value="{{$data->year}}">{{$data->year}}</option>
                         <?php 
                     } ?>
                     @endforeach
@@ -64,8 +64,6 @@
     <p class="text-2xl font-bold">Cumulative Monthly FFB Output Statement for 2022</p>
 
 
-    {{-- <p class="italic text-gray-700">Last Updates: 18 January 2022</p> --}}
-    {{-- <p>~Table here~</p> --}}
     <?php $o=1;
     // $no_of_estates=count($data_array[2]);
     $no_of_estates=100;
@@ -84,24 +82,24 @@
        
     }
     ?>
-@foreach($ffbyields as $ffbyield)
+@foreach($data_array[2] as $monthly_ffb)
     <?php 
-        $date=DateTime::createFromFormat("Y-m-j",$ffbyield->date);
-        $day=$date->format("j");
-        $ffb_array[$o][0]=$ffbyield->id;
-        $ffb_array[$o][1]=$ffbyield->date;
-        $ffb_array[$o][2]=$ffbyield->estate_id;
-        $ffb_array[$o][3]=floatval($ffbyield->ffb_mt);
-        $cumulative_total_ffb[$day]=$cumulative_total_ffb[$day]+$ffbyield->ffb_mt;
+        // $date=DateTime::createFromFormat("Y-m-j",$monthly_ffb->date);
+        // $day=$date->format("j");
+        // $ffb_array[$o][0]=$ffbyield->id;
+        // $ffb_array[$o][1]=$ffbyield->date;
+        // $ffb_array[$o][2]=$ffbyield->estate_id;
+        // $ffb_array[$o][3]=floatval($ffbyield->ffb_mt);
+        // $cumulative_total_ffb[$day]=$cumulative_total_ffb[$day]+$ffbyield->ffb_mt;
         
 
         for($a=0;$a<100;$a++)
         {
-            if($a==(int)$ffbyield->estate_id)
+            if($a==(int)$monthly_ffb->estate_id)
             {
-                $cumulative_ffb_mt[$a][0]=(float)$cumulative_ffb_mt[$a][0]+(float)$ffbyield->ffb_mt;
-                $ffb_array[$o][4]=$cumulative_ffb_mt[$a][0];
-                $cumulative_ffb_mt[$a][1]=(float)$cumulative_ffb_mt[$a][1]+(float)$ffbyield->date;
+                // $cumulative_ffb_mt[$a][0]=(float)$cumulative_ffb_mt[$a][0]+(float)$ffbyield->ffb_mt;
+                // $ffb_array[$o][4]=$cumulative_ffb_mt[$a][0];
+                // $cumulative_ffb_mt[$a][1]=(float)$cumulative_ffb_mt[$a][1]+(float)$ffbyield->date;
             }
         }
 
@@ -109,15 +107,15 @@
         $o=$o+1;
     ?>
 @endforeach
-<?php //dd($cumulative_total_ffb);?>
+
 
     <div class="m-2 overflow-x-auto">
         <table class="border-collapse border border-green-900 w-full">
             <thead>
                 <tr class="bg-gray-200 p-3 font-bold">
-                    <td width="3%" class="border border-blue-900 p-1 display-none text-sm" rowspan="3">Date</td>
+                    <td width="3%" class="border border-blue-900 p-1 display-none text-sm" rowspan="3">Month</td>
                     <?php $i=0; ?>
-                    @foreach($data_array[2] as $estate)
+                    @foreach($data_array[1] as $estate)
                         <td width="" class="border border-blue-900 p-1 text-sm" colspan="3">{{$estate->estate_name}}</td>
                         <?php 
                         
@@ -142,32 +140,26 @@
                     @endfor
                 </tr>
             </thead>
+
             <tbody>
-                @if($ffbyields->count()==0)
+                @if($data_array[2]->count()==0)
                     <tr>
                         <td colspan=7> <p class="font-bold">ooh! Empty List </p>(contact administrator if you think this is an error)</td>
                     </tr>
                 @else
                 <?php 
-                    $number_of_days=cal_days_in_month(CAL_GREGORIAN,$data_array[1],$data_array[0]);
-                    $month_data_var=$data_array[5];
                     $cumulative_ffb_mt[]=0;
                 ?>
-                @for($j=1;$j<=$number_of_days;$j++)
+                @for($j=1;$j<=12;$j++)
                     <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
                         <td class="border border-gray-300 p-1 px-3"><?php echo $j;?></td>
                         <?php $cumulative_daily_budget=0;?>
                         @for($k=0;$k<$data_array[3];$k++)
                             <?php $hit=0; ?>
-                            @foreach($ffbyields as $ffbyield)
-                                <?php 
-                                    
-                                    $date=DateTime::createFromFormat("Y-m-d",$ffbyield->date);
-                                    $day=$date->format("d");
-                                    // dd($day==$j&&$ffbyield->estate_id==$estate_numbering[$k]&&$k<$data_array[3]);
-                                ?>
-                                @if($j==$day&&$ffbyield->estate_id==$estate_numbering[$k])
-                                    <?php $ffb_mt=$ffbyield->ffb_mt;
+                            @foreach($data_array[2] as $monthly_ffb)
+
+                                @if($j==$monthly_ffb->month&&$monthly_ffb->estate_id==$estate_numbering[$k])
+                                    <?php $ffb_mt=$monthly_ffb->ffb_mt;
                                     $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days;
                                     $percentage=0;
                                     $percentage=$ffb_mt/$daily_budget*100;
@@ -287,6 +279,9 @@
                     <td class="border border-gray-300 p-1 px-3">test</td>
                 </tr> --}}
             </tbody>
+           
+
+
         </table>
  
         

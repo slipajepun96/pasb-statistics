@@ -111,4 +111,10 @@ class UserController extends Controller
             Session::flash('delete','User successfully deleted');
             return redirect('/admin/user');
         }
+        public function tempUserDelete($id)
+        {
+            DB::table('temp_registered_users')->where('id',$id)->delete();
+            Session::flash('delete2','Temporary successfully deleted');
+            return redirect('/admin/user');
+        }
 }

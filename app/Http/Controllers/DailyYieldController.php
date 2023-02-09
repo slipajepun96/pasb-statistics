@@ -370,8 +370,34 @@ class DailyYieldController extends Controller
     {
         // $year=date('Y');
         $year=2022;
+        // if(empty($request->month_year_selected))
+        // {
+        //     $year=date('Y');
+        //     $month=date('m');
+        // }
+        // else
+        // {
+        //     $month_year_exploded=explode(" ",$request->month_year_selected);
+        //     $month_in_string=$month_year_exploded[0];
+        //     $year=$month_year_exploded[1];
+        //     $month=date("m",strtotime($month_in_string));
+            
+        // }
 
-        $monthly_ffb=CumulativeFfb::select(['month','estate_id','cumulative_ffb_mt'])->where('year','=',$year)->orderBy('month','ASC')->orderBy('estate_id','ASC')->get();
-        dd($monthly_ffb);
+
+        $monthly_ffbs=CumulativeFfb::select(['month','estate_id','cumulative_ffb_mt'])->where('year','=',$year)->orderBy('month','ASC')->orderBy('estate_id','ASC')->get();
+        $available_data_year=CumulativeFfb::select(['year'])->groupBy('year')->orderBy('year', 'DESC')->get();
+        $estate_list=Estate::all();
+        $num_of_estate=Estate::all()->count();
+
+        $data_array[0]=$year;
+        $data_array[1]=$estate_list;
+        $data_array[2]=$monthly_ffbs;
+        $data_array[3]=$num_of_estate;
+        $data_array[4]=$available_data_year;
+        
+
+
+        return view('admin.ffbyield.monthly_report',['data_array'=>$data_array]);
     }
 }

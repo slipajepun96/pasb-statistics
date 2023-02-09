@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e89bb5293233aeb7654b037856f8d1fcc2642de5',
+        'reference' => 'dc3a16e611a3f46ea112b8abee24bc121058cbf3',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -508,7 +508,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e89bb5293233aeb7654b037856f8d1fcc2642de5',
+            'reference' => 'dc3a16e611a3f46ea112b8abee24bc121058cbf3',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -1189,6 +1189,15 @@
             'aliases' => array(),
             'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
             'dev_requirement' => true,
+        ),
+        'silviolleite/laravelpwa' => array(
+            'pretty_version' => '2.0.3',
+            'version' => '2.0.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../silviolleite/laravelpwa',
+            'aliases' => array(),
+            'reference' => '5f7135d2ee870af01793c9fdf6b1b932b546e20e',
+            'dev_requirement' => false,
         ),
         'spatie/browsershot' => array(
             'pretty_version' => '3.57.6',
