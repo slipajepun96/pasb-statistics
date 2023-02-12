@@ -3,11 +3,11 @@
 return [
     'name' => 'LaravelPWA',
     'manifest' => [
-        'name' => env('APP_NAME', 'My PWA App'),
-        'short_name' => 'PWA',
-        'start_url' => '/login',
-        'background_color' => '#ffffff',
-        'theme_color' => '#000000',
+        'name' => env('APP_NAME', 'PASB Statistic'),
+        'short_name' => 'PASB Statistics',
+        'start_url' => '/',
+        'background_color' => '#02728D',
+        'theme_color' => '#02728D',
         'display' => 'standalone',
         'orientation'=> 'any',
         'status_bar'=> 'black',

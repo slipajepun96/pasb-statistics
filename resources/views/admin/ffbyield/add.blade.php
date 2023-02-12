@@ -66,7 +66,7 @@
                 </select>
             </div>
             <div class="mb-4  inline-block md:w-1/6 w-full  m-3"> 
-                <label for="ffb_mt" class="block text-gray-700 text-sm font-bold mb-2">Today FFB MT: </label><input type="text" name="ffb_mt" id="ffb_mt" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="ffb_mt" class="block text-gray-700 text-sm font-bold mb-2">Today FFB MT: </label><input type="number" name="ffb_mt" id="ffb_mt" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             
             <br>
