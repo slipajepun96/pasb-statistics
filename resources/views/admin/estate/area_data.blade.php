@@ -17,7 +17,7 @@
  </div>
 @endif
 <div class="bg-white m-2 p-2 text-black rounded-xl">
-    <span class="text-2xl font-bold m-2 my-3">{{$estate->estate_name}}'s Area Profile</span>
+    <span class="text-2xl font-semibold m-2 my-3">{{$estate->estate_name}}'s Area Profile</span>
     <br>
 
     </div>
@@ -81,8 +81,8 @@
                     @else
                     @foreach($estate_area_lists as $estate_area_list)
                     <tr class="bg-white border-b ">
-                        <th scope="row" class="px-6 py-4 font-bold  whitespace-nowrap">
-                            {{$estate_area_list->current_year}}-Area : {{$estate_area_list->total_area}} Ha. <div class="display-none"> Planted Area : {{$estate_area_list->planted_area}} Ha. , Matured Area : {{$estate_area_list->matured_area}} Ha. , Immatured Area : {{$estate_area_list->immatured_area}} Ha. </div>
+                        <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap">
+                            {{$estate_area_list->current_year}}-Area : {{$estate_area_list->total_area}} Ha. <div class="display-none font-normal"> Planted Area : {{$estate_area_list->planted_area}} Ha. , Matured Area : {{$estate_area_list->matured_area}} Ha. , Immatured Area : {{$estate_area_list->immatured_area}} Ha. </div>
                         </th>
                         <td class="px-6 py-4">
                             <div class="inline-flex">

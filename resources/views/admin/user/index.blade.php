@@ -10,7 +10,7 @@
 }
 </style>
 <div class="bg-white m-2 p-2 text-black rounded-xl">
-    <span class="text-2xl font-bold m-2 my-3">User Setting</span>
+    <span class="text-2xl m-2 my-3 font-bold">User Setting</span>
     <div class="m-2">
         <a href="/admin/user/register"><button class=" p-2 bg-green-600 hover:bg-green-500 rounded-lg text-white shadow-lg inline-flex"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
@@ -20,7 +20,7 @@
 </div>
 <div class=" lg:flex lg:inline-block">
     <div class="bg-white m-2 p-2 text-black rounded-xl lg:w-full">
-        <span class="text-2xl font-bold m-2 my-3">User List</span>
+        <span class="text-2xl m-2 font-semibold my-3">User List</span>
         <br>
         @if(session('status'))
         <div class="flex p-4 mb-4 text-yellow-700 border-t-4 border-yellow-300 bg-yellow-50 " role="alert" id="status_message">
@@ -60,11 +60,11 @@
                                 </tr>
                         @else
                         @foreach($users_list as $user_list)
-                        <tr class="bg-white border-b ">
-                            <th class="px-6 py-4 font-bold ">
+                        <tr class="bg-white border-b font-medium ">
+                            <td class="px-6 py-4">
                                 {{$user_list->name}}<br><p class="text-xs text-gray-600">{{$user_list->email}}</p>
-                            </th>
-                            <th class="px-6 py-4 font-bold ">
+                            </td>
+                            <td class="px-6 py-4 font-medium">
                                 @if($user_list->is_an_admin==2)
                                 <div class="rounded-full bg-yellow-300 p-1 px-2 inline-flex">Super</div>
                                 @elseif($user_list->is_an_admin==1)
@@ -72,7 +72,7 @@
                                 @else
                                 <div class="rounded-full bg-cyan-300 p-1 px-2 inline-flex">Viewer</div>
                                 @endif
-                            </th>
+                            </td>
                             <td class="px-6 py-4">
                                 @if(Auth::user()->is_an_admin==2||Auth::user()->is_an_admin==1)
                                 
@@ -140,7 +140,7 @@
     </div>
 <div class="bg-white m-2 p-2 text-black rounded-xl lg:w-full">
     
-    <span class="text-2xl font-bold m-2 my-3">Temporarily Registered User List</span>
+    <span class="text-2xl font-semibold m-2 my-3">Temporarily Registered User List</span>
     @if(session('delete2'))
     <div class="flex p-4 mb-4 text-red-700 border-t-4 border-red-300 bg-red-50 " role="alert" id="status_message">
         <div class="ml-3 text-sm font-medium">
