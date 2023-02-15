@@ -172,10 +172,10 @@
                    @else
                    @foreach($temp_users_list as $temp_user_list)
                    <tr class="bg-white border-b ">
-                       <td class="px-6 py-4 font-bold ">
+                       <td class="px-6 py-4 font-medium ">
                            {{$temp_user_list->name}}<br><p class="text-xs text-gray-600">{{$temp_user_list->email}}</p>
                        </td>
-                       <td class="px-6 py-4 font-bold ">
+                       <td class="px-6 py-4 font-medium ">
                         <p class="text-sm"><?php echo $temp_user_list->created_at;?></p>
                        </td>
 

@@ -14,7 +14,7 @@
 
 <nav class="flex items-center p-1 flex-wrap bg-cyan-900 shadow">
     <a href="/" class="p-2 mr-4 inline-flex items-center text-white">
-        <span class="text-xl font-bold tracking-wide">FFB Yield</span>
+        <span class="text-xl font-semibold tracking-wide">FFB Yield</span>
     </a>
     <button class="inline-flex p-3 mr-3 hover: rounded lg:hidden ml-auto nav-toggler2" data-target="#navigation2">
 
