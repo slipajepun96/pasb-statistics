@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -60,61 +61,79 @@ class UserController extends Controller
 
         Mail::to($temp_user->email)->send(new tempRegisteredUserEmail($data_array));
         return redirect('/admin/user');
-        }
+    }
 
-        public function firstTimeLogin()
-        {
-            return view('firsttime');
-        }
+    public function firstTimeLogin()
+    {
+        return view('firsttime');
+    }
 
-        public function firstTimeLoginPassword(Request $request)
-        {
-            $user=tempRegisteredUser::select(['id','name','email','password'])->where('email','=',$request->email)->first();
-            // dd($user->password);
-            $hash_random_password=Hash::make($request->password);
-            // dd($hash_random_password);
+    public function firstTimeLoginPassword(Request $request)
+    {
+        $user=tempRegisteredUser::select(['id','name','email','password'])->where('email','=',$request->email)->first();
+        // dd($user->password);
+        $hash_random_password=Hash::make($request->password);
+        // dd($hash_random_password);
             
-            // dd(Hash::check($request->password, $user->password));
-            if(Hash::check($request->password, $user->password))
-            {
-                DB::table('temp_registered_users')->where('id',$user->id)->delete();
-                return view('set_password',['user'=>$user]);
-            }
-            else
-            {
-                Session::flash('status','Wrong email or password');
-                return redirect('/firsttimelogin');
-            }
-        }
-        public function registerUser(Request $request)
+        // dd(Hash::check($request->password, $user->password));
+        if(Hash::check($request->password, $user->password))
         {
-            $this->validate($request,[
-                'name'=>'required',
-                'email'=>'required',
-                'password'=>'required'
-            ]);
-
-            $user=new User();
-            $user->name=$request->name;
-            $user->password=Hash::make($request->password);
-            $user->email=$request->email;
-            $user->is_an_admin=0;
-            $user->save();
-
-            Session::flash('success','Account successsfully created. Please login using new password');
-            return view('admin.login');
+            DB::table('temp_registered_users')->where('id',$user->id)->delete();
+            return view('set_password',['user'=>$user]);
         }
-
-        public function delete($id)
+        else
         {
-            DB::table('users')->where('id',$id)->delete();
-            Session::flash('delete','User successfully deleted');
-            return redirect('/admin/user');
+            Session::flash('status','Wrong email or password');
+            return redirect('/firsttimelogin');
         }
-        public function tempUserDelete($id)
-        {
-            DB::table('temp_registered_users')->where('id',$id)->delete();
-            Session::flash('delete2','Temporary successfully deleted');
-            return redirect('/admin/user');
-        }
+    }
+    public function registerUser(Request $request)
+    {
+        $this->validate($request,[
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required'
+        ]);
+
+        $user=new User();
+        $user->name=$request->name;
+        $user->password=Hash::make($request->password);
+        $user->email=$request->email;
+        $user->is_an_admin=0;
+        $user->save();
+
+        Session::flash('success','Account successsfully created. Please login using new password');
+        return view('admin.login');
+    }
+
+    public function delete($id)
+    {
+        DB::table('users')->where('id',$id)->delete();
+        Session::flash('delete','User successfully deleted');
+        return redirect('/admin/user');
+    }
+
+    public function tempUserDelete($id)
+    {
+        DB::table('temp_registered_users')->where('id',$id)->delete();
+        Session::flash('delete2','Temporary successfully deleted');
+        return redirect('/admin/user');
+    }
+
+    public function profile()
+    {
+        $user_id=Auth::user()->id;
+        $user_data=User::select('name','email','is_an_admin')->where('id','=',$user_id)->first();
+        
+        if($user_data->is_an_admin==0)
+            $account_level="Viewer";
+        else if($user_data->is_an_admin==1)
+            $account_level="Administrator";
+        else if($user_data->is_an_admin==2)
+            $account_level="Super Administrator";
+        else
+            $account_level="Level Error : Contact System Administrator";
+
+        return view('profile',['user_data'=>$user_data,'account_level'=>$account_level]);
+    }
 }

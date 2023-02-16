@@ -33,10 +33,15 @@ use App\Http\Controllers\UserController;
 Route::middleware(['auth'],['preventBackHistory'])->group(function()
 {
     Route::post('/ffbyield',[DailyYieldController::class,'dailyYieldIndex'])->name('ffbyield_search');
+    
     Route::get('/',[IndexController::class,'index'])->name('index');
     Route::get('/ffbyield',[DailyYieldController::class,'dailyYieldIndex'])->name('ffbyield');
     Route::get('/monthly_report',[DailyYieldController::class,'monthlyReport'])->name('monthly_report');
     Route::get('/admin/ffb/daily_yield/print/{data_pass}',[DailyYieldController::class,'dailyYieldPDF'])->name('dailyYieldPDF');
+
+    //user
+    Route::post('/user/profile',[UserController::class,'changePassword'])->name('change-password');
+    Route::get('/user/profile',[UserController::class,'profile'])->name('profile');
    
 });
 
