@@ -31,6 +31,7 @@
             <span class="text-sm text-red"> {{$message}}</span>
             @enderror
         </div>
+        <div class="my-4 flex items-center"><input type="checkbox" name="remember" id="remember" class="w-4 h-4 m-1 text-cyan-600 bg-gray-100 border-cyan-300 rounded focus:ring-cyan-500">Remember Me</div>
         <button type="submit" class="bg-cyan-600 p-1.5 rounded hover:text-black hover:bg-cyan-400 text-sm text-white">Log Me In </button>
         <button type="submit" class="border border-cyan-600 p-1.5 rounded hover:text-white text-sm hover:bg-cyan-600">Forget Password? </button>
         <a><button href="" class="border border-cyan-600 p-1.5 rounded hover:text-white text-sm hover:bg-cyan-600">First Time Login </button></a>

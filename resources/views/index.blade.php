@@ -2,20 +2,20 @@
 
 @section('content')
 <div class="m-2 bg-white w-auto rounded-xl p-3">
-    <p class="text-2xl font-bold">Welcome :)</p>
+    <p class="text-lg font-medium">Welcome, {{Auth::user()->name;}}</p>
  
 
     <div class="flex flex-row">
         <div class="my-1 bg-cyan-900 w-1/2 md:w-1/6 rounded-lg p-2 text-white hover:bg-cyan-700">
             
-            <div class="flex-inline"><span class="text-3xl"> {{number_format($data_array[1],2)}}</span><span class="text-sm"> MT/Ha</span></div>
+            <div class="flex-inline"><span class="text-3xl font-medium"> {{number_format($data_array[1],2)}}</span><span class="text-sm"> MT/Ha</span></div>
             2023 YPH <br> <p class="italic text-gray-500 text-sm"></p>
             <div class="flex-inline"><span class="text-sm"> 2021 : 11.40 MT/Ha</span></div>
             
             
         </div>
         <div class="my-1 ml-1 bg-cyan-900 w-1/2 md:w-1/6  rounded-lg p-2 text-white hover:bg-cyan-700">
-            <div class="flex-inline"><span class="text-3xl"> {{number_format($data_array[0],2)}}</span><span class="text-sm"> MT</span></div>
+            <div class="flex-inline"><span class="text-3xl font-medium"> {{number_format($data_array[0],2)}}</span><span class="text-sm"> MT</span></div>
             Total FFB MT
         </div>
    
@@ -37,7 +37,7 @@
                     {
                         if($data_array[3][$j][0]==$estate->id)
                         {
-                            ?><div class="flex-inline"><span class="text-2xl ">{{number_format($data_array[3][$j][2],2)}}</span><span class="text-sm"> MT/Ha</span></div>
+                            ?><div class="flex-inline"><span class="text-2xl font-medium">{{number_format($data_array[3][$j][2],2)}}</span><span class="text-sm"> MT/Ha</span></div>
                             Current YPH <br>
                             {{-- <div class="flex-inline"><span class="text-sm"> Total FFB : {{number_format($data_array[3][$j][1],2)}} MT</span></div> --}}
                             <div class="flex-inline"><span class="text-sm"> 2021 : 13.35 MT/Ha</span></div> <?php

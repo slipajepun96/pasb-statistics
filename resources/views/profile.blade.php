@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @section('content')
+
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"></script>
 <div class="p-3 max-w-sm mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
     <p class="text-2xl font-semibold">Account Profile & Setting</p>
@@ -35,11 +36,15 @@
 </div>
 
 <div class="p-3 max-w-sm mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
-    <div class="">   
+    <div class="inline-flex" onClick="showForm()" >   
         <label class="block text-gray-700 text-lg font-semibold">
         Change your password
         </label>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
     </div>
+    <div id=areaForm style="display:none;"> 
     <form action="{{route('change-password')}}" method="POST"  x-data="{password: '',password_confirm: ''}">
         @csrf
         <div class="my-4">    
@@ -104,5 +109,6 @@
 
         <button type="submit" class="bg-cyan-600 p-1.5 rounded text-sm hover:text-black hover:bg-cyan-400 text-white">Change Password</button>
     </form>
+    </div>
 </div>
 @endsection

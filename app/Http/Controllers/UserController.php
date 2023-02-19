@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Mail\tempRegisteredUserEmail;
-use App\Models\tempRegisteredUser;
+use App\Models\TempRegisteredUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $users_list=User::all();
-        $temp_users_list=tempRegisteredUser::all();
+        $temp_users_list=TempRegisteredUser::all();
         return view('admin.user.index',['users_list'=>$users_list,'temp_users_list'=>$temp_users_list]);
     }
 
@@ -135,5 +135,10 @@ class UserController extends Controller
             $account_level="Level Error : Contact System Administrator";
 
         return view('profile',['user_data'=>$user_data,'account_level'=>$account_level]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        
     }
 }
