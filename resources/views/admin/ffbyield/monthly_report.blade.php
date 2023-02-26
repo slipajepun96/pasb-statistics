@@ -6,6 +6,7 @@
 <?php
     // $dateObj   = DateTime::createFromFormat('!m', $data_array[1]);
     // $monthName = $dateObj->format('F'); // March
+    $current_page="monthly_report";
 ?>
 
 <div class="w-auto md:inline-flex ">
@@ -61,7 +62,7 @@
  
 
 <div class="m-3 bg-white w-auto rounded-xl p-3">
-    <p class="text-2xl font-bold">Cumulative Monthly FFB Output Statement for 2022</p>
+    <p class="text-2xl font-semibold">Cumulative Monthly FFB Output Statement for 2022</p>
 
 
     <?php $o=1;
@@ -108,12 +109,11 @@
     ?>
 @endforeach
 
-
     <div class="m-2 overflow-x-auto">
         <table class="border-collapse border border-green-900 w-full">
             <thead>
                 <tr class="bg-gray-200 p-3 font-bold">
-                    <td width="3%" class="border border-blue-900 p-1 display-none text-sm" rowspan="3">Month</td>
+                    <td width="3%" class="border border-blue-900 p-1 display-none text-sm sticky" rowspan="3">Month</td>
                     <?php $i=0; ?>
                     @foreach($data_array[1] as $estate)
                         <td width="" class="border border-blue-900 p-1 text-sm" colspan="3">{{$estate->estate_name}}</td>
@@ -128,15 +128,9 @@
                 </tr>
                 <tr class="bg-gray-200 p-3">
                     @for($i=0;$i<=$data_array[3];$i++)
-                        <td width="" class="border border-blue-900 p-1 text-sm" colspan="2">Actual</td>
-                        <td width="" class="border border-blue-900 p-1 text-sm" colspan="1">Budget</td>
-                    @endfor
-                </tr>
-                <tr class="bg-gray-200 p-3">
-                    @for($i=0;$i<=$data_array[3];$i++)
-                        <td width="" class="border border-blue-900 p-1 text-sm">Today</td>
-                        <td width="" class="border border-blue-900 p-1 text-sm">Todate</td>
-                        <td width="" class="border border-blue-900 p-1 text-sm">Todate</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm">Actual</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm">Budget</td>
+                        <td width="" class="border border-blue-900 p-1 text-sm">Last Year</td>
                     @endfor
                 </tr>
             </thead>
@@ -172,18 +166,28 @@
                                     @else
                                         <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$monthly_ffb->cumulative_ffb_mt}}</td>
                                     @endif
-
                                     <?php 
                                         // $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
                                         // $cumulative_daily_budget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);
 
                                         // $daily_ffbbudget=round($daily_budget*$j,2);
-                                        
+                                      
                                         
                                     ?>
 
-                                    {{-- cumulative ffb mt --}}
-                                    <td class="border border-gray-300 border-r-black p-1">1</td>
+                                    {{-- budget ffb mt --}}
+                                    <?php $var=$data_array[5][$j];
+                                    
+                                    ?>
+                                    @foreach($data_array[6] as $budget)
+                                    <?php $hit_a=0;?>
+                                        @if($monthly_ffb->estate_id==$budget->estate_id)
+                                        <?php $hit_a=$hit_a+1;?>
+                                        <td class="border border-gray-300 border-r-black p-1">{{$budget->$var;}}</td>
+                                        @endif
+
+                                    @endforeach
+
                                     <?php 
                                       
                                     
@@ -205,8 +209,11 @@
 
                             
                             
-                            
-                            <td class="border border-gray-300 p-1">Budget</td>
+                            @foreach($data_array[7] as $last_year_ffb)
+                                @if($j==$last_year_ffb->month&&$last_year_ffb->estate_id==$estate_numbering[$k])
+                                    <td class="border border-gray-300 p-1">{{$last_year_ffb->cumulative_ffb_mt}}</td>
+                                @endif
+                            @endforeach
                         @endfor
                         
 

@@ -98,6 +98,9 @@ class IndexController extends Controller
         $data_array[1]=$company_yph;
         $data_array[2]=$estates;
         $data_array[3]=$estate_yph;
+        $data_array[4]=$estates->keys();
+        $data_array[5]=$estates->values();
+
         // dd($estate_yph[1][3]);
         return view('index',['data_array'=>$data_array]);
     }

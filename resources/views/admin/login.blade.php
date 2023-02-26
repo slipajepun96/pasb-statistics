@@ -17,7 +17,7 @@
             <label class="block text-gray-700 text-sm font-semibold mb-2" for="username">
             E-Mail Address
             </label>
-            <input class="w-full shadow appearance-none border-bottom rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="text" placeholder="enter an e-mail address">
+            <input class="w-full shadow appearance-none border-bottom rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" placeholder="enter an e-mail address">
             @error('email')
             <span class="text-sm text-red"> {{$message}}</span>
             @enderror

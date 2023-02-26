@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @section('content')
+
 <div class="m-2 bg-white w-auto rounded-xl p-3">
     <p class="text-lg font-medium">Welcome, {{Auth::user()->name;}}</p>
  
@@ -49,5 +50,7 @@
             </div>
         @endforeach
     </div>
+    <canvas id="index-chart" width="400" height="150"></canvas>
+    <script type="module" src="./js/index-chart.js"></script>
 </div>
 @endsection

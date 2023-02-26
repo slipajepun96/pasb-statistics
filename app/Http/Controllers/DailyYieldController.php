@@ -389,15 +389,35 @@ class DailyYieldController extends Controller
         $available_data_year=CumulativeFfb::select(['year'])->groupBy('year')->orderBy('year', 'DESC')->get();
         $estate_list=Estate::all();
         $num_of_estate=Estate::all()->count();
+        $budget=Budget::select(['estate_id','year','jan_budget_mt','feb_budget_mt','mac_budget_mt','apr_budget_mt','may_budget_mt','june_budget_mt','july_budget_mt','aug_budget_mt','sept_budget_mt','oct_budget_mt','nov_budget_mt','dec_budget_mt'])->where('year',$year)->get();
+        // dd($budget);
+        $month[0]=$year;
+        $month[1]="jan_budget_mt";
+        $month[2]="feb_budget_mt";
+        $month[3]="mac_budget_mt";
+        $month[4]="apr_budget_mt";
+        $month[5]="may_budget_mt";
+        $month[6]="june_budget_mt";
+        $month[7]="july_budget_mt";
+        $month[8]="aug_budget_mt";
+        $month[9]="sept_budget_mt";
+        $month[10]="oct_budget_mt";
+        $month[11]="nov_budget_mt";
+        $month[12]="dec_budget_mt";
+
+        
+        // $data[i][0]
+
 
         $data_array[0]=$year;
         $data_array[1]=$estate_list;
         $data_array[2]=$monthly_ffbs;
         $data_array[3]=$num_of_estate;
         $data_array[4]=$available_data_year;
+
         
 
 
-        return view('admin.ffbyield.monthly_report',['data_array'=>$data_array]);
+        return view('admin.ffbyield.monthly_report',['data_array'=>$data_array,'month'=>$month]);
     }
 }

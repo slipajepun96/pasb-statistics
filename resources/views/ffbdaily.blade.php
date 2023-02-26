@@ -6,6 +6,7 @@
 <?php
     $dateObj   = DateTime::createFromFormat('!m', $data_array[1]);
     $monthName = $dateObj->format('F'); // March
+    $current_page="daily_report";
 ?>
 <div class="w-auto md:inline-flex ">
     <div class="m-3 mb-1 bg-white rounded-xl p-1 ">

@@ -36,7 +36,7 @@ Route::middleware(['auth'],['preventBackHistory'])->group(function()
     
     Route::get('/',[IndexController::class,'index'])->name('index');
     Route::get('/ffbyield',[DailyYieldController::class,'dailyYieldIndex'])->name('ffbyield');
-    Route::get('/monthly_report',[DailyYieldController::class,'monthlyReport'])->name('monthly_report');
+    Route::get('/monthly_report',[FFBYieldController::class,'monthlyReport'])->name('monthly_report');
     Route::get('/admin/ffb/daily_yield/print/{data_pass}',[DailyYieldController::class,'dailyYieldPDF'])->name('dailyYieldPDF');
 
     //user
