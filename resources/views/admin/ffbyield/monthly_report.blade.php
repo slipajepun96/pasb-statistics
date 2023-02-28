@@ -77,37 +77,56 @@
     //var for cumulative total ffb by day
     $cumulative_total_ffb_by_day=0;
     //loop for all estate ffb cumulative
+
+
+    for($b=0;$b<$data_array[3];$b++)
+    {
+        for($c=0;$c<12;$c++)
+        {
+            $cum_month_data[$b][$c][0]="0";//estateid
+            $cum_month_data[$b][$c][1]="-";//cum_ffb mt
+            $cum_month_data[$b][$c][2]="-";//cum_ffb_yph mt
+            $cum_month_data[$b][$c][3]="-";//budget
+            $cum_month_data[$b][$c][4]="-";//estate_area
+        }
+    }
+    for($b=0;$b<$data_array[3];$b++)
+    {
+        for($c=0;$c<12;$c++)
+        {
+            $estate_id=$data_array[1][$b]->id;
+            $year=$data_array[0];
+            $area=FFBYieldController::getEstateArea($estate_id,$year);
+            $cum_month_data[$b][$c][0]=$data_array[1][$b]->id;//estate_id
+            // dd($area);
+            
+            
+            foreach($data_array[2] as $cum_month_ffb)
+            {
+                // $cum_month_data[$b][$c][1]="-";
+                if(($cum_month_ffb->month-1)==$c&&$cum_month_ffb->estate_id==$cum_month_data[$b][$c][0])
+                {
+                    if($c!=0)
+                    {
+                        // $monthly_yph=$cum_month_ffb->cumulative_ffb_mt/$cum_month_ffb->estate->
+                        // $cum_monthly_ffb_mt=$cum_month_ffb->cumulative_ffb_mt+
+                    }
+                    $cum_month_data[$b][$c][1]=$cum_month_ffb->cumulative_ffb_mt;
+                }
+
+            }
+            $monthly_ffb[$b][$c]=0;
+        }
+    }
     for($b=1;$b<=31;$b++)
     {
         $cumulative_total_ffb[$b]=0;
        
     }
-    ?>
-@foreach($data_array[2] as $monthly_ffb)
-    <?php 
-        // $date=DateTime::createFromFormat("Y-m-j",$monthly_ffb->date);
-        // $day=$date->format("j");
-        // $ffb_array[$o][0]=$ffbyield->id;
-        // $ffb_array[$o][1]=$ffbyield->date;
-        // $ffb_array[$o][2]=$ffbyield->estate_id;
-        // $ffb_array[$o][3]=floatval($ffbyield->ffb_mt);
-        // $cumulative_total_ffb[$day]=$cumulative_total_ffb[$day]+$ffbyield->ffb_mt;
-        
 
-        for($a=0;$a<100;$a++)
-        {
-            if($a==(int)$monthly_ffb->estate_id)
-            {
-                // $cumulative_ffb_mt[$a][0]=(float)$cumulative_ffb_mt[$a][0]+(float)$ffbyield->ffb_mt;
-                // $ffb_array[$o][4]=$cumulative_ffb_mt[$a][0];
-                // $cumulative_ffb_mt[$a][1]=(float)$cumulative_ffb_mt[$a][1]+(float)$ffbyield->date;
-            }
-        }
-
-        
-        $o=$o+1;
+    // dd($cum_month_data);
     ?>
-@endforeach
+
 
     <div class="m-2 overflow-x-auto">
         <table class="border-collapse border border-green-900 w-full">

@@ -5,7 +5,10 @@ use App\Models\Estate;
 use App\Models\DailyYield;
 use App\Models\Budget;
 use App\Models\CumulativeFFB;
+use App\Models\AreaEstate;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 
@@ -110,7 +113,7 @@ class FFBYieldController extends Controller
         $month_budget_var=$data_pass[0];
         $daily_budget_var=$data_pass[1];
 
-        $var=Budget::select(['estate_id',$month_budget_var,$daily_budget_var])->where('year',$year)->orderBy('estate_id','ASC')->get();
+        $budget=Budget::select(['estate_id',$month_budget_var,$daily_budget_var])->where('year',$year)->orderBy('estate_id','ASC')->get();
         $available_data_month_year=DailyYield::select(['month','year'])->groupBy('year')->groupBy('month')->orderBy('year', 'DESC')->orderBy('month', 'DESC')->get();
 
         $month_name = date("F", mktime(0, 0, 0, $month, 10));
@@ -119,10 +122,11 @@ class FFBYieldController extends Controller
         $data_array[1]=$month;
         $data_array[2]=$estate_list;
         $data_array[3]=$number_of_estates;
-        $data_array[4]=$var;
+        $data_array[4]=$budget;
         $data_array[5]=$month_budget_var;
         $data_array[6]=$month_name;
         $data_array[7]=$available_data_month_year;
+    
 
         
 
@@ -161,6 +165,7 @@ class FFBYieldController extends Controller
         $available_data_year=CumulativeFfb::select(['year'])->groupBy('year')->orderBy('year', 'DESC')->get();
         $estate_list=Estate::all();
         $num_of_estate=Estate::all()->count();
+        $estate_areas=AreaEstate::select(['estate_id','current_year','planted_area'])->where('current_year','=',$year)->get();
         $budget=Budget::select(['estate_id','year','jan_budget_mt','feb_budget_mt','mac_budget_mt','apr_budget_mt','may_budget_mt','june_budget_mt','july_budget_mt','aug_budget_mt','sept_budget_mt','oct_budget_mt','nov_budget_mt','dec_budget_mt'])->where('year',$year)->get();
         // dd($last_year_monthly_ffbs);
         $month[0]=$year;
@@ -189,10 +194,18 @@ class FFBYieldController extends Controller
         $data_array[5]=$month;
         $data_array[6]=$budget;
         $data_array[7]=$last_year_monthly_ffbs;
+        $data_array[8]=$estate_areas;
 
         
 
 
         return view('admin.ffbyield.monthly_report',['data_array'=>$data_array,'month'=>$month]);
+    }
+
+    public static function getEstateArea($estate_id,$year)
+    {
+        $area=DB::table('area_estates')->where('estate_id','=',$estate_id)->where('current_year','=',$year)->value('planted_area');
+        // $area=AreaEstate::select(['planted_area'])->where('estate_id','=',$estate_id)->where('current_year','=',$year)->get();
+        return $area;
     }
 }
