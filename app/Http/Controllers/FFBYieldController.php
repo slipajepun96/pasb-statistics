@@ -202,10 +202,43 @@ class FFBYieldController extends Controller
         return view('admin.ffbyield.monthly_report',['data_array'=>$data_array,'month'=>$month]);
     }
 
-    public static function getEstateArea($estate_id,$year)
+    public static function getEstateArea($estate_id,$year,$month_num)
     {
-        $area=DB::table('area_estates')->where('estate_id','=',$estate_id)->where('current_year','=',$year)->value('planted_area');
+        
+        $area=DB::table('area_estates')->where('estate_id','=',$estate_id)->where('current_year','=',$year)->where('month_active_from','<=',$month_num)->where('month_active_to','>=',$month_num)->value('planted_area');
         // $area=AreaEstate::select(['planted_area'])->where('estate_id','=',$estate_id)->where('current_year','=',$year)->get();
+        if(!$area)
+            $area="-";
         return $area;
+    }
+
+    public static function getMonthlyBudget($estate_id,$year,$month_num,$area)
+    { 
+        $month[1]="jan_budget_mt";
+        $month[2]="feb_budget_mt";
+        $month[3]="mac_budget_mt";
+        $month[4]="apr_budget_mt";
+        $month[5]="may_budget_mt";
+        $month[6]="june_budget_mt";
+        $month[7]="july_budget_mt";
+        $month[8]="aug_budget_mt";
+        $month[9]="sept_budget_mt";
+        $month[10]="oct_budget_mt";
+        $month[11]="nov_budget_mt";
+        $month[12]="dec_budget_mt";
+        $current_month_var=$month[$month_num];
+        
+        $budget=Budget::where('estate_id','=',$estate_id)->where('year','=',$year)->first();
+
+        $monthly_budget=$budget->$current_month_var/$area; 
+        return number_format((float)$monthly_budget, 2, '.', '');
+
+    }
+
+    public function addEstateYield()
+    {
+        $estate_list=Estate::all();
+
+        return view('admin.ffbyield.add_hectarage_yield',['estate_list'=>$estate_list]);
     }
 }

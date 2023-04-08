@@ -16,7 +16,6 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
         </svg> &nbsp;
         Register New User</button></a>
-    </div>
 </div>
 <div class=" lg:flex lg:inline-block">
     <div class="bg-white m-2 p-2 text-black rounded-xl lg:w-full">
@@ -64,13 +63,13 @@
                             <td class="px-6 py-4">
                                 {{$user_list->name}}<br><p class="text-xs text-gray-600">{{$user_list->email}}</p>
                             </td>
-                            <td class="px-6 py-4 font-medium">
+                            <td class="px-6 py-4  text-sm">
                                 @if($user_list->is_an_admin==2)
-                                <div class="rounded-full bg-yellow-300 p-1 px-2 inline-flex">Super</div>
+                                <div class="rounded-md outline outline-2 outline-yellow-500 p-0.5 px-1 inline-flex uppercase">Super</div>
                                 @elseif($user_list->is_an_admin==1)
-                                <div class="rounded-full bg-green-300 p-1 px-2 inline-flex">Admin</div>
+                                <div class="rounded-md outline outline-2 outline-green-500 p-0.5 px-1 inline-flex uppercase">Admin</div>
                                 @else
-                                <div class="rounded-full bg-cyan-300 p-1 px-2 inline-flex">Viewer</div>
+                                <div class="rounded-md outline outline-2 outline-blue-300 p-0.5 px-1 inline-flex uppercase">Viewer</div>
                                 @endif
                             </td>
                             <td class="px-6 py-4">
@@ -97,9 +96,7 @@
                                     </button>
                                     </form>
                                     @else
-                                    Super Admin don't need it <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-                                    </svg>
+                                    ~SuperAdmin~
                                     
                                     @endif
                                     

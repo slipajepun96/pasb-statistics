@@ -79,6 +79,9 @@ Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
     Route::post('/admin/ffb/daily_yield/delete/{id}',[DailyYieldController::class,'delete'])->name('daily_yield-delete');
     Route::get('/admin/ffb/daily_yield/add',[DailyYieldController::class,'add'])->name('daily_yield-add');
     Route::get('/admin/ffb/daily_yield/edit/{id}',[DailyYieldController::class,'edit'])->name('daily_yield-edit');
+
+    //estate yield
+    Route::get('/admin/ffb/estate_yield/add',[FFBYieldController::class,'addEstateYield'])->name('estate-yield');
    
 
     //budget

@@ -22,6 +22,8 @@ class CreateAreaEstatesTable extends Migration
             $table->float('planted_area',8,2);
             $table->float('matured_area',8,2);
             $table->float('immatured_area',8,2);
+            $table->bigInteger('month_active_from');
+            $table->bigInteger('month_active_to');
 
         });
     }

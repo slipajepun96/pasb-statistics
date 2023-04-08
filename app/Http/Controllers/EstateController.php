@@ -85,7 +85,7 @@ class EstateController extends Controller
 
         public function areaEstate($estate_id)
     {
-        $estate_area_lists=AreaEstate::select(['current_year','total_area','estate_id','planted_area','matured_area','immatured_area'])->where('estate_id','=',$estate_id)->orderBy('current_year','DESC')->get();
+        $estate_area_lists=AreaEstate::select(['current_year','total_area','estate_id','planted_area','matured_area','immatured_area','month_active_from','month_active_to'])->where('estate_id','=',$estate_id)->orderBy('current_year','DESC')->get();
         $estate=Estate::find($estate_id);
         // dd($estate);
         return view('admin.estate.area_data',['estate_area_lists'=>$estate_area_lists],['estate'=>$estate]);
@@ -100,6 +100,7 @@ class EstateController extends Controller
             'planted_area'=>'required',
             'total_area'=>'required'
         ]);
+
 
         $find=AreaEstate::where('estate_id',$request->estate_id)->where('current_year',$request->current_year)->first();
 
@@ -116,6 +117,8 @@ class EstateController extends Controller
             $area_estate->matured_area=$request->matured_area;
             $area_estate->planted_area=$request->planted_area;
             $area_estate->total_area=$request->total_area;
+            $area_estate->month_active_from=$request->from;
+            $area_estate->month_active_to=$request->to;
             $area_estate->save();
 
             

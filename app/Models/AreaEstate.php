@@ -15,7 +15,9 @@ class AreaEstate extends Model
         'estate_id',
         'planted_area',
         'matured_area',
-        'immatured_area'
+        'immatured_area',
+        'month_active_from',
+        'month_active_to'
     ];
 
     public function estate()

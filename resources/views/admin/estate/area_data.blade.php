@@ -39,17 +39,51 @@
                     <div class="mb-4 inline-block md:w-1/12 w-full"> 
                         <label for="current_year" class="block text-gray-700 text-sm font-bold mb-2"> Year: </label><input type="text" name="current_year" value="{{date('Y')}}" id="current_year" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
-                    <div class="mb-4 inline-block md:w-1/6 w-full"> 
+                    <div class="mb-4 inline-block md:w-1/12 w-full"> 
                         <label for="immatured_area" class="block text-gray-700 text-sm font-bold mb-2"> Immatured Area (Ha.) : </label><input type="text" name="immatured_area" value="0" id="immatured_area" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
-                    <div class="mb-4 inline-block md:w-1/6 w-full"> 
+                    <div class="mb-4 inline-block md:w-1/12 w-full"> 
                         <label for="matured_area" class="block text-gray-700 text-sm font-bold mb-2"> Matured Area (Ha.) : </label><input type="text" name="matured_area" id="matured_area" value="0"  class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
-                    <div class="mb-4 inline-block md:w-1/6 w-full"> 
+                    <div class="mb-4 inline-block md:w-1/12 w-full"> 
                         <label for="planted_area" class="block text-gray-700 text-sm font-bold mb-2"> Planted Area (Ha.) : </label><input type="text" name="planted_area" id="planted_area" value="0" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
-                    <div class="mb-4 inline-block md:w-1/6 w-full"> 
+                    <div class="mb-4 inline-block md:w-1/12 w-full"> 
                         <label for="total_area" class="block text-gray-700 text-sm font-bold mb-2"> Total Area (Ha.) : </label><input type="text" name="total_area" id="total_area" value="0" class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4 inline-block md:w-1/12 w-full"> 
+                        <label for="total_area" class="block text-gray-700 text-sm font-bold mb-2"> From : 
+                        <select name="from" id="from" class=" shadow border rounded-lg m-1 p-1.5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
+                            <option value="1" selected>January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="mb-4 inline-block md:w-1/12 w-full"> 
+                        <label for="total_area" class="block text-gray-700 text-sm font-bold mb-2"> To : 
+                        <select name="to" id="to" class=" shadow border rounded-lg m-1 p-1.5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12" selected>December</option>
+                        </select>
                     </div>
                     <input type="text" name="estate_id" id="estate_id" value="{{$estate->id}}" hidden>
                     <div class="inline-block md:w-1/6 w-full  m-3">                 
@@ -82,7 +116,7 @@
                     @foreach($estate_area_lists as $estate_area_list)
                     <tr class="bg-white border-b ">
                         <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap">
-                            {{$estate_area_list->current_year}}-Area : {{$estate_area_list->total_area}} Ha. <div class="display-none font-normal"> Planted Area : {{$estate_area_list->planted_area}} Ha. , Matured Area : {{$estate_area_list->matured_area}} Ha. , Immatured Area : {{$estate_area_list->immatured_area}} Ha. </div>
+                            {{$estate_area_list->month_active_from}} - {{$estate_area_list->month_active_to}} {{$estate_area_list->current_year}}-Area : {{$estate_area_list->total_area}} Ha. <div class="display-none font-normal"> Planted Area : {{$estate_area_list->planted_area}} Ha. , Matured Area : {{$estate_area_list->matured_area}} Ha. , Immatured Area : {{$estate_area_list->immatured_area}} Ha. </div>
                         </th>
                         <td class="px-6 py-4">
                             <div class="inline-flex">

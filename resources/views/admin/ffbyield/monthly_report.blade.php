@@ -1,8 +1,8 @@
 @extends('layout.ffbyield-layout')
 
 @section('ffbyield-content')
-<?php   use \App\Http\Controllers\FFBYieldController; ?> 
-<?php   use \App\Http\Controllers\DailyYieldController; ?> 
+<?php   use App\Http\Controllers\FFBYieldController; ?> 
+<?php   use App\Http\Controllers\DailyYieldController; ?> 
 <?php
     // $dateObj   = DateTime::createFromFormat('!m', $data_array[1]);
     // $monthName = $dateObj->format('F'); // March
@@ -13,7 +13,7 @@
     <div class="m-3 mb-1 bg-white rounded-xl p-1 ">
 
     <div class=" inline-flex block rounded-lg">
-        <form action="{{route('ffbyield_search')}}" method="POST">
+        <form action="{{route('estate-yield-store')}}" method="POST">
             @csrf 
                 <select name="month_year_selected" id="month_year_selected" class=" shadow border rounded-lg m-1 p-1.5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
                     @foreach($data_array[4] as $data)
@@ -86,7 +86,7 @@
             $cum_month_data[$b][$c][0]="0";//estateid
             $cum_month_data[$b][$c][1]="-";//cum_ffb mt
             $cum_month_data[$b][$c][2]="-";//cum_ffb_yph mt
-            $cum_month_data[$b][$c][3]="-";//budget
+            $cum_month_data[$b][$c][3]=1;//budget
             $cum_month_data[$b][$c][4]="-";//estate_area
         }
     }
@@ -96,25 +96,22 @@
         {
             $estate_id=$data_array[1][$b]->id;
             $year=$data_array[0];
-            $area=FFBYieldController::getEstateArea($estate_id,$year);
+            $month_num=$c+1;
+            $cum_month_data[$b][$c][4]=FFBYieldController::getEstateArea($estate_id,$year,$month_num);
+            $area=$cum_month_data[$b][$c][4];
             $cum_month_data[$b][$c][0]=$data_array[1][$b]->id;//estate_id
-            // dd($area);
-            
             
             foreach($data_array[2] as $cum_month_ffb)
             {
                 // $cum_month_data[$b][$c][1]="-";
                 if(($cum_month_ffb->month-1)==$c&&$cum_month_ffb->estate_id==$cum_month_data[$b][$c][0])
                 {
-                    if($c!=0)
-                    {
-                        // $monthly_yph=$cum_month_ffb->cumulative_ffb_mt/$cum_month_ffb->estate->
-                        // $cum_monthly_ffb_mt=$cum_month_ffb->cumulative_ffb_mt+
-                    }
-                    $cum_month_data[$b][$c][1]=$cum_month_ffb->cumulative_ffb_mt;
+                    $cum_month_data[$b][$c][1]=$cum_month_ffb->cumulative_ffb_mt/$cum_month_data[$b][$c][4];
+                    $cum_month_data[$b][$c][1]=number_format((float)$cum_month_data[$b][$c][1], 2, '.', '');
                 }
-
             }
+            $month_num=$c+1;
+            $cum_month_data[$b][$c][3]=FFBYieldController::getMonthlyBudget($estate_id,$year,$month_num,$area);
             $monthly_ffb[$b][$c]=0;
         }
     }
@@ -164,75 +161,28 @@
                     $cumulative_ffb_mt[]=0;
                 ?>
                 @for($j=1;$j<=12;$j++)
-                    <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
+                    <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full text-sm">
                         <td class="border border-gray-300 p-1 px-3"><?php echo $j;?></td>
                         <?php $cumulative_daily_budget=0;?>
                         @for($k=0;$k<$data_array[3];$k++)
-                            <?php $hit=0; ?>
-                            @foreach($data_array[2] as $monthly_ffb)
-
-
-                                @if($j==$monthly_ffb->month&&$monthly_ffb->estate_id==$estate_numbering[$k])
-                                    <?php $ffb_mt=$monthly_ffb->ffb_mt;
-                                    // $monthly_budget=$data_array[4][$k]->$month_data_var/$number_of_days;
-                                    $percentage=0;
-                                    // $percentage=$ffb_mt/$daily_budget*100;
-                                    ?>
-                                    @if($percentage>=0&&$percentage<80)
-                                        <td class="border border-gray-300 p-1 bg-red-600 text-white">{{$monthly_ffb->cumulative_ffb_mt}}</td>
-                                    @elseif($percentage>=80&&$percentage<100)
-                                        <td class="border border-gray-300 p-1 bg-yellow-300 ">{{$monthly_ffb->cumulative_ffb_mt}}</td>
-                                    @else
-                                        <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$monthly_ffb->cumulative_ffb_mt}}</td>
-                                    @endif
-                                    <?php 
-                                        // $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
-                                        // $cumulative_daily_budget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);
-
-                                        // $daily_ffbbudget=round($daily_budget*$j,2);
-                                      
-                                        
-                                    ?>
-
-                                    {{-- budget ffb mt --}}
-                                    <?php $var=$data_array[5][$j];
-                                    
-                                    ?>
-                                    @foreach($data_array[6] as $budget)
-                                    <?php $hit_a=0;?>
-                                        @if($monthly_ffb->estate_id==$budget->estate_id)
-                                        <?php $hit_a=$hit_a+1;?>
-                                        <td class="border border-gray-300 border-r-black p-1">{{$budget->$var;}}</td>
-                                        @endif
-
-                                    @endforeach
-
-                                    <?php 
-                                      
-                                    
-                                    
-                                    // $daily_ffbbudget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);
-                                    
-                                    ?>
-                                    {{-- <td class="border border-gray-300 border-r-black p-1 "><//?php echo round($daily_budget*$j,2);?></td> --}}
-                                    <?php $hit=$hit+1; ?>
+                                <?php
+                                $ffb_mt=$cum_month_data[$k][$j-1][1];
+                                $percentage=0;
+                                $percentage=$ffb_mt/$cum_month_data[$k][$j-1][3]*100;
+                                ?>
+                                @if($percentage>=0&&$percentage<80)
+                                    <td class="border border-gray-300 p-1 bg-red-600 text-white">{{$cum_month_data[$k][$j-1][1]}}</td>
+                                @elseif($percentage>=80&&$percentage<100)
+                                    <td class="border border-gray-300 p-1 bg-yellow-300 ">{{$cum_month_data[$k][$j-1][1]}}</td>
+                                @else
+                                    <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$cum_month_data[$k][$j-1][1]}}</td>
                                 @endif
-                            @endforeach
-                            
-                            @if($hit==0)
-                                <td class="border border-gray-300 p-1">-</td>
-                                <td class="border border-gray-300 p-1">-</td>
-                            @endif
+                                {{-- budget ffb mt --}}
+                                <td class="border border-gray-300 border-r-black p-1">{{$cum_month_data[$k][$j-1][3]}}</td>
+   
+                                {{-- last year yphmt --}}
+                                <td class="border border-gray-300 border-r-black p-1">{{$cum_month_data[$k][$j-1][4]}}</td>
 
-
-
-                            
-                            
-                            @foreach($data_array[7] as $last_year_ffb)
-                                @if($j==$last_year_ffb->month&&$last_year_ffb->estate_id==$estate_numbering[$k])
-                                    <td class="border border-gray-300 p-1">{{$last_year_ffb->cumulative_ffb_mt}}</td>
-                                @endif
-                            @endforeach
                         @endfor
                         
 
@@ -286,7 +236,8 @@
 
 
         </table>
- 
+ {{-- test --}}
+
         
     </div>
 </div>
