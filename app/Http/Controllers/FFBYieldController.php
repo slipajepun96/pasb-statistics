@@ -241,4 +241,64 @@ class FFBYieldController extends Controller
 
         return view('admin.ffbyield.add_hectarage_yield',['estate_list'=>$estate_list]);
     }
+
+    public function storeEstateYield(Request $request)
+    {
+        $this->validate($request,[
+            'estate_id'=>'required',
+            'year'=>'required',
+            'month1'=>'required',
+            'month2'=>'required',
+            'month3'=>'required',
+            'month4'=>'required',
+            'month5'=>'required',
+            'month6'=>'required',
+            'month7'=>'required',
+            'month8'=>'required',
+            'month9'=>'required',
+            'month10'=>'required',
+            'month11'=>'required',
+            'month12'=>'required'
+        ]);
+        $year=$request->year;
+        $estate_id=$request->estate_id;
+        $query=CumulativeFFB::where('year','=',$year)->where('estate_id','=',$estate_id)->first();
+        $estate_list=Estate::all();
+       
+        if($query==null)
+        {
+            Session::flash('status','Saved');
+            for($i=1;$i<=12;$i++)
+            {
+                $cum_yield=new CumulativeFFB();
+                $cum_yield->year=$request->year;
+                $cum_yield->estate_id=$request->estate_id;
+                $cum_yield->month=$i;
+                $cum_yield->cumulative_ffb_mt=$request->{"month".$i};
+                $cum_yield->latest_ffb_date=date("Y-m-d");
+                $cum_yield->save();
+            }
+            
+            return view('admin.ffbyield.add_hectarage_yield',['estate_list'=>$estate_list]);
+        }
+        else
+        {
+            Session::flash('status','Duplicate data, not saved');
+            return view('admin.ffbyield.add_hectarage_yield',['estate_list'=>$estate_list]);
+        }
+    }
+
+    public function indexEstateYield()
+    {
+        $estates_list=Estate::all();
+        $cum_ffbs_list=CumulativeFFB::select(['estate_id','year'])->groupBy('estate_id')->groupBy('year')->orderBy('estate_id','ASC')->orderBy('year','ASC')->get();
+        return view('admin.ffbyield.index_hectarage_yield',['cum_ffbs_list'=>$cum_ffbs_list,'estates_list'=>$estates_list]);
+    }
+
+    public function viewEstateYield(Request $request)
+    {
+        $estate_id=$request->estate_id;
+        $year=$request->year;
+        $result=CumulativeFFB::select(['estate_id']);
+    }
 }
