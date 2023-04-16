@@ -13,7 +13,14 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"> </script>  
 
 <div class="bg-white m-2 p-2 text-black rounded-xl">
-    <span class="text-lg font-medium m-3">Add New Yield/MT for Previous Year</span>
+    <a href="{{route('estate-yield')}}"><button class=" p-2 bg-yellow-400 hover:bg-yellow-400 rounded-lg text-black shadow-lg inline-flex">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 18 18" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+          </svg>&nbsp;Back
+        
+        </button></a>
+        <span class="text-lg font-medium m-3">Add New Yield/MT for Previous Year</span>
+    
     <div class="m-2">
         <form action="{{route('estate-yield-store')}}" method="POST">
             @csrf 

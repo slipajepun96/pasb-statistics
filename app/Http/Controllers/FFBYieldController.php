@@ -299,6 +299,10 @@ class FFBYieldController extends Controller
     {
         $estate_id=$request->estate_id;
         $year=$request->year;
-        $result=CumulativeFFB::select(['estate_id']);
+        $cum_ffbs=CumulativeFFB::select(['estate_id','year','month','cumulative_ffb_mt'])->where('estate_id','=',$estate_id)->where('year','=',$year)->get();
+        $estate_name=DB::table('estates')->where('id', $estate_id)->value('estate_name'); 
+        // DB::table('users')->where('username', $username)->value('groupName'); 
+        return view('admin.ffbyield.view_hectarage_yield',['cum_ffbs'=>$cum_ffbs,'estate_name'=>$estate_name,'year'=>$year]);
+
     }
 }

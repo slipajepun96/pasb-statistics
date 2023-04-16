@@ -48,8 +48,6 @@
                        go
                     </button>
                 </form>
-
-                <a href="{{route('estate-yield')}}">Estate Yield</a>
             
         </div>
      
