@@ -14,10 +14,25 @@
 
 
         {{-- <span class="text-lg font-bold m-3">Yield/MT for Ladang Sungai Kerpai</span> --}}
-        
-
+        <?php 
+        for($a=0;$a<12;$a++)
+        {
+            $data_array[$a]="Data Not Available";
+        }
+        for($a=0;$a<12;$a++)
+        {
+            foreach($cum_ffbs as $cum_ffb)
+            {
+                $b=$a+1;
+                if($b==$cum_ffb->month)
+                {
+                    $data_array[$a]=$cum_ffb->cumulative_ffb_mt;
+                }
+            }
+        }
+    ?>
     <div class="m-2">
-        <div class="p-3 max-w-sm mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
+        <div class="p-3 max-w-md mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
             <div class="">   
                 <label class="block text-gray-700 text-lg font-semibold">
                     {{$year}} Yield/MT for <br>{{$estate_name}}
@@ -34,11 +49,7 @@
                     @for($i=1;$i<=12;$i++)
                         <tr class="h-30 border border-black hover:bg-cyan-50 text-center min-h-full">
                             <td class="border border-gray-300 p-3 px-5">{{$i}}</td>
-                            @foreach($cum_ffbs as $cum_ffb)
-                                @if($i===$cum_ffb->month)
-                                    <td class="border border-gray-300 p-3 px-5">{{$cum_ffb->cumulative_ffb_mt}} MT</td>
-                                @endif
-                            @endforeach
+                            <td class="border border-gray-300 p-3 px-5">{{$data_array[$i-1]}} MT</td>
                         </tr>
                     @endfor
     
