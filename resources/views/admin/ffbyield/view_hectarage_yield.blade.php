@@ -34,6 +34,11 @@
     <div class="m-2">
         <div class="p-3 max-w-md mx-auto my-2 bg-white rounded-xl shadow-xl items-center ">
             <div class="">   
+                <button onclick="history.go(-1);" class=" bg-yellow-400 m-1 p-1 rounded inline-flex shadow-md hover:bg-yellow-300"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+                  </svg>
+                  
+                  Back </button>
                 <label class="block text-gray-700 text-lg font-semibold">
                     {{$year}} Yield/MT for <br>{{$estate_name}}
                 </label>

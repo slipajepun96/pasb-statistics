@@ -8,6 +8,17 @@
     $monthName = $dateObj->format('F'); // March
     $current_page="daily_report";
 ?>
+<style>
+    .table-wrp  {
+  max-height: 75vh;
+  overflow-y: auto;
+  display:block;
+}
+thead{
+  position:sticky;
+  top:0
+}
+</style>
 <div class="w-auto md:inline-flex ">
     <div class="m-3 mb-1 bg-white rounded-xl p-1 ">
 
@@ -116,9 +127,9 @@
 @endforeach
 <?php //dd($cumulative_total_ffb);?>
 
-    <div class="m-2 overflow-x-auto">
+    <div class="m-2 overflow-x-auto table-wrp">
         <table class="border-collapse border border-green-900 w-full">
-            <thead>
+            <thead class="sticky">
                 <tr class="bg-gray-200 p-3 font-bold">
                     <td width="3%" class="border border-blue-900 p-1 display-none text-sm" rowspan="3">Date</td>
                     <?php $i=0; ?>
