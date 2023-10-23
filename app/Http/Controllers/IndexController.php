@@ -7,12 +7,13 @@ use App\Models\DailyYield;
 use App\Models\Budget;
 use App\Models\CumulativeFfb;
 use App\Models\AreaEstate;
+use App\Charts\MonthlyFFBChart;
 
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(MonthlyFFBChart $chart)
     {
         // $current_year=date("Y");
         $current_year=2022;
@@ -70,6 +71,7 @@ class IndexController extends Controller
 
 
             $total_matured_area=$total_matured_area+$matured_area;
+
             foreach($cumulative_ffb_mts as $cumulative_ffb_mt)
             {
                 if($estate->id==$cumulative_ffb_mt->estate_id)
@@ -101,7 +103,10 @@ class IndexController extends Controller
         $data_array[4]=$estates->keys();
         $data_array[5]=$estates->values();
 
+        //data for graph
+        $graph_data[0][0];//budget
+
         // dd($estate_yph[1][3]);
-        return view('index',['data_array'=>$data_array]);
+        return view('index',['data_array'=>$data_array,'chart'=>$chart->build()]);
     }
 }

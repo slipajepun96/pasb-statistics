@@ -5,11 +5,20 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'dc3a16e611a3f46ea112b8abee24bc121058cbf3',
+        'reference' => '5d6970c889cc0e6830867856652916e4656d794c',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(
+        'arielmejiadev/larapex-charts' => array(
+            'pretty_version' => '6.0.0',
+            'version' => '6.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../arielmejiadev/larapex-charts',
+            'aliases' => array(),
+            'reference' => '21dc8bfd8f9577ac51e5031de643aa7130679771',
+            'dev_requirement' => false,
+        ),
         'asm89/stack-cors' => array(
             'pretty_version' => 'v2.1.1',
             'version' => '2.1.1.0',
@@ -508,7 +517,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'dc3a16e611a3f46ea112b8abee24bc121058cbf3',
+            'reference' => '5d6970c889cc0e6830867856652916e4656d794c',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -593,12 +602,12 @@
             'dev_requirement' => false,
         ),
         'maatwebsite/excel' => array(
-            'pretty_version' => '3.1.45',
-            'version' => '3.1.45.0',
+            'pretty_version' => '3.1.48',
+            'version' => '3.1.48.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../maatwebsite/excel',
             'aliases' => array(),
-            'reference' => '80627071a8cebb3c1119f1d2881bb6a03a8f9152',
+            'reference' => '6d0fe2a1d195960c7af7bf0de760582da02a34b9',
             'dev_requirement' => false,
         ),
         'maennchen/zipstream-php' => array(

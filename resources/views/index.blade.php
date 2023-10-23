@@ -4,10 +4,13 @@
 
 <div class="m-2 bg-white w-auto rounded-xl p-3">
     <p class="text-lg font-medium">Welcome, {{Auth::user()->name;}}</p>
- 
+        <div class="p-1  bg-gray-100 rounded shadow mb-2">
+            {!! $chart->container() !!}
+        </div>
 
     <div class="flex flex-row">
-        <div class="my-1 bg-cyan-900 w-1/2 md:w-1/6 rounded-lg p-2 text-white hover:bg-cyan-700">
+
+        <div class="my-1 bg-cyan-900 w-1/2 lg:w-1/6 rounded-lg p-2 text-white hover:bg-cyan-700">
             
             <div class="flex-inline"><span class="text-3xl font-medium"> {{number_format($data_array[1],2)}}</span><span class="text-sm"> MT/Ha</span></div>
             2023 YPH <br> <p class="italic text-gray-500 text-sm"></p>
@@ -15,7 +18,7 @@
             
             
         </div>
-        <div class="my-1 ml-1 bg-cyan-900 w-1/2 md:w-1/6  rounded-lg p-2 text-white hover:bg-cyan-700">
+        <div class="my-1 ml-1 bg-cyan-900 w-1/2 lg:w-1/6  rounded-lg p-2 text-white hover:bg-cyan-700">
             <div class="flex-inline"><span class="text-3xl font-medium"> {{number_format($data_array[0],2)}}</span><span class="text-sm"> MT</span></div>
             Total FFB MT
         </div>
@@ -50,7 +53,8 @@
             </div>
         @endforeach
     </div>
-    <canvas id="index-chart" width="400" height="150"></canvas>
-    <script type="module" src="./js/index-chart.js"></script>
+
+    <script src="{{$chart->cdn() }}"></script>
+    {{$chart->script()}}
 </div>
 @endsection

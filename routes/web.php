@@ -9,6 +9,7 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PesertaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::middleware(['auth'],['preventBackHistory'])->group(function()
     //user
     Route::post('/user/profile',[UserController::class,'changePassword'])->name('change-password');
     Route::get('/user/profile',[UserController::class,'profile'])->name('profile');
+
+    Route::get('/peserta',[PesertaController::class,'index'])->name('peserta');
    
 });
 
@@ -51,6 +54,7 @@ Route::middleware(['guest'],['preventBackHistory'])->group(function()
     Route::post('/set_password',[UserController::class,'registerUser'])->name('register-user'); 
     Route::get('/firsttimelogin',[UserController::class,'firstTimeLogin'])->name('firsttimelogin');
     Route::get('/set_password',[UserController::class,'set_password'])->name('set_password');
+    
     
 });
 
