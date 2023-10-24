@@ -45,11 +45,12 @@
                         @endforeach
                     </select>
                     <button type="submit" class="shadow rounded-lg bg-cyan-400 px-3 py-1 ">
-                       go
+                       View
                     </button>
                 </form>
             
         </div>
+
      
 
      

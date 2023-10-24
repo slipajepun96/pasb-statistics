@@ -81,8 +81,11 @@ Route::middleware(['auth','admin'],['preventBackHistory'])->group(function()
     Route::post('/admin/ffb/daily_yield/add',[DailyYieldController::class,'store'])->name('daily_yield-store');
     Route::post('/admin/ffb/daily_yield/edit/{id}',[DailyYieldController::class,'update'])->name('daily_yield-update');
     Route::post('/admin/ffb/daily_yield/delete/{id}',[DailyYieldController::class,'delete'])->name('daily_yield-delete');
+    Route::post('/admin/ffb/daily_yield/upload_import',[DailyYieldController::class,'import'])->name('daily_yield-upload_import');
     Route::get('/admin/ffb/daily_yield/add',[DailyYieldController::class,'add'])->name('daily_yield-add');
     Route::get('/admin/ffb/daily_yield/edit/{id}',[DailyYieldController::class,'edit'])->name('daily_yield-edit');
+    Route::get('/admin/ffb/daily_yield/upload_view',[DailyYieldController::class,'upload_view'])->name('daily_yield-upload_view');
+    
 
     //estate yield
     Route::post('/admin/ffb/estate_yield/add',[FFBYieldController::class,'storeEstateYield'])->name('estate-yield-store');

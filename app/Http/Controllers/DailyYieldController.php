@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\FFBDailyYieldImport;
 
 use PDF;
 
@@ -364,6 +366,17 @@ class DailyYieldController extends Controller
         $name=$data_array[1].'-'.$data_array[0]."-Daily Report.pdf";
         return $pdf->download($name);
 
+    }
+
+    public function import()
+    {
+        Excel::import(new FFBDailyYieldImport,request()->file('uploaded_file.xlsx'));
+        return redirect()->back()->with('success','Success');
+    }
+
+    public function upload_view()
+    {
+        return view('admin.ffbyield.import_ffb_daily_yield');
     }
 
 }

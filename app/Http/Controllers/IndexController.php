@@ -104,7 +104,8 @@ class IndexController extends Controller
         $data_array[5]=$estates->values();
 
         //data for graph
-        $graph_data[0][0];//budget
+        // $graph_data[0][0];//budget
+        
 
         // dd($estate_yph[1][3]);
         return view('index',['data_array'=>$data_array,'chart'=>$chart->build()]);
