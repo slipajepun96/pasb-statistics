@@ -7,6 +7,7 @@ use App\Models\Estate;
 use App\Models\DailyYield;
 use App\Models\Budget;
 use App\Models\CumulativeFfb;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,6 @@ use App\Imports\FFBDailyYieldImport;
 
 use PDF;
 
-use Illuminate\Http\Request;
 
 class DailyYieldController extends Controller
 {
@@ -368,10 +368,13 @@ class DailyYieldController extends Controller
 
     }
 
-    public function import()
+    public function import(Request $request)
     {
-        Excel::import(new FFBDailyYieldImport,request()->file('uploaded_file.xlsx'));
-        return redirect()->back()->with('success','Success');
+        // dd($request);
+        Excel::import(new FFBDailyYieldImport, $request->file('uploaded_file'));
+        Session::flash('status_message','Data successfully saved');
+        return redirect()->back();
+        // return 'success';
     }
 
     public function upload_view()

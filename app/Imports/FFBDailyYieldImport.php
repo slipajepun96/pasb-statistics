@@ -15,14 +15,14 @@ class FFBDailyYieldImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        // dd($row);
         return new DailyYield([
-            'date' => $row[date],
-            'estate_id' => $row[estate_id],
-            'ffb_mt' => $row[ffb_mt],
+            'date' => $row['date'],
+            'estate_id' => $row['estate_id'],
+            'ffb_mt' => $row['ffb_mt'],
             'user_id' => 3,
-            'month' => $row[month],
-            'year' =>$row[year],
-
+            'month' => $row['month'],
+            'year' =>$row['year'],
         ]);
     }
 
