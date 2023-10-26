@@ -5,6 +5,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
 {{-- 
 <script>
        $(function() {
@@ -51,8 +52,8 @@
 
             <p class="text-sm text-gray-700">Drop your .xlsx file (Microsoft Excel file) to the box. Kindly ensure that those file is template from <a href="" class="underline">here</a> only.</p>
             
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
-            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="ffb_daily_yield_upload" type="file">
+            <label class="block mb-2 text-sm font-medium text-gray-900 " for="file_input">Upload file</label>
+            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" id="ffb_daily_yield_upload" type="file">
 
             <div class="mb-4 inline-block md:w-1/3 w-full  m-3">
                 <button type="submit" class="bg-green-600 hover:bg-green-500 text-white rounded-lg shadow-lg p-2">Upload</button>
