@@ -27,6 +27,7 @@ thead{
             @csrf 
                 <select name="month_year_selected" id="month_year_selected" class=" shadow border rounded-lg m-1 p-1.5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-none">
                     @foreach($data_array[7] as $data)
+
                     <?php
                     $pass_data=0;
                     $month_year_selected=DailyYieldController::monthYearConvert($data->month,$data->year);
@@ -184,6 +185,7 @@ thead{
                                 ?>
                                 @if($j==$day&&$ffbyield->estate_id==$estate_numbering[$k])
                                     <?php $ffb_mt=$ffbyield->ffb_mt;
+                                    // dd($data_array[4][$k]->$month_data_var);
                                     $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days;
                                     $percentage=0;
                                     $percentage=$ffb_mt/$daily_budget*100;

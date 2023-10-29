@@ -44,7 +44,7 @@ class DailyYieldController extends Controller
         $month_in_string=$month_year_exploded[0];
         $year=$month_year_exploded[1];
         $month=date("m",strtotime($month_in_string));
-   
+
         $available_data_month_year=DailyYield::select(['month','year'])->groupBy('year')->groupBy('month')->orderBy('year', 'DESC')->orderBy('month', 'DESC')->get();
         $dailyyields=DailyYield::select(['date','estate_id','ffb_mt','month','year','id'])->where([['year','=',$year],['month','=',$month]])->get();
         // $dailyyields=DailyYield::where([['year','=',$year],['month','=',$month]])->get();
@@ -277,6 +277,36 @@ class DailyYieldController extends Controller
         return $varSelector_pass;
     }
 
+    public function changeMonthStringToNumber($monthString)
+    {
+        if($monthString=="January")
+            return "01";
+        else if($monthString=="February")
+            return "02";
+        else if($monthString=="March")
+            return "03";
+        else if($monthString=="April")
+            return "04";
+        else if($monthString=="May")
+            return "05";
+        else if($monthString=="June")
+            return "06";
+        else if($monthString=="July")
+            return "07";
+        else if($monthString=="August")
+            return "08";
+        else if($monthString=="September")
+            return "09";
+        else if($monthString=="October")
+            return "10";
+        else if($monthString=="November")
+            return "11";
+        else if($monthString=="December")
+            return "12";
+        else 
+            return "600";
+    }
+
     public function dailyYieldIndex(Request $request)
     {
         if(empty($request->month_year_selected))
@@ -289,8 +319,9 @@ class DailyYieldController extends Controller
             $month_year_exploded=explode(" ",$request->month_year_selected);
             $month_in_string=$month_year_exploded[0];
             $year=$month_year_exploded[1];
-            $month=date("m",strtotime($month_in_string));
-            
+            $month=$this->changeMonthStringToNumber($month_in_string);
+            // $month=date("m",strtotime($month_in_string));
+            // dd($month);
         }
        
 
@@ -332,7 +363,6 @@ class DailyYieldController extends Controller
     {
 
         $month_year_exploded=explode(' ',$data_pass);
-
         // $year=$data_pass[1];
         // dd($month_year_exploded);
         $month=$month_year_exploded[0];
