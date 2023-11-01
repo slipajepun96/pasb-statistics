@@ -299,10 +299,58 @@ class FFBYieldController extends Controller
     {
         $estate_id=$request->estate_id;
         $year=$request->year;
-        $cum_ffbs=CumulativeFFB::select(['estate_id','year','month','cumulative_ffb_mt'])->where('estate_id','=',$estate_id)->where('year','=',$year)->get();
+        $cum_ffbs=CumulativeFFB::select(['id','estate_id','year','month','cumulative_ffb_mt','id'])->where('estate_id','=',$estate_id)->where('year','=',$year)->get();
         $estate_name=DB::table('estates')->where('id', $estate_id)->value('estate_name'); 
         // DB::table('users')->where('username', $username)->value('groupName'); 
-        return view('admin.ffbyield.view_hectarage_yield',['cum_ffbs'=>$cum_ffbs,'estate_name'=>$estate_name,'year'=>$year]);
+        // dd($cum_ffbs);
+        return view('admin.ffbyield.view_hectarage_yield',['cum_ffbs'=>$cum_ffbs,'estate_name'=>$estate_name,'year'=>$year,'estate_id'=>$estate_id]);
 
+    }
+
+    public function recalculateEstateYield(Request $request)
+    {
+
+        // dd($request);
+        $estate_id=$request->estate_id;
+        $year=$request->year;
+        $month=$request->month;
+        $id=$request->id;
+
+        $total_cum_ffb=0;
+
+        $total_ffbs_mt=DailyYield::select(['ffb_mt'])->where('estate_id','=',$estate_id)->where('year','=',$year)->where('month','=',$month)->orderBy('date','ASC')->get();
+
+        // dd($total_ffbs_mt);
+        foreach($total_ffbs_mt as $total_ffb_mt)
+        {
+            $total_cum_ffb=$total_cum_ffb + $total_ffb_mt->ffb_mt;
+        }
+
+        if($id!="No_ID")
+        {
+            $cum_ffb=CumulativeFFB::findOrFail($id);
+            $cum_ffb->cumulative_ffb_mt=$total_cum_ffb;
+    
+            $cum_ffb->save();
+            // echo $total_cum_ffb.$id;
+        }
+        else
+        {
+            $cum_ffb=new CumulativeFFB();
+            $cum_ffb->year=$year;
+            $cum_ffb->estate_id=$estate_id;
+            $cum_ffb->month=$month;
+            $cum_ffb->cumulative_ffb_mt=$total_cum_ffb;
+            $cum_ffb->latest_ffb_date=date("Y-m-d");
+            $cum_ffb->save();
+            // echo $total_cum_ffb;
+        }
+
+        $cum_ffbs=CumulativeFFB::select(['id','estate_id','year','month','cumulative_ffb_mt','id'])->where('estate_id','=',$estate_id)->where('year','=',$year)->get();
+        $estate_name=DB::table('estates')->where('id', $estate_id)->value('estate_name'); 
+        // DB::table('users')->where('username', $username)->value('groupName'); 
+        // dd($cum_ffbs);
+        return view('admin.ffbyield.view_hectarage_yield',['cum_ffbs'=>$cum_ffbs,'estate_name'=>$estate_name,'year'=>$year,'estate_id'=>$estate_id]);
+        
     }
 }

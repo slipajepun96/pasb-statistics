@@ -13,8 +13,9 @@ class MonthlyFFBChart
         $this->chart = $chart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\LineChart
+    public function build($data_array): \ArielMejiaDev\LarapexCharts\LineChart
     {
+        // dd($data_array);
         return $this->chart->lineChart()
             ->setTitle('Actual FFB Yield (MT)')
             // ->setSubtitle('Physical sales vs Digital sales.')

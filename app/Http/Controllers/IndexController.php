@@ -15,15 +15,16 @@ class IndexController extends Controller
 {
     public function index(MonthlyFFBChart $chart)
     {
-        // $current_year=date("Y");
-        $current_year=2022;
+
+        $current_year=date("Y");
+        // $current_year=2022;
         $yesterday_date=date('d.m.Y',strtotime("-1 days"));
         // dd($yesterday_year);
-        $yesterday_month=12;
-        $yesterday_year=2022;
+        // $yesterday_month=12;
+        // $yesterday_year=2022;
 
-        // $yesterday_year=date('Y', strtotime($yesterday_date));
-        // $yesterday_month=date('m', strtotime($yesterday_date));
+        $yesterday_year=date('Y', strtotime($yesterday_date));
+        $yesterday_month=date('m', strtotime($yesterday_date));
         $last_year=$current_year-1;
 
 
@@ -108,6 +109,6 @@ class IndexController extends Controller
         
 
         // dd($estate_yph[1][3]);
-        return view('index',['data_array'=>$data_array,'chart'=>$chart->build()]);
+        return view('index',['data_array'=>$data_array,'chart'=>$chart->build($data_array)]);
     }
 }

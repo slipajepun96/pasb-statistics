@@ -109,7 +109,7 @@
             
                 <span class="text-xl font-semibold tracking-wide">PASB - Statistics</span>
             </a>
-            <button class="inline-flex p-3 mr-3 hover: rounded lg:hidden ml-auto nav-toggler" data-target="#navigation">
+            <button class="inline-flex p-1 mr-1 hover: rounded lg:hidden ml-auto nav-toggler" data-target="#navigation">
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-cyan-900">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />

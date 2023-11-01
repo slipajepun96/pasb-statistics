@@ -12,7 +12,7 @@
 
 
 
-<nav class="flex items-center p-1 flex-wrap bg-cyan-900 shadow">
+<nav class="flex items-center flex-wrap bg-cyan-900 shadow">
     <a href="/" class="p-2 mr-4 inline-flex items-center text-white">
         <span class="text-lg font-medium text-clip">FFB Yield</span>
     </a>
@@ -26,8 +26,8 @@
     </button>
     <div class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation2">
         <div class="lg:inline-flex lg:flex-row lg:ml-auto flex flex-col">
-            <a href="{{route('ffbyield')}}" class="lg:inline-flex lg:w-auto px-2 py-2 rounded text-white hover:bg-cyan-400 hover:text-black <?php if($current_page=="daily_report") {?> bg-cyan-700 <?php }?>"><span>Daily FFB Output Report</span></a>
-            <a href="{{route('monthly_report')}}" class="lg:inline-flex lg:w-auto px-2 py-2 rounded text-white hover:bg-cyan-400 hover:text-black <?php if($current_page=="monthly_report") {?> bg-cyan-700 <?php }?>"><span>Yearly Report</span></a>
+            <a href="{{route('ffbyield')}}" class="lg:inline-flex lg:w-auto px-2 py-1 rounded text-white hover:bg-cyan-400 hover:text-black <?php if($current_page=="daily_report") {?> bg-cyan-700 <?php }?>"><span>Daily FFB Output Report</span></a>
+            <a href="{{route('monthly_report')}}" class="lg:inline-flex lg:w-auto px-2 py-1 rounded text-white hover:bg-cyan-400 hover:text-black <?php if($current_page=="monthly_report") {?> bg-cyan-700 <?php }?>"><span>Yearly Report</span></a>
         </div>
     </div>
 </nav>

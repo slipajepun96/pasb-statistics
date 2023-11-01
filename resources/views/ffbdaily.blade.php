@@ -184,28 +184,37 @@ thead{
                                     // dd($day==$j&&$ffbyield->estate_id==$estate_numbering[$k]&&$k<$data_array[3]);
                                 ?>
                                 @if($j==$day&&$ffbyield->estate_id==$estate_numbering[$k])
-                                    <?php $ffb_mt=$ffbyield->ffb_mt;
-                                    // dd($data_array[4][$k]->$month_data_var);
-                                    $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days;
-                                    $percentage=0;
-                                    $percentage=$ffb_mt/$daily_budget*100;
-                                    ?>
-                                    @if($percentage>=0&&$percentage<80)
-                                        <td class="border border-gray-300 p-1 bg-red-600 text-white">{{$ffbyield->ffb_mt}}</td>
-                                    @elseif($percentage>=80&&$percentage<100)
-                                        <td class="border border-gray-300 p-1 bg-yellow-300 ">{{$ffbyield->ffb_mt}}</td>
+                                    @if($data_array[4][$k]->$month_data_var!=0)
+                                        <?php $ffb_mt=$ffbyield->ffb_mt;
+                                        // dd($data_array[4][$k]->$month_data_var);
+
+                                        $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days;
+                                        $percentage=0;
+                                        $percentage=$ffb_mt/$daily_budget*100;
+                                        ?>
+                                        @if($percentage>=0&&$percentage<80)
+                                            <td class="border border-gray-300 p-1 bg-red-600 text-white">{{$ffbyield->ffb_mt}}</td>
+                                        @elseif($percentage>=80&&$percentage<100)
+                                            <td class="border border-gray-300 p-1 bg-yellow-300 ">{{$ffbyield->ffb_mt}}</td>
+                                        @else
+                                            <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$ffbyield->ffb_mt}}</td>
+                                        @endif
+
+                                        <?php 
+                                            $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
+                                            $cumulative_daily_budget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);
+
+                                            $daily_ffbbudget=round($daily_budget*$j,2);
+                                            
+                                            
+                                        ?>
                                     @else
-                                        <td class="border border-gray-300 p-1 bg-green-700 text-white">{{$ffbyield->ffb_mt}}</td>
-                                    @endif
-
                                     <?php 
-                                        $daily_budget=$data_array[4][$k]->$month_data_var/$number_of_days; 
-                                        $cumulative_daily_budget=FFBYieldController::ffbBudgetCount($j,$daily_budget,$cumulative_daily_budget);
-
-                                        $daily_ffbbudget=round($daily_budget*$j,2);
-                                        
-                                        
+                                    // header("Location: dividedByZero");
+                                    // exit();
+                                    // echo "Runtime Error : Division by"
                                     ?>
+                                    @endif
 
                                     {{-- cumulative ffb mt --}}
 
