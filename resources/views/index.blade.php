@@ -5,28 +5,28 @@
 <div class="m-2 bg-white w-auto rounded-xl p-3">
     <p class="text-lg font-medium">Welcome, {{Auth::user()->name;}}</p>
     <div class="flex flex-row">
-
-        <div class="my-1 bg-cyan-900 w-1/2 lg:w-1/6 rounded-lg p-2 text-white hover:bg-cyan-700">
+        <div class="my-1 bg-cyan-900 w-1/2 lg:w-1/12 rounded-lg p-2 text-white hover:bg-cyan-700">
             
-            <div class="flex-inline"><span class="text-3xl font-medium"> {{number_format($data_array[1],2)}}</span><span class="text-sm"> MT/Ha</span></div>
+            <div class="flex-inline"><span class="text-2xl font-medium"> {{number_format($data_array[1],2)}}</span><span class="text-sm"> MT/Ha</span></div>
             2023 YPH <br> <p class="italic text-gray-500 text-sm"></p>
             <div class="flex-inline"><span class="text-sm"> 2021 : 11.40 MT/Ha</span></div>
             
             
         </div>
-        <div class="my-1 ml-1 bg-cyan-900 w-1/2 lg:w-1/6  rounded-lg p-2 text-white hover:bg-cyan-700">
-            <div class="flex-inline"><span class="text-3xl font-medium"> {{number_format($data_array[0],2)}}</span><span class="text-sm"> MT</span></div>
+        <div class="my-1 ml-1 bg-cyan-900 w-1/2 lg:w-1/12  rounded-lg p-2 text-white hover:bg-cyan-700">
+            <div class="flex-inline"><span class="text-2xl font-medium"> {{number_format($data_array[0],2)}}</span><span class="text-sm"> MT</span></div>
             Total FFB MT
         </div>
    
             <a href="{{route('ffbyield')}}" class="my-1 ml-1 bg-cyan-900 w-fit md:w-fit  rounded-lg p-2 text-white hover:bg-cyan-600">
                 <div class="flex-inline"><span class="text-lg hover:underline">View <br>Details</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                </svg></div>
+                    </svg>
+                </div>
             </a>
          </div>
-    {{-- </div> --}}
-        <div class="mt-2 rounded-xl p-1  bg-gray-100 rounded shadow mb-2">
+    </div>
+        <div class="mt-2 m-2 rounded-xl p-1  bg-gray-100 rounded shadow mb-2">
             {!! $chart->container() !!}
         </div>
 

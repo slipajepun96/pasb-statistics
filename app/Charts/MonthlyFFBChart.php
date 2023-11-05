@@ -19,13 +19,14 @@ class MonthlyFFBChart
 
         //ffb yield to view
         $yesterday_month=$graph_data[2];
+        $yesterday_date=$graph_data[3];
         for($i=0;$i<$yesterday_month;$i++)
         {
             $ffb_yield[$i]=$graph_data[0][$i];
         }
 
         return $this->chart->lineChart()
-            ->setTitle('Actual FFB Yield (MT)')
+            ->setTitle('Actual FFB Yield (MT) as of '.$yesterday_date)
             // ->setSubtitle('Physical sales vs Digital sales.')
             // ->addData('Actual', [40, 93, 35, 42, 18, 82, 100, 90, 70, 90])
             ->addData('Actual', $ffb_yield)

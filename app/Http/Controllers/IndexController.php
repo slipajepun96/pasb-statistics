@@ -19,7 +19,7 @@ class IndexController extends Controller
         $current_year=date("Y");
         // $current_year=2022;
         $yesterday_date=date('d.m.Y',strtotime("-1 days"));
-        
+        // dd($yesterday_date);
         // $yesterday_month=12;
         // $yesterday_year=2022;
 
@@ -109,36 +109,40 @@ class IndexController extends Controller
         $data_array[5]=$estates->values();
 
         //data for graph
-        $graph_data=$this->getGraphData($yesterday_year,$yesterday_month);
+        $graph_data=$this->getGraphData($yesterday_year,$yesterday_month,$yesterday_date);
 
         // dd($estate_yph[1][3]);
         return view('index',['data_array'=>$data_array,'chart'=>$chart->build($graph_data)]);
     }
 
-    public function getGraphData($year,$yesterday_month)
+    public function getGraphData($year,$yesterday_month,$yesterday_date)
     {
         //calculate monthly ffb yield 
         for($i=0;$i<12;$i++)
         {
-            if($i<10)
+            $month=0;
+            if($i<9)
                  $month="0".$i+1;
             else
                 $month=$i+1;
-
+            
             $graph_data[0][$i]=$this->getMonthlyFFBYieldForCompany($month,$year);
         }
 
         //calculate budget
         for($j=0;$j<12;$j++)
         {
-            if($j<10)
+            if($j<9)
                  $month="0".$j+1;
             else
                 $month=$j+1;
+            // echo $month." ";
             $graph_data[1][$j]=$this->getMonthlyFFBBudgetForCompany($month,2023);
         }
         
         $graph_data[2]=$yesterday_month;
+        $graph_data[3]=$yesterday_date;
+
         return $graph_data;
     }
 
@@ -154,7 +158,7 @@ class IndexController extends Controller
         }
         if($sum_cum_ffb==0)
             $sum_cum_ffb=null;
-        
+        // echo $sum_cum_ffb;
         return round($sum_cum_ffb,2);
     }
 
