@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="m-2 bg-white w-auto rounded-xl p-3">
+<div class="md:m-3 m-2 bg-white w-auto rounded-xl p-3">
     <p class="text-lg font-medium">Welcome, {{Auth::user()->name;}}</p>
     <div class="flex flex-row">
-        <div class="my-1 bg-cyan-900 w-1/2 lg:w-1/12 rounded-lg p-2 text-white hover:bg-cyan-700">
+        <div class="my-1 bg-cyan-900 w-1/2 lg:w-1/6 rounded-lg p-2 text-white hover:bg-cyan-700">
             
             <div class="flex-inline"><span class="text-2xl font-medium"> {{number_format($data_array[1],2)}}</span><span class="text-sm"> MT/Ha</span></div>
             2023 YPH <br> <p class="italic text-gray-500 text-sm"></p>
@@ -13,7 +13,7 @@
             
             
         </div>
-        <div class="my-1 ml-1 bg-cyan-900 w-1/2 lg:w-1/12  rounded-lg p-2 text-white hover:bg-cyan-700">
+        <div class="my-1 ml-1 bg-cyan-900 w-1/2 lg:w-1/6  rounded-lg p-2 text-white hover:bg-cyan-700">
             <div class="flex-inline"><span class="text-2xl font-medium"> {{number_format($data_array[0],2)}}</span><span class="text-sm"> MT</span></div>
             Total FFB MT
         </div>
@@ -32,8 +32,9 @@
 
 
 
-        
-    <hr class="my-2"><p>FFB Yield By Estates</p>
+    <div class="m-2 bg-white p-2 rounded-lg">
+    
+    <p class="text-xl font-semibold m-1">FFB Yield By Estates</p>
     {{-- <span class=" text-2xl">Estate</span><a href="" class="rounded-md  bg-yellow-400 p-0.5 mb-2 text-cyan-700 text-sm">VIEW MONTHLY FFB STATEMENT</a> --}}
     <div class="flex flex-row">
     <div class=" flex flex-wrap w-full">
