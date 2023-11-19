@@ -29,8 +29,9 @@ class MonthlyFFBChart
             ->setTitle('Actual FFB Yield (MT) as of '.$yesterday_date)
             // ->setSubtitle('Physical sales vs Digital sales.')
             // ->addData('Actual', [40, 93, 35, 42, 18, 82, 100, 90, 70, 90])
-            ->addData('Actual', $ffb_yield)
             ->addData('Budget', $graph_data[1])
+            ->addData('Actual', $ffb_yield)
+            ->setColors(['#407ce6', '#1599b0'])
             ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
             ->setGrid('#3F51B5', 0.1);
     }
